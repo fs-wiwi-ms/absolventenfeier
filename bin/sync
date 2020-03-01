@@ -1,0 +1,5 @@
+#! /usr/bin/env sh
+
+rsync -r -v --exclude-from=.rsyncignore -e ssh ~/dev/absolventenfeier/ root@absolventenfeier.app:/root/absolventenfeier_dev
+
+# fswatch -o . | while read f; do rsync -r -v --exclude-from=.rsyncignore -e ssh ~/dev/absolventenfeier/ root@absolventenfeier.app:/root/absolventenfeier_dev; done

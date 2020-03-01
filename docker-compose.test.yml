@@ -1,0 +1,36 @@
+version: "3.4"
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        ENV: test
+      target: app
+    command: sh -c "mix deps.get && mix test.watch --only wip"
+    depends_on:
+      - db
+      - sync
+    volumes:
+      - ./absolventenfeier.key:/absolventenfeier.key
+    environment:
+      DATABASE_URL: "psql://absolventenfeier_test:absolventenfeier@db/absolventenfeier_test"
+      SECRET_KEY_BASE: SBoEjwgxdx7zkouWs/r0i496KgCWSNDpU34JccR3E3ZLQOMOBdv1Fh8LlmA5tKe5
+
+  assets:
+    build:
+      context: .
+      target: assets
+      args:
+        ENV: test
+    depends_on:
+      - sync
+    command: sh -c "yarn install && yarn run watch"
+
+
+  db:
+    image: postgres:10.3-alpine
+    environment:
+      POSTGRES_USER: absolventenfeier_test
+      POSTGRES_PASSWORD: absolventenfeier
+      POSTGRES_DB: absolventenfeier_test

@@ -1,0 +1,64 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title = gettext("Absolventenfeier")
+    link(rel="stylesheet" href="#{static_path(@conn, "/css/app.css") }")
+    meta(name="description" content="#{gettext("Absolventenfeier")}")
+    meta(name="author" content="#{gettext("Tobias Hoge")}")
+
+    title
+    link(rel="icon" href="#{static_path(@conn, "/favicon.png")}" type="image/png")
+    link(rel="manifest" href="#{static_path(@conn, "/manifest.json")}")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black")
+    meta(name="apple-mobile-web-app-title" content="Absolventenfeier")
+    link(rel="apple-touch-icon" href="/images/icons/192.png")
+    meta(name="theme-color" content="#092135")
+
+  body.has-background-light
+    nav.navbar.has-shadow.is-spaced.has-background-primary(role="navigation" aria-label="main navigation")
+      div.navbar-brand
+        div.navbar-item
+          a.button.is-primary(href="#{game_path(@conn, :index)}")
+            span.icon.has-text-white
+              i.fas.fa-dice
+            span.has-text-weight-bold.has-text-white = gettext("Absolventenfeier")
+
+      div.navbar-menu
+        = if @conn.assigns[:session] do
+          div.navbar-end
+            div.navbar-item
+              = form_for @conn, session_path(@conn, :delete, @conn.assigns[:session]), [method: :delete], fn _form ->
+                = submit("Logout", class: "button is-primary has-text-weight-bold has-text-white")
+
+    div.container
+      section.section
+        = if !is_nil get_flash(@conn, :info) do
+          article.message.is-success
+            div.message-header
+              p = gettext("Success")
+            div.message-body
+              p = "#{get_flash(@conn, :info) }"
+
+        = if !is_nil get_flash(@conn, :error) do
+          article.message.is-danger
+            div.message-header
+              p = gettext("Error")
+            div.message-body
+              p = "#{get_flash(@conn, :error) }"
+
+        = render @view_module, @view_template, assigns
+
+    script(src="#{static_path(@conn, "/js/app.js")}")
+
+    footer.footer
+      div.content
+        div.columns
+          div.column.is-narrow
+            a.button.is-primary(href="https://github.com/fs-wiwi-ms/absolventenfeier")
+              span.icon.has-text-white
+                i.fab.fa-github
+              span.has-text-white = gettext("Source Code")

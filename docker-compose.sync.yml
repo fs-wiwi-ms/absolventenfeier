@@ -1,0 +1,26 @@
+version: "3.4"
+
+services:
+  app:
+    volumes:
+      - "app:/app"
+
+  assets:
+    volumes:
+      - "app:/app"
+
+  sync:
+    image: cweagans/bg-sync
+    volumes:
+      - ".:/source"
+      - "app:/destination"
+    environment:
+      SYNC_EXTRA_UNISON_PROFILE_OPTS: |
+        ignore = Path assets/node_modules/*
+        ignore = Path _build/*
+        ignore = Path deps/*
+        ignore = Path .elixir_ls/*
+        ignore = Path .vscode/*
+
+volumes:
+  app:

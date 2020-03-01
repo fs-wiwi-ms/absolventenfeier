@@ -1,0 +1,41 @@
+version: "3.4"
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        ENV: dev
+      target: app
+    command: sh -c "mix deps.get && mix ecto.migrate && mix seed && mix phx.server"
+    depends_on:
+      - db
+      - sync
+    volumes:
+     - ./keys.d/:/keys.d
+    environment:
+      DATABASE_URL: "psql://absolventenfeier:absolventenfeier@db/absolventenfeier"
+      SECRET_KEY_BASE: vmOZLCImcoi+PBCMC/N6BnQ8t6LmSRyONqK3T0iNSV9hx2pt7502lV2mN2alVAFe
+    ports:
+      - "4000:4000"
+
+  assets:
+    build:
+      context: .
+      target: assets
+      args:
+        ENV: dev
+    depends_on:
+      - sync
+    ports:
+      - "4001:4001"
+    command: sh -c "yarn install && yarn run watch"
+
+  db:
+    image: postgres:10.3-alpine
+    environment:
+      POSTGRES_USER: absolventenfeier
+      POSTGRES_PASSWORD: absolventenfeier
+      POSTGRES_DB: absolventenfeier
+    ports:
+      - "15432:5432"
