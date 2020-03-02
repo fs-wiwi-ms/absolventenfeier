@@ -8,7 +8,11 @@ defmodule Absolventenfeier.Event.Registration do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  schema "registration" do
+  schema "registrations" do
+
+    field(:degree, DegreeType, default: :none)
+    field(:course, CourseType, default: :none)
+
     belongs_to(:user, Absolventenfeier.User)
     belongs_to(:event, Absolventenfeier.Event)
 
@@ -18,6 +22,7 @@ defmodule Absolventenfeier.Event.Registration do
   @doc false
   def changeset(registration, attrs) do
     registration
+    |> cast(attrs, [:degree, :course])
     |> put_assoc(:event, attrs["event"] || registration.event)
     |> put_assoc(:user, attrs["user"] || registration.user)
   end

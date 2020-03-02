@@ -9,7 +9,7 @@ defmodule AbsolventenfeierWeb.SessionController do
     })
   end
 
-  def create(conn, %{"user_name" => user_name, "password" => password} = session) do
+  def create(conn, %{"email" => email, "password" => password} = session) do
     format = get_format(conn)
 
     params = %{
@@ -18,7 +18,7 @@ defmodule AbsolventenfeierWeb.SessionController do
       refresh_token: session["remember_me"] == "true"
     }
 
-    result = Session.create_session(user_name, password, params)
+    result = Session.create_session(email, password, params)
 
     case {format, result} do
       {"html", {:ok, session}} ->

@@ -22,7 +22,7 @@ defmodule Absolventenfeier.User.Session do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  schema "session" do
+  schema "sessions" do
     field(:user_agent, :string)
     field(:ip, :string)
 
@@ -31,7 +31,7 @@ defmodule Absolventenfeier.User.Session do
     field(:refresh_token, :string)
     field(:refresh_token_issued_at, :utc_datetime)
 
-    belongs_to(:user, Absolventenfeier.User, type: :string)
+    belongs_to(:user, Absolventenfeier.User)
 
     timestamps()
   end
@@ -97,7 +97,7 @@ defmodule Absolventenfeier.User.Session do
   a new set of tokens which will be included in the returned session.
   """
   @spec verify_session(String.t() | nil, String.t() | nil) ::
-          {:ok, Absolventenfeier.Session.t()} | {:error, String.t()}
+          {:ok, Absolventenfeier.User.Session.t()} | {:error, String.t()}
   def verify_session(access_token, refresh_token)
 
   def verify_session(nil, nil) do
@@ -153,18 +153,18 @@ defmodule Absolventenfeier.User.Session do
   # end
 
   @doc "Fetches a session"
-  @spec get_session!(String.t()) :: Absolventenfeier.Session.t()
+  @spec get_session!(String.t()) :: Absolventenfeier.User.Session.t()
   def get_session!(id) do
-    Repo.get!(Absolventenfeier.Session, id)
+    Repo.get!(Absolventenfeier.User.Session, id)
   end
 
   @doc "Creates a session for a user identified by email and password"
   @spec create_session(String.t(), String.t(), Map.t()) ::
-          {:ok, Absolventenfeier.Session.t()} | {:error, atom}
-  def create_session(user_name, password, params) do
+          {:ok, Absolventenfeier.User.Session.t()} | {:error, atom}
+  def create_session(email, password, params) do
     with {:ok, user} <-
            User
-           |> Repo.get_by(user_name: user_name)
+           |> Repo.get_by(email: email)
            |> Argon2.check_pass(password),
          {:ok, session} <-
            user
@@ -180,7 +180,7 @@ defmodule Absolventenfeier.User.Session do
   end
 
   @doc "Creates a session for a user *without verifying its password."
-  @spec create_session(User.t(), Map.t()) :: {:ok, Absolventenfeier.Session.t()} | {:error, atom}
+  @spec create_session(User.t(), Map.t()) :: {:ok, Absolventenfeier.User.Session.t()} | {:error, atom}
   def create_session(user, params) do
     user
     |> Ecto.build_assoc(:sessions)
@@ -189,7 +189,7 @@ defmodule Absolventenfeier.User.Session do
   end
 
   @doc "Delete session"
-  @spec delete_session(Absolventenfeier.GameSession.t()) :: {:ok, Absolventenfeier.Session.t()}
+  @spec delete_session(Absolventenfeier.User.Session.t()) :: {:ok, Absolventenfeier.User.Session.t()}
   def delete_session(session) do
     Repo.delete(session)
   end

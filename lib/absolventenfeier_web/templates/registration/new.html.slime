@@ -1,0 +1,22 @@
+div.columns
+  div.column
+    h2.title.is-2 = gettext("Create registration")
+
+
+= form_for @changeset, @action, fn registration_form ->
+  = hidden_input(registration_form, :user_id, value: "#{@user.id}")
+  = hidden_input(registration_form, :event_id, value: "#{@event.id}")
+  div.box
+    div.columns
+      div.column
+        h5.title.is-5 = gettext("Please choose a categorie for your roll!")
+        div.select.is-multiple
+          = select(registration_form, :degree, @degree_types)
+    div.columns
+      div.column
+        h5.title.is-5 = gettext("Please choose a categorie for your roll!")
+        div.select.is-multiple
+          = select(registration_form, :course, @course_types)
+    div.columns
+      div.column.is-full
+        = submit gettext("Login"), class: "button is-primary"

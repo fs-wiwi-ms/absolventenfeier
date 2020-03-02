@@ -2,27 +2,22 @@ defmodule Absolventenfeier.Repo.Migrations.AddUser do
   use Ecto.Migration
 
   def up do
-    DegreeType.create_type()
-    CourseType.create_type()
     UserRole.create_type()
 
-    create table("user", primary_key: false) do
+    create table(:users, primary_key: false) do
       add :id, :uuid, primary_key: true
       add :email, :string
       add :fore_name, :string
       add :last_name, :string
       add :matriculation_number, :string
-
-      add :degree, :degree_type
-      add :course, :course_type
-      add :role, :user_role
-
       add :password_hash, :string
+
+      add :role, :user_role
 
       timestamps()
     end
 
-    create unique_index("user", :email)
+    create unique_index(:users, :email)
 
     # create table("game_users", primary_key: false) do
     #   add :user_id, references(:user, type: :string), primary_key: true
@@ -32,10 +27,8 @@ defmodule Absolventenfeier.Repo.Migrations.AddUser do
   end
 
   def down do
-    drop table(:user)
+    drop table(:users)
 
-    DegreeType.drop_type()
-    CourseType.drop_type()
     UserRole.drop_type()
   end
 end

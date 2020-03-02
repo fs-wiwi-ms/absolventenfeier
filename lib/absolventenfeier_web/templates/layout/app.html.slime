@@ -4,9 +4,9 @@ html(lang="en")
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible" content="IE=edge")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title = gettext("Absolventenfeier")
+    title = gettext("Graduation ceremony")
     link(rel="stylesheet" href="#{static_path(@conn, "/css/app.css") }")
-    meta(name="description" content="#{gettext("Absolventenfeier")}")
+    meta(name="description" content="#{gettext("Graduation ceremony portal of student's council for economics of university muenster")}")
     meta(name="author" content="#{gettext("Tobias Hoge")}")
 
     title
@@ -18,14 +18,14 @@ html(lang="en")
     link(rel="apple-touch-icon" href="/images/icons/192.png")
     meta(name="theme-color" content="#092135")
 
-  body.has-background-light
+  body.has-background-light.Site
     nav.navbar.has-shadow.is-spaced.has-background-primary(role="navigation" aria-label="main navigation")
       div.navbar-brand
         div.navbar-item
-          a.button.is-primary(href="#{game_path(@conn, :index)}")
+          a.button.is-primary(href="#{page_path(@conn, :index)}")
             span.icon.has-text-white
-              i.fas.fa-dice
-            span.has-text-weight-bold.has-text-white = gettext("Absolventenfeier")
+              i.fas.fa-graduation-cap
+            span.has-text-weight-bold.has-text-white = gettext("Graducation Ceremony Student's Council for Economics University Münster")
 
       div.navbar-menu
         = if @conn.assigns[:session] do
@@ -34,25 +34,31 @@ html(lang="en")
               = form_for @conn, session_path(@conn, :delete, @conn.assigns[:session]), [method: :delete], fn _form ->
                 = submit("Logout", class: "button is-primary has-text-weight-bold has-text-white")
 
-    div.container
-      section.section
-        = if !is_nil get_flash(@conn, :info) do
-          article.message.is-success
-            div.message-header
-              p = gettext("Success")
-            div.message-body
-              p = "#{get_flash(@conn, :info) }"
 
-        = if !is_nil get_flash(@conn, :error) do
-          article.message.is-danger
-            div.message-header
-              p = gettext("Error")
-            div.message-body
-              p = "#{get_flash(@conn, :error) }"
+    = if !is_nil get_flash(@conn, :info) do
+      section.hero.is-success
+        div.hero-body
+          div.container
+            h1.title.has-text-white = gettext("Success")
+            h2.subtitle.has-text-white = "#{get_flash(@conn, :info) }"
 
+    = if !is_nil get_flash(@conn, :warning) do
+      section.hero.is-warning
+        div.hero-body
+          div.container
+            h1.title.has-text-white = gettext("Warning")
+            h2.subtitle.has-text-white = "#{get_flash(@conn, :warning) }"
+
+    = if !is_nil get_flash(@conn, :error) do
+      section.hero.is-danger
+        div.hero-body
+          div.container
+            h1.title.is-3.has-text-white = gettext("Error")
+            h2.subtitle.has-text-white = "#{get_flash(@conn, :error) }"
+
+    div.section.Site-content
+      div.container
         = render @view_module, @view_template, assigns
-
-    script(src="#{static_path(@conn, "/js/app.js")}")
 
     footer.footer
       div.content
@@ -62,3 +68,5 @@ html(lang="en")
               span.icon.has-text-white
                 i.fab.fa-github
               span.has-text-white = gettext("Source Code")
+
+    script(src="#{static_path(@conn, "/js/app.js")}")

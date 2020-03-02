@@ -10,7 +10,9 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
+alias Absolventenfeier.Repo
 alias Absolventenfeier.Event.{Term}
+import Ecto.Query, warn: false
 require Logger
 
 terms = [:summer_term, :winter_term]

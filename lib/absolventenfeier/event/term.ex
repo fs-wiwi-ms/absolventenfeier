@@ -9,9 +9,7 @@ defmodule Absolventenfeier.Event.Term do
     field(:type, TermType, default: :summer_term)
     field(:year, :integer)
 
-    has_many(:events, Absolventenfeier.Events)
-
-    timestamps()
+    has_many(:events, Absolventenfeier.Event)
   end
 
   @doc false

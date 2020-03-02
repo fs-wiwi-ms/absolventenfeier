@@ -1,32 +1,41 @@
 div.columns
-  div.column(style="padding=0")
   div.column
-    div.level
       h2.title.is-2 = gettext("Register new user")
 
-    div.box
-      div.columns
-        = form_for @changeset, @action, fn user_form ->
-          / div.column.is-full
-          /   h5.title.is-5 = gettext("Private Key (key will be generated if leave blank)")
-          /   = textarea(user_form, :private_key, class: "input", type: "text")
-          = hidden_input(user_form, :private_key, value: "")
+div.box
+  = form_for @changeset, @action, fn user_form ->
+    = hidden_input(user_form, :private_key, value: "")
+    div.columns
+      div.column
+        h5.title.is-5 = gettext("Fore name")
+        = text_input(user_form, :fore_name, class: "input", type: "text")
 
-          div.column.is-full
-            h5.title.is-5 = gettext("Username")
-            = text_input(user_form, :user_name, class: "input", type: "text")
+      div.column
+        h5.title.is-5 = gettext("Last name")
+        = text_input(user_form, :last_name, class: "input", type: "text")
 
-          div.column.is-full
-            h5.title.is-5 = gettext("Password")
-            = password_input(user_form, :password, class: "input", type: "password")
+    div.columns
+      div.column
+        h5.title.is-5 = gettext("Email")
+        = text_input(user_form, :email, class: "input", type: "email")
 
-          div.column.is-full
-            h5.title.is-5 = gettext("Repeat password")
-            = password_input(user_form, :password_confirmation, class: "input", type: "password")
+      div.column
+        h5.title.is-5 = gettext("Matriculation number")
+        = text_input(user_form, :matriculation_number, class: "input", type: "text")
 
-          div.column.is-full
-            = submit gettext("Register"), class: "button is-primary"
-          div.column.is-full
-            p.has-text-info.has-text-weight-semibold.label Already have an account? Login instead!
-            a.button.is-info.is-outlined(href="#{public_session_path(@conn, :new)}") Login
-  div.column(style="padding=0")
+    div.columns
+      div.column
+        h5.title.is-5 = gettext("Password")
+        = password_input(user_form, :password, class: "input", type: "password")
+
+      div.column
+        h5.title.is-5 = gettext("Repeat password")
+        = password_input(user_form, :password_confirmation, class: "input", type: "password")
+
+    div.columns
+      div.column
+        = submit gettext("Register"), class: "button is-primary", style: "padding=0"
+    div.columns
+      div.column
+        p.has-text-info.has-text-weight-semibold.label Already have an account? Login instead!
+        a.button.is-info.is-outlined(href="#{public_session_path(@conn, :new)}") Login

@@ -1,4 +1,11 @@
-h1.title.is-3 =gettext("Examarchive")
+h1.title.is-3 =gettext("Anmeldung")
+
+a.button(href="#{public_session_path(@conn, :new)}") Login
+
+a.button(href="#{public_user_path(@conn, :new)}") Register
+
+a.button(href="#{event_path(@conn, :index)}") Events
+
 
 / div.columns
 /   div.column.is-two-quarter

@@ -4,25 +4,25 @@ defmodule Absolventenfeier.User do
   import Ecto.Changeset
   import Ecto.Query, warn: false
 
-  alias Absolventenfeier.User
+  alias Absolventenfeier.{User,Repo}
 
   require Logger
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  schema "user" do
+  schema "users" do
     field(:email, :string)
     field(:fore_name, :string)
     field(:last_name, :string)
     field(:matriculation_number, :string)
 
-    field(:degree, DegreeType, default: :none)
-    field(:course, CourseType, default: :none)
-    field(:role, UserRole, default: :user)
-
     field(:password, :string, virtual: true)
     field(:password_hash, :string)
+    field(:role, UserRole, default: :user)
+
+    has_many(:sessions, Absolventenfeier.User.Session)
+
 
     timestamps()
   end
@@ -35,8 +35,6 @@ defmodule Absolventenfeier.User do
       :fore_name,
       :last_name,
       :matriculation_number,
-      :course,
-      :degree,
       :password,
       :role
     ])

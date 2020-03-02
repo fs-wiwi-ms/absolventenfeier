@@ -1,27 +1,28 @@
 div.columns
-  div.column(style="padding=0")
   div.column
-    div.level
-      h2.title.is-2 = gettext("Login")
+    h2.title.is-2 = gettext("Login")
 
-    div.box
-      div.columns
-        = form_for @conn, @action, fn user_form ->
-          div.column.is-full
-            h5.title.is-5 = gettext("Username")
-            = text_input(user_form, :user_name, class: "input", type: "text")
+div.box
+  = form_for @conn, @action, fn user_form ->
+    div.columns
+      div.column.is-full
+        h5.title.is-5 = gettext("Email")
+        = text_input(user_form, :email, class: "input", type: "email")
 
-          div.column.is-full
-            h5.title.is-5 = gettext("Password")
-            = password_input(user_form, :password, class: "input", type: "password")
+    div.columns
+      div.column.is-full
+        h5.title.is-5 = gettext("Password")
+        = password_input(user_form, :password, class: "input", type: "password")
 
-          div.column.is-full
-            = checkbox(user_form, :remember_me, class: "checkbox")
-            = label(user_form, :remember_me, gettext("Remember me"))
+    div.columns
+      div.column.is-full
+        = checkbox(user_form, :remember_me, class: "checkbox")
+        = label(user_form, :remember_me, gettext("Remember me"))
 
-          div.column.is-full
-            = submit gettext("Login"), class: "button is-primary"
-          div.column.is-full
-            p.has-text-info.has-text-weight-semibold.label You don't have an account yet? Register now!
-            a.button.is-info.is-outlined(href="#{public_user_path(@conn, :new)}") Register
-  div.column(style="padding=0")
+    div.columns
+      div.column.is-full
+        = submit gettext("Login"), class: "button is-primary"
+    div.columns
+      div.column.is-full
+        p.has-text-info.has-text-weight-semibold.label You don't have an account yet? Register now!
+        a.button.is-info.is-outlined(href="#{public_user_path(@conn, :new)}") Register

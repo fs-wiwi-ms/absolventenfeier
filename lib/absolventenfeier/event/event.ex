@@ -4,7 +4,7 @@ defmodule Absolventenfeier.Event do
   import Ecto.Query, warn: false
   import Ecto.Changeset
 
-  alias Absolventenfeier.Event
+  alias Absolventenfeier.{Event, Repo, User}
   alias Absolventenfeier.Event.{
     Term,
     Registration
@@ -13,8 +13,11 @@ defmodule Absolventenfeier.Event do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  schema "event" do
+  schema "events" do
     field(:published, :boolean, default: false)
+    field(:date_of_event, :utc_datetime, default: nil)
+    field(:date_of_registration, :utc_datetime, default: nil)
+    field(:date_of_tickets, :utc_datetime, default: nil)
 
     belongs_to(:term, Absolventenfeier.Event.Term)
     has_many(:registrations, Absolventenfeier.Event.Registration)
@@ -25,7 +28,7 @@ defmodule Absolventenfeier.Event do
   @doc false
   def changeset(event, attrs) do
     event
-    |> cast(attrs, [:published])
+    |> cast(attrs, [:published, :date_of_event, :date_of_registration, :date_of_tickets])
     |> put_assoc(:registrations, attrs["registrations"] || event.registrations)
     |> put_assoc(:term, attrs["term"] || event.term)
   end
@@ -33,6 +36,13 @@ defmodule Absolventenfeier.Event do
   # -----------------------------------------------------------------
   # -- Event
   # -----------------------------------------------------------------
+
+  def get_events_for_registration() do
+    Event
+    |> preload([:registrations, :term])
+    |> where([e], e.published)
+    |> Repo.all()
+  end
 
   def get_events_for_user(user_id) do
     Event
@@ -78,8 +88,24 @@ defmodule Absolventenfeier.Event do
   # -----------------------------------------------------------------
   # -- Registration
   # -----------------------------------------------------------------
+  def get_registrations() do
+    Registration
+    |> Repo.all()
+  end
+
   def get_registrations_for_event(event_id) do
     Repo.all(from s in Registration, where: s.event_id == ^event_id)
+  end
+
+  def get_registrations_for_user(user_id) do
+    Repo.all(from s in Registration, where: s.user_id == ^user_id)
+  end
+
+  def user_registerd_for_event(event_id, user_id) do
+    Registration
+    |> where(event_id: ^event_id)
+    |> where(user_id: ^user_id)
+    |> Repo.one()
   end
 
   def get_registration(nil), do: nil
@@ -94,16 +120,21 @@ defmodule Absolventenfeier.Event do
     event = get_event(registration_params["event_id"])
     user = User.get_user(registration_params["user_id"])
 
-    registration_params =
-      registration_params
-      |> Map.drop(["event_id", "user_id"])
-      |> Map.put("event", event)
-      |> Map.put("user", user)
+    case user_registerd_for_event(event.id, user.id) do
+    %Registration{} = registration ->
+      {:already_registered, registration}
+    nil ->
+      registration_params =
+        registration_params
+        |> Map.drop(["event_id", "user_id"])
+        |> Map.put("event", event)
+        |> Map.put("user", user)
 
-    %Registration{}
-    |> Repo.preload([:event, :user])
-    |> Registration.changeset(registration_params)
-    |> Repo.insert()
+      %Registration{}
+      |> Repo.preload([:event, :user])
+      |> Registration.changeset(registration_params)
+      |> Repo.insert()
+    end
   end
 
   def update_registration(registration, registration_params) do
@@ -114,11 +145,15 @@ defmodule Absolventenfeier.Event do
 
   def change_registration(
         registration \\ %Registration{},
-        attrs \\ %{}
+        attrs
       ) do
     registration
     |> Repo.preload([:user, :event])
     |> Registration.changeset(attrs)
+  end
+
+  def delete_registration(registration) do
+    Repo.delete(registration)
   end
 
   # -----------------------------------------------------------------

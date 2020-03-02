@@ -2,9 +2,9 @@ defmodule Absolventenfeier.Repo.Migrations.AddSessions do
   use Ecto.Migration
 
   def change do
-    create table(:session, primary_key: false) do
+    create table(:sessions, primary_key: false) do
       add(:id, :binary_id, primary_key: true)
-      add(:user_id, references(:user, on_delete: :delete_all, type: :uuid))
+      add(:user_id, references(:users, on_delete: :delete_all, type: :uuid))
 
       add(:access_token, :string)
       add(:access_token_issued_at, :utc_datetime)
@@ -18,6 +18,6 @@ defmodule Absolventenfeier.Repo.Migrations.AddSessions do
       timestamps()
     end
 
-    create(index(:session, [:user_id]))
+    create(index(:sessions, [:user_id]))
   end
 end

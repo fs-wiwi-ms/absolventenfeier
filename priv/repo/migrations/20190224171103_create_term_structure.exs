@@ -12,7 +12,7 @@ defmodule Absolventenfeier.Repo.Migrations.CreateTermStructure do
   end
 
   def down do
-    drop table(:user)
+    drop table(:terms)
 
     TermType.drop_type()
   end

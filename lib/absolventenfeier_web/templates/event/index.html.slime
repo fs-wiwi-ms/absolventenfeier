@@ -1,0 +1,29 @@
+div.columns
+  div.column
+    h2.title.is-2 = gettext("Upcoming graduation ceremonies")
+
+= for event <- @events do
+  article.message.is-info
+    div.message-header
+      p.title.is-5 = "#{gettext("Graduation Ceremony")} #{if event.term.type == :winter_term do gettext("WT") else gettext("ST") end} #{event.term.year}"
+
+    div.message-body
+      div.columns
+        div.column
+          div(style="margin-bottom:2rem")
+            p.title.is-5 = Timex.format!(event.date_of_event, "{0D}.{0M}.{YYYY} - {h24}:{m}")
+          div
+            span = gettext("Final registration date")
+            span :
+            span = Timex.format!(event.date_of_registration, "{0D}.{0M}.{YYYY} - {h24}:{m}")
+          div
+            span = gettext("Final ticket date")
+            span :
+            span = Timex.format!(event.date_of_tickets, "{0D}.{0M}.{YYYY} - {h24}:{m}")
+        div.column(align="right")
+          = case user_registerd_for_event(event, @user) do
+            - %Registration{} = registration ->
+              a.button(disabled) = gettext("Already registered")
+              / a.button(href="#{event_registration_path(@conn, :show, event.id, registration.id)}") test
+            - nil ->
+              a.button(href="#{event_registration_path(@conn, :new, event.id)}") = gettext("Register now")

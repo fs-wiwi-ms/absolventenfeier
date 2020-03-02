@@ -4,8 +4,7 @@ defmodule AbsolventenfeierWeb.PageController do
   alias Absolventenfeier.Uploads
 
   def index(conn, _params) do
-    degrees = Uploads.get_degrees_for_select()
-    render(conn, "index.html", degrees: degrees)
+    render(conn, "index.html")
   end
 
   def privacy(conn, _params) do
