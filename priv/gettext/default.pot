@@ -185,3 +185,38 @@ msgstr ""
 #: lib/absolventenfeier_web/controllers/registration_controller.ex:74
 msgid "Registration deleted."
 msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/controllers/registration_controller.ex:44
+msgid "Already Registered!"
+msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/controllers/registration_controller.ex:56
+msgid "Error while creating registration!"
+msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/controllers/session_controller.ex:30
+msgid "Logged in."
+msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/controllers/session_controller.ex:46
+msgid "Logged out!"
+msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/controllers/registration_controller.ex:39
+msgid "Registration successful!"
+msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/controllers/user_controller.ex:36
+msgid "Error while creating user!"
+msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/controllers/user_controller.ex:31
+msgid "Registration successful! Please login."
+msgstr ""

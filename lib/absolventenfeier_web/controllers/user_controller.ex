@@ -28,12 +28,12 @@ defmodule AbsolventenfeierWeb.UserController do
     case User.create_user(user) do
       {:ok, _user} ->
         conn
-        |> put_flash(:info, "Created!")
+        |> put_flash(:info, gettext("Registration successful! Please login."))
         |> redirect(to: public_session_path(conn, :new))
 
       {:error, changeset} ->
         conn
-        |> put_flash(:error, "Fehler beim erstellen!")
+        |> put_flash(:error, gettext("Error while creating user!"))
         |> render("new.html",
           changeset: changeset,
           action: public_user_path(conn, :create)

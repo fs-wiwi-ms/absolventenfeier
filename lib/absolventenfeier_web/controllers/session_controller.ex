@@ -27,7 +27,7 @@ defmodule AbsolventenfeierWeb.SessionController do
 
         conn
         |> put_session(:access_token, session.access_token)
-        |> put_flash(:info, "Logged in.")
+        |> put_flash(:info, gettext("Logged in."))
         |> redirect(to: path)
 
       {"html", {:error, :not_found}} ->
@@ -43,7 +43,7 @@ defmodule AbsolventenfeierWeb.SessionController do
     |> Session.delete_session()
 
     conn
-    |> put_flash(:info, "Logged out!")
+    |> put_flash(:info, gettext("Logged out!"))
     |> redirect(to: public_session_path(conn, :new))
   end
 end

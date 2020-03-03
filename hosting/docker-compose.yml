@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   app:
-    image: docker.pkg.github.com/tbho/absolventenfeier/absolventenfeier
+    image: docker.pkg.github.com/fs-wiwi-ms/absolventenfeier/absolventenfeier
     depends_on:
       - db
     ports:
