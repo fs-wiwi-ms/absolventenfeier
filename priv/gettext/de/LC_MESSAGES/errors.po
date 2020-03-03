@@ -12,15 +12,15 @@ msgstr ""
 
 ## From Ecto.Changeset.cast/4
 msgid "can't be blank"
-msgstr ""
+msgstr "Kann nicht leer sein!"
 
 ## From Ecto.Changeset.unique_constraint/3
 msgid "has already been taken"
-msgstr ""
+msgstr "Ist bereits vergeben!"
 
 ## From Ecto.Changeset.put_change/3
 msgid "is invalid"
-msgstr ""
+msgstr "Ist ungültig!"
 
 ## From Ecto.Changeset.validate_acceptance/3
 msgid "must be accepted"
@@ -28,19 +28,19 @@ msgstr ""
 
 ## From Ecto.Changeset.validate_format/3
 msgid "has invalid format"
-msgstr ""
+msgstr "Hat kein gültiges Format!"
 
 ## From Ecto.Changeset.validate_subset/3
 msgid "has an invalid entry"
-msgstr ""
+msgstr "Hat einen ungültigen Eintrag!"
 
 ## From Ecto.Changeset.validate_exclusion/3
 msgid "is reserved"
-msgstr ""
+msgstr "Ist reserviert!"
 
 ## From Ecto.Changeset.validate_confirmation/3
 msgid "does not match confirmation"
-msgstr ""
+msgstr "Stimmen nicht überein!"
 
 ## From Ecto.Changeset.no_assoc_constraint/3
 msgid "is still associated with this entry"
@@ -52,8 +52,8 @@ msgstr ""
 ## From Ecto.Changeset.validate_length/3
 msgid "should be %{count} character(s)"
 msgid_plural "should be %{count} character(s)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Muss mindestens %{count} Zeichen lang sein!"
+msgstr[1] "Muss mindestens %{count} Zeichen lang sein!"
 
 msgid "should have %{count} item(s)"
 msgid_plural "should have %{count} item(s)"

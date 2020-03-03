@@ -1,0 +1,23 @@
+msgid "none"
+msgstr ""
+
+msgid "information_systems"
+msgstr ""
+
+msgid "business_economics"
+msgstr ""
+
+msgid "economics"
+msgstr ""
+
+msgid "bachelor"
+msgstr ""
+
+msgid "master"
+msgstr ""
+
+msgid "user"
+msgstr ""
+
+msgid "admin"
+msgstr ""

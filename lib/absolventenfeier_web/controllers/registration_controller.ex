@@ -22,14 +22,11 @@ defmodule AbsolventenfeierWeb.RegistrationController do
 
     registration_changeset = Event.change_registration(%{"event" => event, "user" => user})
 
-    degree_types = DegreeType.__enum_map__()
-    course_types = CourseType.__enum_map__()
-
     render(conn, "new.html",
       user: user,
       event: event,
-      degree_types: degree_types,
-      course_types: course_types,
+      degree_types: get_degree_types,
+      course_types: get_course_types,
       changeset: registration_changeset,
       action: registration_path(conn, :create)
     )
@@ -60,11 +57,31 @@ defmodule AbsolventenfeierWeb.RegistrationController do
         |> render("new.html",
           user: user,
           event: event,
-          degree_types: DegreeType.__enum_map__(),
-          course_types: CourseType.__enum_map__(),
+          degree_types: get_degree_types,
+          course_types: get_course_types,
           changeset: changeset,
           action: registration_path(conn, :create)
         )
     end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    id
+    |> Event.get_registration()
+    |> Event.delete_registration()
+
+    conn
+    |> put_flash(:info, gettext("Registration deleted."))
+    |> redirect(to: event_path(conn, :index))
+  end
+
+  defp get_degree_types() do
+    Enum.map(DegreeType.__enum_map__() -- [:none], fn enum ->
+      {Gettext.dgettext(AbsolventenfeierWeb.Gettext, "enum", Atom.to_string(enum), %{}), enum} end)
+  end
+
+  defp get_course_types() do
+    Enum.map(CourseType.__enum_map__() -- [:none], fn enum ->
+      {Gettext.dgettext(AbsolventenfeierWeb.Gettext, "enum", Atom.to_string(enum)), enum} end)
   end
 end

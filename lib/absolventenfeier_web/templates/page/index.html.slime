@@ -1,4 +1,4 @@
-h1.title.is-3 =gettext("Anmeldung")
+h1.title.is-3 = gettext("Graduation Ceremony")
 
 a.button(href="#{public_session_path(@conn, :new)}") Login
 

@@ -42,7 +42,7 @@ defmodule AbsolventenfeierWeb.Router do
       resources "/registrations", RegistrationController, only: [:new, :show]
     end
 
-    resources "/registrations", RegistrationController, only: [:create]
+    resources "/registrations", RegistrationController, only: [:create, :delete]
 
     # get "/games/:id/scores", GameController, :show
 

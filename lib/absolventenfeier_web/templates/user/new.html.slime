@@ -4,38 +4,44 @@ div.columns
 
 div.box
   = form_for @changeset, @action, fn user_form ->
-    = hidden_input(user_form, :private_key, value: "")
+
     div.columns
       div.column
-        h5.title.is-5 = gettext("Fore name")
+        label.label = gettext("Fore name")
         = text_input(user_form, :fore_name, class: "input", type: "text")
+        = error_label(@changeset, :fore_name)
 
       div.column
-        h5.title.is-5 = gettext("Last name")
+        label.label = gettext("Last name")
         = text_input(user_form, :last_name, class: "input", type: "text")
+        = error_label(@changeset, :last_name)
 
     div.columns
       div.column
-        h5.title.is-5 = gettext("Email")
+        label.label = gettext("Email")
         = text_input(user_form, :email, class: "input", type: "email")
+        = error_label(@changeset, :email)
 
       div.column
-        h5.title.is-5 = gettext("Matriculation number")
+        label.label = gettext("Matriculation number")
         = text_input(user_form, :matriculation_number, class: "input", type: "text")
+        = error_label(@changeset, :matriculation_number)
 
     div.columns
       div.column
-        h5.title.is-5 = gettext("Password")
+        label.label = gettext("Password")
         = password_input(user_form, :password, class: "input", type: "password")
+        = error_label(@changeset, :password)
 
       div.column
-        h5.title.is-5 = gettext("Repeat password")
+        label.label = gettext("Repeat password")
         = password_input(user_form, :password_confirmation, class: "input", type: "password")
+        = error_label(@changeset, :password_confirmation)
 
     div.columns
       div.column
         = submit gettext("Register"), class: "button is-primary", style: "padding=0"
     div.columns
       div.column
-        p.has-text-info.has-text-weight-semibold.label Already have an account? Login instead!
+        p.has-text-info.has-text-weight-semibold.label = gettext("Already have an account? Login instead!")
         a.button.is-info.is-outlined(href="#{public_session_path(@conn, :new)}") Login

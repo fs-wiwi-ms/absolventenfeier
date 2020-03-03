@@ -46,10 +46,10 @@ defmodule Absolventenfeier.User do
     changeset
     |> validate_required([:password])
     |> validate_confirmation(:password, required: true)
-    |> validate_format(:password, ~r/[A-Z]/, message: "Missing uppercase.")
-    |> validate_format(:password, ~r/[a-z]/, message: "Missing lowercase.")
-    |> validate_format(:password, ~r/[^a-zA-Z0-9]/, message: "Missing symbol.")
-    |> validate_format(:password, ~r/[0-9]/, message: "Missing number.")
+    |> validate_format(:password, ~r/[A-Z]/, message: "Missing uppercase")
+    |> validate_format(:password, ~r/[a-z]/, message: "Missing lowercase")
+    |> validate_format(:password, ~r/[^a-zA-Z0-9]/, message: "Missing symbol")
+    |> validate_format(:password, ~r/[0-9]/, message: "Missing number")
     |> validate_length(:password, min: 8)
     |> put_pass_hash()
   end

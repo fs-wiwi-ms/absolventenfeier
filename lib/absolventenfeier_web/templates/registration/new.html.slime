@@ -9,14 +9,14 @@ div.columns
   div.box
     div.columns
       div.column
-        h5.title.is-5 = gettext("Please choose a categorie for your roll!")
+        h5.title.is-5 = gettext("Please choose the degree you reached.")
         div.select.is-multiple
           = select(registration_form, :degree, @degree_types)
     div.columns
       div.column
-        h5.title.is-5 = gettext("Please choose a categorie for your roll!")
+        h5.title.is-5 = gettext("Please choose the programm you took.")
         div.select.is-multiple
           = select(registration_form, :course, @course_types)
     div.columns
       div.column.is-full
-        = submit gettext("Login"), class: "button is-primary"
+        = submit gettext("Create registration"), class: "button is-primary"

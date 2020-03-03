@@ -22,7 +22,7 @@ defmodule AbsolventenfeierWeb.SessionController do
 
     case {format, result} do
       {"html", {:ok, session}} ->
-        path = get_session(conn, :redirect_url) || "/"
+        path = get_session(conn, :redirect_url) || event_path(conn, :index)
         conn = delete_session(conn, :redirect_url)
 
         conn
@@ -32,7 +32,7 @@ defmodule AbsolventenfeierWeb.SessionController do
 
       {"html", {:error, :not_found}} ->
         conn
-        |> put_flash(:error, gettext("failure"))
+        |> put_flash(:error, gettext("Email or password incorrect."))
         |> redirect(to: public_session_path(conn, :new))
     end
   end
