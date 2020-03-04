@@ -9,13 +9,22 @@ defmodule AbsolventenfeierWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :protected_browser_no_login do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+    plug(AbsolventenfeierWeb.Authentication, type: :api_or_browser, forward_to_login: false)
+  end
+
   pipeline :protected_browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug(AbsolventenfeierWeb.Authentication, type: :api_or_browser)
+    plug(AbsolventenfeierWeb.Authentication, type: :api_or_browser, forward_to_login: true)
   end
 
   pipeline :api do
@@ -23,7 +32,7 @@ defmodule AbsolventenfeierWeb.Router do
   end
 
   scope "/", AbsolventenfeierWeb do
-    pipe_through(:browser)
+    pipe_through(:protected_browser_no_login)
 
     get "/", PageController, :index
   end

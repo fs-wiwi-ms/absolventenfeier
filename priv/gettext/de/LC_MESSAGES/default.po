@@ -54,7 +54,7 @@ msgid "Last name"
 msgstr "Nachname"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/page/index.html.slime:31
+#: lib/absolventenfeier_web/templates/page/index.html.slime:32
 #: lib/absolventenfeier_web/templates/session/new.html.slime:3 lib/absolventenfeier_web/templates/session/new.html.slime:24
 msgid "Login"
 msgstr "Einloggen"
@@ -145,17 +145,17 @@ msgid "Deregister"
 msgstr "Wieder Abmelden"
 
 #, elixir-format
-#: lib/absolventenfeier_web/controllers/registration_controller.ex:74
+#: lib/absolventenfeier_web/controllers/registration_controller.ex:75
 msgid "Registration deleted."
 msgstr "Anmeldung gelöscht!"
 
 #, elixir-format
-#: lib/absolventenfeier_web/controllers/registration_controller.ex:44
+#: lib/absolventenfeier_web/controllers/registration_controller.ex:45
 msgid "Already Registered!"
 msgstr "Bereits angemeldet"
 
 #, elixir-format
-#: lib/absolventenfeier_web/controllers/registration_controller.ex:56
+#: lib/absolventenfeier_web/controllers/registration_controller.ex:57
 msgid "Error while creating registration!"
 msgstr "Fehler beim Anmelden!"
 
@@ -170,7 +170,7 @@ msgid "Logged out!"
 msgstr "Du bist jetzt ausgeloggt."
 
 #, elixir-format
-#: lib/absolventenfeier_web/controllers/registration_controller.ex:39
+#: lib/absolventenfeier_web/controllers/registration_controller.ex:40
 msgid "Registration successful!"
 msgstr "Anmeldung erfolgreich."
 
@@ -195,17 +195,17 @@ msgid ". If you report errors, please attach a screenshot and description (such 
 msgstr ". Bei Meldung von Fehlern bitte einen Screenshot und Beschreibung (wie Betriebssystem und Browser) anfügen."
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/page/index.html.slime:36
+#: lib/absolventenfeier_web/templates/page/index.html.slime:41
 msgid "Admin-Corner"
 msgstr "Admin Ecke"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/page/index.html.slime:50
+#: lib/absolventenfeier_web/templates/page/index.html.slime:55
 msgid "Create new graduation ceremony"
 msgstr "Neue Absolventenfeier erstellen"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/page/index.html.slime:45
+#: lib/absolventenfeier_web/templates/page/index.html.slime:50
 msgid "Evaluate Registrations"
 msgstr "Anmeldungen auswerten"
 
@@ -230,7 +230,7 @@ msgid "Registration phase"
 msgstr "Anmeldephase"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/page/index.html.slime:39
+#: lib/absolventenfeier_web/templates/page/index.html.slime:44
 msgid "This area is not important for you! Only important functions for our graduation ceremony team are stored here."
 msgstr "Dieser Bereich ist nicht relevant für dich! Hier liegen nur Funktionen für unser Absolventenfeier Orga-Team."
 
@@ -245,7 +245,17 @@ msgid "all names"
 msgstr "vollständigen Namen"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/page/index.html.slime:33
+#: lib/absolventenfeier_web/templates/page/index.html.slime:34
 #: lib/absolventenfeier_web/templates/session/new.html.slime:28 lib/absolventenfeier_web/templates/user/new.html.slime:43
 msgid "Create Account"
 msgstr "Account erstellen"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/page/index.html.slime:38
+msgid "Show upcoming graduation ceremonies"
+msgstr "Zur Anmeldung"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/page/index.html.slime:37
+msgid "Your are already logged in."
+msgstr "Du bist bereits eingeloggt."

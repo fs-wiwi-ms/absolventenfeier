@@ -9,7 +9,7 @@ defmodule AbsolventenfeierWeb.Authentication do
   def init(opts), do: opts
 
   @doc false
-  def call(conn, type: :browser) do
+  def call(conn, type: :browser, forward_to_login: forward_to_login) do
     access_token = get_session(conn, :access_token) || ""
     refresh_token = conn.cookies["refresh_token"] || ""
 
@@ -28,11 +28,15 @@ defmodule AbsolventenfeierWeb.Authentication do
         |> assign(:session, session)
 
       {:error, _} ->
-        conn
-        |> put_session(:redirect_url, conn.request_path)
-        |> put_flash(:info, "Please login to continue.")
-        |> redirect(to: AbsolventenfeierWeb.Router.Helpers.public_session_path(conn, :new))
-        |> halt()
+        if forward_to_login do
+          conn
+          |> put_session(:redirect_url, conn.request_path)
+          |> put_flash(:info, "Please login to continue.")
+          |> redirect(to: AbsolventenfeierWeb.Router.Helpers.public_session_path(conn, :new))
+          |> halt()
+        else
+          conn
+        end
     end
   end
 
@@ -48,13 +52,13 @@ defmodule AbsolventenfeierWeb.Authentication do
     end
   end
 
-  def call(conn, type: :api_or_browser) do
+  def call(conn, type: :api_or_browser, forward_to_login: forward_to_login) do
     case get_format(conn) do
       "json" ->
         call(conn, type: :api)
 
       "html" ->
-        call(conn, type: :browser)
+        call(conn, type: :browser, forward_to_login: forward_to_login)
     end
   end
 

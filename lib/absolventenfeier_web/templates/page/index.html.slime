@@ -26,11 +26,17 @@ div.columns
             a.has-text-link.has-text-weight-semibold(href="mailto:admin@fachschaft-wiwi.ms") admin@fachschaft-wiwi.ms
           span =gettext(". If you report errors, please attach a screenshot and description (such as operating system and browser).")
 
-      div.columns
-        div.column.is-narrow
-          a.button.is-info(href="#{public_session_path(@conn, :new)}") = gettext("Login")
-        div.column.is-narrow
-          a.button.is-link(href="#{public_user_path(@conn, :new)}") = gettext("Create Account")
+      = if !@conn.assigns[:session] do
+        div.columns
+          div.column.is-narrow
+            a.button.is-info(href="#{public_session_path(@conn, :new)}") = gettext("Login")
+          div.column.is-narrow
+            a.button.is-link(href="#{public_user_path(@conn, :new)}") = gettext("Create Account")
+      - else
+        div.columns
+          div.column.is-narrow
+            div.subtitle.is-6 = gettext("Your are already logged in.")
+            a.button.is-info(href="#{event_path(@conn, :index)}") = gettext("Show upcoming graduation ceremonies")
 
     div.box
       h3.subtitle.is-5 =gettext("Admin-Corner")
