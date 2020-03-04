@@ -18,5 +18,10 @@ div.columns
         div.select.is-multiple
           = select(registration_form, :course, @course_types)
     div.columns
+      div.column
+        h5.title.is-5 = gettext("Declaration of consent")
+        h6.subtitle.is-6 = gettext("I hereby agree that the graduation ceremony team of the student council of the Faculty of Economics and Business Administration will receive my certificate from the examination office of the Faculty of Economics and Business Administration in order to present it to me at the graduation ceremony. I also agree that photos of me and my companions may be published. Tickets can only be returned if the graduation ceremony is cancelled.")
+
+    div.columns
       div.column.is-full
         = submit gettext("Create registration"), class: "button is-primary"

@@ -20,7 +20,7 @@ msgstr "Bereits angemeldet"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/registration/new.html.slime:3
-#: lib/absolventenfeier_web/templates/registration/new.html.slime:22
+#: lib/absolventenfeier_web/templates/registration/new.html.slime:27
 msgid "Create registration"
 msgstr "Anmeldung erstellen"
 
@@ -269,3 +269,13 @@ msgstr "Ende"
 #: lib/absolventenfeier_web/templates/event/index.html.slime:16
 msgid "Start"
 msgstr "Start"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/registration/new.html.slime:23
+msgid "I hereby agree that the graduation ceremony team of the student council of the Faculty of Economics and Business Administration will receive my certificate from the examination office of the Faculty of Economics and Business Administration in order to present it to me at the graduation ceremony. I also agree that photos of me and my companions may be published. Tickets can only be returned if the graduation ceremony is cancelled."
+msgstr "Hiermit erkläre ich mich einverstanden, dass dem Absolventenfeierteam der Fachschaft Wirtschaftswissenschaften mein Zeugnis vom Prüfungsamt der Wirtschaftswissenschaftlichen Fakultät übermittelt bekommt, um mir dieses bei der Absolventenfeier zu überreichen. Zudem erkläre ich mich einverstanden, dass Fotos von mir und meinen Begleitern möglicherweise veröffentlicht werden. Eine Rückgabe der Karten ist nur bei Ausfall der Feier möglich."
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/registration/new.html.slime:22
+msgid "Declaration of consent"
+msgstr "Einverständniserklärung"
