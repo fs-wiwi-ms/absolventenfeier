@@ -7,7 +7,7 @@
       div.columns
         div.column
           div(style="margin-bottom:2rem")
-            p.title.is-5 = Timex.format!(event.date_of_event, "{0D}.{0M}.{YYYY} {h24}:{m}")
+            p.title.is-5 = Timex.format!(event.date_of_event, "{0D}.{0M}.{YYYY}")
           div(style="margin-bottom:2rem")
             table.table(style="background-color: rgba(0, 0, 0, 0.0);")
               thead.thead
