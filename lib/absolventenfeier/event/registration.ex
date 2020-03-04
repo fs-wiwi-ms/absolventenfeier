@@ -2,14 +2,10 @@ defmodule Absolventenfeier.Event.Registration do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Absolventenfeier.Event
-  alias Absolventenfeier.User
-
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
   schema "registrations" do
-
     field(:degree, DegreeType, default: :none)
     field(:course, CourseType, default: :none)
 

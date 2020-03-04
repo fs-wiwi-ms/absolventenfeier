@@ -4,7 +4,7 @@ defmodule Absolventenfeier.User do
   import Ecto.Changeset
   import Ecto.Query, warn: false
 
-  alias Absolventenfeier.{User,Repo}
+  alias Absolventenfeier.{User, Repo}
 
   require Logger
 
@@ -23,7 +23,6 @@ defmodule Absolventenfeier.User do
 
     has_many(:sessions, Absolventenfeier.User.Session)
 
-
     timestamps()
   end
 
@@ -38,6 +37,11 @@ defmodule Absolventenfeier.User do
       :password,
       :role
     ])
+  end
+
+  defp changeset_create(user, attrs) do
+    user
+    |> changeset(attrs)
     |> validate_password
     |> unique_constraint(:user_name)
   end
@@ -74,25 +78,14 @@ defmodule Absolventenfeier.User do
     |> Repo.get(id)
   end
 
-  def create_user(user_params, spread_to_network \\ true) do
-    user =
-      %User{}
-      # |> Repo.preload([:games, :scores, :transactions])
-      |> changeset(user_params)
-      |> Repo.insert()
-
-    # case user do
-    #   {:ok, user} ->
-    #     {:ok, user}
-
-    #   {:error, changeset} ->
-    #     {:error, changeset}
-    # end
+  def create_user(user_params) do
+    %User{}
+    |> changeset_create(user_params)
+    |> Repo.insert()
   end
 
   def change_user(user \\ %User{}, user_params \\ %{}) do
     user
-    # |> Repo.preload([:games, :scores, :transactions])
     |> changeset(user_params)
   end
 end

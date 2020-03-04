@@ -25,4 +25,4 @@ div.box
     div.columns
       div.column.is-full
         p.has-text-info.has-text-weight-semibold.label = gettext("You don't have an account yet? Register now!")
-        a.button.is-info.is-outlined(href="#{public_user_path(@conn, :new)}") Register
+        a.button.is-info.is-outlined(href="#{public_user_path(@conn, :new)}") = gettext("Create Account")

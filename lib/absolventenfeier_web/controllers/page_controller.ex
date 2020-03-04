@@ -1,8 +1,6 @@
 defmodule AbsolventenfeierWeb.PageController do
   use AbsolventenfeierWeb, :controller
 
-  alias Absolventenfeier.Uploads
-
   def index(conn, _params) do
     render(conn, "index.html")
   end

@@ -31,23 +31,13 @@ msgid "Email"
 msgstr "Email"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:16
-msgid "Final registration date"
-msgstr "Letzter Anmeldungstermin"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:20
-msgid "Final ticket date"
-msgstr "Letzter Ticketbestelltermin"
-
-#, elixir-format
 #: lib/absolventenfeier_web/templates/user/new.html.slime:10
-msgid "Fore name"
-msgstr "Vorname"
+msgid "Fore name (complete)"
+msgstr "Vorname (vollständig)"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:8
-#: lib/absolventenfeier_web/templates/event/index.html.slime:8 lib/absolventenfeier_web/templates/layout/app.html.slime:6
+#: lib/absolventenfeier_web/templates/event/index.html.slime:4
+#: lib/absolventenfeier_web/templates/event/index.html.slime:4 lib/absolventenfeier_web/templates/layout/app.html.slime:6
 #: lib/absolventenfeier_web/templates/layout/app.html.slime:16 lib/absolventenfeier_web/templates/layout/app.html.slime:16
 #: lib/absolventenfeier_web/templates/page/index.html.slime:1
 msgid "Graduation Ceremony"
@@ -64,8 +54,8 @@ msgid "Last name"
 msgstr "Nachname"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/session/new.html.slime:3
-#: lib/absolventenfeier_web/templates/session/new.html.slime:24
+#: lib/absolventenfeier_web/templates/page/index.html.slime:31
+#: lib/absolventenfeier_web/templates/session/new.html.slime:3 lib/absolventenfeier_web/templates/session/new.html.slime:24
 msgid "Login"
 msgstr "Einloggen"
 
@@ -79,11 +69,6 @@ msgstr "Matrikelnummer"
 #: lib/absolventenfeier_web/templates/user/new.html.slime:32
 msgid "Password"
 msgstr "Passwort"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/user/new.html.slime:43
-msgid "Register"
-msgstr "Registrieren"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/user/new.html.slime:3
@@ -106,8 +91,8 @@ msgid "Repeat password"
 msgstr "Passwort wiederholen"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:8
-#: lib/absolventenfeier_web/templates/event/index.html.slime:8
+#: lib/absolventenfeier_web/templates/event/index.html.slime:4
+#: lib/absolventenfeier_web/templates/event/index.html.slime:4
 msgid "ST"
 msgstr "SS"
 
@@ -118,13 +103,8 @@ msgid "Tobias Hoge"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:3
-msgid "Upcoming graduation ceremonies"
-msgstr "Absolventenfeiern"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:8
-#: lib/absolventenfeier_web/templates/event/index.html.slime:8
+#: lib/absolventenfeier_web/templates/event/index.html.slime:4
+#: lib/absolventenfeier_web/templates/event/index.html.slime:4
 msgid "WT"
 msgstr "WS"
 
@@ -158,11 +138,6 @@ msgstr "Bitte wähle dein Studiengang aus."
 #: lib/absolventenfeier_web/templates/session/new.html.slime:27
 msgid "You don't have an account yet? Register now!"
 msgstr "Du hast noch keinen Account? Dann registriere dich hier!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/user/new.html.slime:46
-msgid "Already have an account? Login instead!"
-msgstr "Du hast bereits einen Account? Dann melde dich hier an!"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/index.html.slime:29
@@ -208,3 +183,69 @@ msgstr "Fehler beim Registrieren!"
 #: lib/absolventenfeier_web/controllers/user_controller.ex:31
 msgid "Registration successful! Please login."
 msgstr "Registrierung erfolgreich. Bitte logge dich ein."
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/page/index.html.slime:18
+msgid ", otherwise were not able to get your bachelor or master certificate. If you have questions please contact "
+msgstr "an, damit wir dein Zeugnis zuordnen können. Wenn du Fragen hast melde dich einfach bei"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/page/index.html.slime:27
+msgid ". If you report errors, please attach a screenshot and description (such as operating system and browser)."
+msgstr ". Bei Meldung von Fehlern bitte einen Screenshot und Beschreibung (wie Betriebssystem und Browser) anfügen."
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/page/index.html.slime:36
+msgid "Admin-Corner"
+msgstr "Admin Ecke"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/page/index.html.slime:50
+msgid "Create new graduation ceremony"
+msgstr "Neue Absolventenfeier erstellen"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/page/index.html.slime:45
+msgid "Evaluate Registrations"
+msgstr "Anmeldungen auswerten"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/page/index.html.slime:13
+msgid "Hint"
+msgstr "Hinweis"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/page/index.html.slime:24
+msgid "If you have any suggestions, errors or other problems regarding the display, please contact:"
+msgstr "Bei Anregungen, Fehlern und anderen Problemen bezüglich der Anzeige wende dich bitte an:"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/page/index.html.slime:16
+msgid "Please create an account to register for the next graduation ceremony. Insert "
+msgstr "Bitte erstelle einen Benutzeraccount um dich für die nächste Absolventenfeier anzumelden. Gebe bitte deinen"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/event/index.html.slime:12
+msgid "Registration phase"
+msgstr "Anmeldephase"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/page/index.html.slime:39
+msgid "This area is not important for you! Only important functions for our graduation ceremony team are stored here."
+msgstr "Dieser Bereich ist nicht relevant für dich! Hier liegen nur Funktionen für unser Absolventenfeier Orga-Team."
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/event/index.html.slime:18
+msgid "Ticketing phase"
+msgstr "Kartenbestellzeitraum"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/page/index.html.slime:17
+msgid "all names"
+msgstr "vollständigen Namen"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/page/index.html.slime:33
+#: lib/absolventenfeier_web/templates/session/new.html.slime:28 lib/absolventenfeier_web/templates/user/new.html.slime:43
+msgid "Create Account"
+msgstr "Account erstellen"

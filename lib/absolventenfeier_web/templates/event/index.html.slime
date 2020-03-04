@@ -1,7 +1,3 @@
-div.columns
-  div.column
-    h2.title.is-2 = gettext("Upcoming graduation ceremonies")
-
 = for event <- @events do
   article.message.is-info
     div.message-header
@@ -11,15 +7,19 @@ div.columns
       div.columns
         div.column
           div(style="margin-bottom:2rem")
-            p.title.is-5 = Timex.format!(event.date_of_event, "{0D}.{0M}.{YYYY} - {h24}:{m}")
+            p.title.is-5 = Timex.format!(event.date_of_event, "{0D}.{0M}.{YYYY}, {h24}:{m}")
           div
-            span = gettext("Final registration date")
+            span = gettext("Registration phase")
             span :
-            span = Timex.format!(event.date_of_registration, "{0D}.{0M}.{YYYY} - {h24}:{m}")
+            span = Timex.format!(event.start_of_registration, "{0D}.{0M}.{YYYY}, {h24}:{m}")
+            span -
+            span = Timex.format!(event.date_of_registration, "{0D}.{0M}.{YYYY}, {h24}:{m}")
           div
-            span = gettext("Final ticket date")
+            span = gettext("Ticketing phase")
             span :
-            span = Timex.format!(event.date_of_tickets, "{0D}.{0M}.{YYYY} - {h24}:{m}")
+            span = Timex.format!(event.start_of_tickets, "{0D}.{0M}.{YYYY}, {h24}:{m}")
+            span -
+            span = Timex.format!(event.date_of_tickets, "{0D}.{0M}.{YYYY}, {h24}:{m}")
         div.column(align="right")
           = case user_registerd_for_event(event, @user) do
             - %Registration{} = registration ->

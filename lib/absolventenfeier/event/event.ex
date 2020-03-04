@@ -5,6 +5,7 @@ defmodule Absolventenfeier.Event do
   import Ecto.Changeset
 
   alias Absolventenfeier.{Event, Repo, User}
+
   alias Absolventenfeier.Event.{
     Term,
     Registration
@@ -18,6 +19,8 @@ defmodule Absolventenfeier.Event do
     field(:date_of_event, :utc_datetime, default: nil)
     field(:date_of_registration, :utc_datetime, default: nil)
     field(:date_of_tickets, :utc_datetime, default: nil)
+    field(:start_of_registration, :utc_datetime, default: nil)
+    field(:start_of_tickets, :utc_datetime, default: nil)
 
     belongs_to(:term, Absolventenfeier.Event.Term)
     has_many(:registrations, Absolventenfeier.Event.Registration)
@@ -28,7 +31,14 @@ defmodule Absolventenfeier.Event do
   @doc false
   def changeset(event, attrs) do
     event
-    |> cast(attrs, [:published, :date_of_event, :date_of_registration, :date_of_tickets])
+    |> cast(attrs, [
+      :published,
+      :date_of_event,
+      :date_of_registration,
+      :date_of_tickets,
+      :start_of_registration,
+      :start_of_tickets
+    ])
     |> put_assoc(:registrations, attrs["registrations"] || event.registrations)
     |> put_assoc(:term, attrs["term"] || event.term)
   end
@@ -63,12 +73,10 @@ defmodule Absolventenfeier.Event do
   end
 
   def create_event(event_params) do
-    users = Enum.map(event_params["user_ids"] || [], &User.get_user(&1))
-    term = Term.get_term(event_params["term_id"])
+    term = Event.get_term(event_params["term_id"])
 
     event_params =
       event_params
-      |> Map.drop(["registration_ids"])
       |> Map.drop(["term_id"])
       |> Map.put("term", term)
       |> Map.put("registrations", [])
@@ -121,19 +129,20 @@ defmodule Absolventenfeier.Event do
     user = User.get_user(registration_params["user_id"])
 
     case user_registerd_for_event(event.id, user.id) do
-    %Registration{} = registration ->
-      {:already_registered, registration}
-    nil ->
-      registration_params =
-        registration_params
-        |> Map.drop(["event_id", "user_id"])
-        |> Map.put("event", event)
-        |> Map.put("user", user)
+      %Registration{} = registration ->
+        {:already_registered, registration}
 
-      %Registration{}
-      |> Repo.preload([:event, :user])
-      |> Registration.changeset(registration_params)
-      |> Repo.insert()
+      nil ->
+        registration_params =
+          registration_params
+          |> Map.drop(["event_id", "user_id"])
+          |> Map.put("event", event)
+          |> Map.put("user", user)
+
+        %Registration{}
+        |> Repo.preload([:event, :user])
+        |> Registration.changeset(registration_params)
+        |> Repo.insert()
     end
   end
 

@@ -7,7 +7,7 @@ div.box
 
     div.columns
       div.column
-        label.label = gettext("Fore name")
+        label.label = gettext("Fore name (complete)")
         = text_input(user_form, :fore_name, class: "input", type: "text")
         = error_label(@changeset, :fore_name)
 
@@ -40,8 +40,8 @@ div.box
 
     div.columns
       div.column
-        = submit gettext("Register"), class: "button is-primary", style: "padding=0"
-    div.columns
-      div.column
-        p.has-text-info.has-text-weight-semibold.label = gettext("Already have an account? Login instead!")
-        a.button.is-info.is-outlined(href="#{public_session_path(@conn, :new)}") Login
+        = submit gettext("Create Account"), class: "button is-primary", style: "padding=0"
+    / div.columns
+    /   div.column
+    /     p.has-text-info.has-text-weight-semibold.label = gettext("Already have an account? Login instead!")
+    /     a.button.is-info.is-outlined(href="#{public_session_path(@conn, :new)}") Login

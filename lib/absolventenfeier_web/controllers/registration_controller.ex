@@ -15,6 +15,7 @@ defmodule AbsolventenfeierWeb.RegistrationController do
 
   def new(conn, %{"event_id" => event_id}) do
     event = Event.get_event(event_id)
+
     user =
       conn
       |> get_session(:user_id)
@@ -25,8 +26,8 @@ defmodule AbsolventenfeierWeb.RegistrationController do
     render(conn, "new.html",
       user: user,
       event: event,
-      degree_types: get_degree_types,
-      course_types: get_course_types,
+      degree_types: get_degree_types(),
+      course_types: get_course_types(),
       changeset: registration_changeset,
       action: registration_path(conn, :create)
     )
@@ -46,19 +47,19 @@ defmodule AbsolventenfeierWeb.RegistrationController do
 
       {:error, changeset} ->
         event = Event.get_event(registration["event_id"])
+
         user =
           conn
           |> get_session(:user_id)
           |> User.get_user()
-
 
         conn
         |> put_flash(:error, gettext("Error while creating registration!"))
         |> render("new.html",
           user: user,
           event: event,
-          degree_types: get_degree_types,
-          course_types: get_course_types,
+          degree_types: get_degree_types(),
+          course_types: get_course_types(),
           changeset: changeset,
           action: registration_path(conn, :create)
         )
@@ -77,11 +78,13 @@ defmodule AbsolventenfeierWeb.RegistrationController do
 
   defp get_degree_types() do
     Enum.map(DegreeType.__enum_map__() -- [:none], fn enum ->
-      {Gettext.dgettext(AbsolventenfeierWeb.Gettext, "enum", Atom.to_string(enum), %{}), enum} end)
+      {Gettext.dgettext(AbsolventenfeierWeb.Gettext, "enum", Atom.to_string(enum), %{}), enum}
+    end)
   end
 
   defp get_course_types() do
     Enum.map(CourseType.__enum_map__() -- [:none], fn enum ->
-      {Gettext.dgettext(AbsolventenfeierWeb.Gettext, "enum", Atom.to_string(enum)), enum} end)
+      {Gettext.dgettext(AbsolventenfeierWeb.Gettext, "enum", Atom.to_string(enum)), enum}
+    end)
   end
 end

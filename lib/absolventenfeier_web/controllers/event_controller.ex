@@ -8,6 +8,7 @@ defmodule AbsolventenfeierWeb.EventController do
       conn
       |> get_session(:user_id)
       |> User.get_user()
+
     events = Event.get_events_for_registration()
     render(conn, "index.html", %{events: events, user: user})
   end
