@@ -28,10 +28,10 @@
         div.column(align="right")
           = case user_registerd_for_event(event, @user) do
             - %Registration{} = registration ->
-              a.button(disabled style="margin-bottom:1rem") = gettext("Already registered")
+              a.button.is-success(disabled style="margin-bottom:1rem") = gettext("Already registered")
               / a.button(href="#{event_registration_path(@conn, :show, event.id, registration.id)}") test
               = form_for @conn, registration_path(@conn, :delete, registration.id), [method: :delete], fn _form ->
-                = submit(gettext("Deregister"), class: "button")
+                = submit(gettext("Deregister"), class: "button is-danger")
 
             - nil ->
               a.button(href="#{event_registration_path(@conn, :new, event.id)}") = gettext("Register now")
