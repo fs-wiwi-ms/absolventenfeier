@@ -26,7 +26,7 @@ msgid "Source Code"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:26
+#: lib/absolventenfeier_web/templates/event/index.html.slime:31
 msgid "Already registered"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgid "Register new user"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:32
+#: lib/absolventenfeier_web/templates/event/index.html.slime:37
 msgid "Register now"
 msgstr ""
 
@@ -152,7 +152,7 @@ msgid "You don't have an account yet? Register now!"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:29
+#: lib/absolventenfeier_web/templates/event/index.html.slime:34
 msgid "Deregister"
 msgstr ""
 
@@ -237,7 +237,7 @@ msgid "Please create an account to register for the next graduation ceremony. In
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:12
+#: lib/absolventenfeier_web/templates/event/index.html.slime:20
 msgid "Registration phase"
 msgstr ""
 
@@ -247,7 +247,7 @@ msgid "This area is not important for you! Only important functions for our grad
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:18
+#: lib/absolventenfeier_web/templates/event/index.html.slime:24
 msgid "Ticketing phase"
 msgstr ""
 
@@ -270,4 +270,14 @@ msgstr ""
 #, elixir-format
 #: lib/absolventenfeier_web/templates/page/index.html.slime:37
 msgid "Your are already logged in."
+msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/event/index.html.slime:17
+msgid "End"
+msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/event/index.html.slime:16
+msgid "Start"
 msgstr ""

@@ -14,7 +14,7 @@ msgid "Source Code"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:26
+#: lib/absolventenfeier_web/templates/event/index.html.slime:31
 msgid "Already registered"
 msgstr "Bereits angemeldet"
 
@@ -76,7 +76,7 @@ msgid "Register new user"
 msgstr "Neuen Benutzer erstellen"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:32
+#: lib/absolventenfeier_web/templates/event/index.html.slime:37
 msgid "Register now"
 msgstr "Jetzt Anmelden"
 
@@ -140,7 +140,7 @@ msgid "You don't have an account yet? Register now!"
 msgstr "Du hast noch keinen Account? Dann registriere dich hier!"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:29
+#: lib/absolventenfeier_web/templates/event/index.html.slime:34
 msgid "Deregister"
 msgstr "Wieder Abmelden"
 
@@ -225,7 +225,7 @@ msgid "Please create an account to register for the next graduation ceremony. In
 msgstr "Bitte erstelle einen Benutzeraccount um dich für die nächste Absolventenfeier anzumelden. Gebe bitte deinen"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:12
+#: lib/absolventenfeier_web/templates/event/index.html.slime:20
 msgid "Registration phase"
 msgstr "Anmeldephase"
 
@@ -235,7 +235,7 @@ msgid "This area is not important for you! Only important functions for our grad
 msgstr "Dieser Bereich ist nicht relevant für dich! Hier liegen nur Funktionen für unser Absolventenfeier Orga-Team."
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:18
+#: lib/absolventenfeier_web/templates/event/index.html.slime:24
 msgid "Ticketing phase"
 msgstr "Kartenbestellzeitraum"
 
@@ -259,3 +259,13 @@ msgstr "Zur Anmeldung"
 #: lib/absolventenfeier_web/templates/page/index.html.slime:37
 msgid "Your are already logged in."
 msgstr "Du bist bereits eingeloggt."
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/event/index.html.slime:17
+msgid "End"
+msgstr "Ende"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/event/index.html.slime:16
+msgid "Start"
+msgstr "Start"
