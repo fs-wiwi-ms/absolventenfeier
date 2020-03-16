@@ -1,0 +1,34 @@
+= form_for @changeset, @action, fn event_form ->
+  h5.subtitle.is-5 = gettext("General")
+  div.columns
+    div.column
+      = label event_form, :term_id, gettext("Term"), class: "label"
+      div.select
+        = select(event_form, :term_id, @terms)
+
+  div.columns
+    div.column
+      = label event_form, :date_of_event, gettext("Graduation ceremony event"), class: "label"
+      = text_input event_form, :date_of_event, default: Date.utc_today(), class: "input datepicker"
+
+  h5.subtitle.is-5 = gettext("Registration")
+  div.columns
+    div.column
+      = label event_form, :start_of_registration, gettext("Starts at"), class: "label"
+      = text_input event_form, :start_of_registration, default: DateTime.utc_now(), class: "input datetimepicker"
+    div.column
+      = label event_form, :date_of_registration, gettext("Ends at"), class: "label"
+      = text_input event_form, :date_of_registration, default: DateTime.utc_now(), class: "input datetimepicker"
+
+  h5.subtitle.is-5 = gettext("Ticketing")
+  div.columns
+    div.column
+      = label event_form, :start_of_tickets, gettext("Starts at"), class: "label"
+      = text_input event_form, :start_of_tickets, default: DateTime.utc_now(), class: "input datetimepicker"
+    div.column
+      = label event_form, :date_of_tickets, gettext("Ends at"), class: "label"
+      = text_input event_form, :date_of_tickets, default: DateTime.utc_now(), class: "input datetimepicker"
+
+  div.columns
+    div.column.is-full
+      = submit gettext("Save"), class: "button is-primary"

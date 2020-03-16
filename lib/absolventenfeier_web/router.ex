@@ -47,23 +47,14 @@ defmodule AbsolventenfeierWeb.Router do
   scope "/", AbsolventenfeierWeb do
     pipe_through(:protected_browser)
 
-    resources "/events", EventController, only: [:index] do
-      resources "/registrations", RegistrationController, only: [:new, :show]
+    get "/events/:id/publish", EventController, :publish
+    get "/events/:id/make_private", EventController, :make_private
+
+    resources "/events", EventController, only: [:index, :new, :create, :edit, :update, :delete] do
+      resources "/registrations", RegistrationController, only: [:index, :new]
     end
 
     resources "/registrations", RegistrationController, only: [:create, :delete]
-
-    # get "/games/:id/scores", GameController, :show
-
-    # resources "/games", GameController, only: [:index, :new, :create] do
-    #   resources "/scores", ScoreController, only: [:new]
-    #   get "/scores/:id/re_roll", ScoreController, :re_roll
-    #   get "/scores/:id/finish", ScoreController, :finish
-    #   post "/scores/:id/re_roll", ScoreController, :re_roll_score
-    #   post "/scores/:id/finish", ScoreController, :finish_score
-    # end
-
-    # resources "/transactions", TransactionController, only: [:new, :create]
 
     resources "/sessions", SessionController, only: [:delete]
   end

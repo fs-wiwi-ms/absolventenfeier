@@ -34,3 +34,9 @@ msgstr "User"
 
 msgid "admin"
 msgstr "Admin"
+
+msgid "summer_term"
+msgstr ""
+
+msgid "winter_term"
+msgstr ""

@@ -17,7 +17,7 @@ div.box
     div.columns
       div.column.is-full
         = checkbox(user_form, :remember_me, class: "checkbox")
-        = label(user_form, :remember_me, gettext("Remember me"))
+          = label(user_form, :remember_me, gettext("Remember me"))
 
     div.columns
       div.column.is-full

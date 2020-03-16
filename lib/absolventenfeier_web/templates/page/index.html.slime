@@ -1,12 +1,5 @@
 h1.title.is-3 = gettext("Graduation Ceremony")
 
-
-
-
-
-/ a.button(href="#{event_path(@conn, :index)}") Events
-
-
 div.columns
   div.column
     div.box
@@ -38,19 +31,24 @@ div.columns
             div.subtitle.is-6 = gettext("Your are already logged in.")
             a.button.is-info(href="#{event_path(@conn, :index)}") = gettext("Show upcoming graduation ceremonies")
 
-    div.box
-      h3.subtitle.is-5 =gettext("Admin-Corner")
-      div.columns
-        div.column
-          span =gettext("This area is not important for you! Only important functions for our graduation ceremony team are stored here.")
-      div.columns
-        div.column.is-narrow
-          a.button.is-danger.is-outlined(href="#" disabled)
-            span.icon
-              i.fas.fa-file-upload
-            span =gettext("Evaluate Registrations")
-        div.column.is-narrow
-          a.button.is-danger.is-outlined(href="#" disabled)
-            span.icon
-              i.fas.fa-graduation-cap
-            span =gettext("Create new graduation ceremony")
+    - user = get_user(@conn)
+    = if user do
+      = case user.role do
+        - :user ->
+        - :admin ->
+          div.box
+            h3.subtitle.is-5 =gettext("Admin-Corner")
+            div.columns
+              div.column
+                span =gettext("This area is not important for you! Only important functions for our graduation ceremony team are stored here.")
+            div.columns
+              div.column.is-narrow
+                a.button.is-danger.is-outlined(href="#{}" disabled data-tooltip="Dies geht nur auf der Eventübersichtsseite.")
+                  span.icon
+                    i.fas.fa-file-upload
+                  span =gettext("Evaluate Registrations")
+              div.column.is-narrow
+                a.button.is-danger.is-outlined(href="#{event_path(@conn, :new)}")
+                  span.icon
+                    i.fas.fa-graduation-cap
+                  span =gettext("Create new graduation ceremony")

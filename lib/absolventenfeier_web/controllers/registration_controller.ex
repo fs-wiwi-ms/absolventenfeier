@@ -3,14 +3,23 @@ defmodule AbsolventenfeierWeb.RegistrationController do
 
   alias Absolventenfeier.{Event, User}
 
-  def index(conn, _params) do
-    user_id = get_session(conn, :user_id)
-    registrations = Event.get_registrations_for_user(user_id)
-    render(conn, "index.html", registrations: registrations)
-  end
+  def index(conn, %{"event_id" => event_id}) do
+    user =
+      conn
+      |> get_session(:user_id)
+      |> User.get_user()
 
-  def show(conn, _params) do
-    render(conn, "show.html")
+    case user.role do
+      :admin ->
+        registrations = Event.get_registrations_for_event(event_id)
+        count = Enum.count(registrations)
+        render(conn, "index.html", registrations: registrations, count: count)
+
+      :user ->
+        conn
+        |> put_flash(:error, gettext("This action is permitted!"))
+        |> redirect(to: page_path(conn, :index))
+    end
   end
 
   def new(conn, %{"event_id" => event_id}) do

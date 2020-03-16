@@ -59,6 +59,16 @@ defmodule AbsolventenfeierWeb do
             nil
         end
       end
+
+      def get_user(conn) do
+        case conn.assigns[:session] do
+          nil ->
+            nil
+
+          session ->
+            Absolventenfeier.User.get_user(session.user_id)
+        end
+      end
     end
   end
 

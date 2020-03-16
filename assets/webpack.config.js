@@ -20,7 +20,6 @@ module.exports = (env, options) => ({
   context: path.resolve(__dirname, "src"),
   entry: {
     app: "./app/index.ts",
-    date_time: "./app/date_time.ts",
   },
   output: {
     filename: "./js/[name].js",
