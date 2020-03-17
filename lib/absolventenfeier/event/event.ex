@@ -104,7 +104,6 @@ defmodule Absolventenfeier.Event do
       event_params
       |> Map.drop(["term_id"])
       |> Map.put("term", term)
-      |> Map.put("registrations", [])
 
     event
     |> Event.changeset(event_params)
