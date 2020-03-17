@@ -1,2 +1,63 @@
 import "@fortawesome/fontawesome-free/js/all.js";
+
+import flatpickr from "flatpickr";
+import { German } from "flatpickr/dist/l10n/de.js";
+import "flatpickr/dist/themes/dark.css";
+
+const FLATPICKR_DATETIME_CONFIG = {
+  altInput: true,
+  altFormat: "j. F Y H:i",
+  enableTime: true,
+  dateFormat: "Z",
+  time_24hr: true,
+  locale: German,
+  placeholder: "Datum auswählen",
+};
+
+const FLATPICKR_DATE_CONFIG = {
+  altInput: true,
+  altFormat: "j. F Y",
+  enableTime: false,
+  dateFormat: "Y-m-d",
+  locale: German,
+  placeholder: "Datum auswählen",
+};
+
+function initDatePickers() {
+  flatpickr(document.querySelectorAll(".datetimepicker"), FLATPICKR_DATETIME_CONFIG);
+  flatpickr(document.querySelectorAll(".datepicker"), FLATPICKR_DATE_CONFIG);
+}
+
+if (document.readyState !== "loading") {
+  initDatePickers();
+} else {
+  document.addEventListener("DOMContentLoaded", initDatePickers);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Get all "navbar-burger" elements
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', () => {
+
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+  }
+
+});
+
 import "./theme.sass";

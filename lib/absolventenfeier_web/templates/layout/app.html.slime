@@ -20,6 +20,7 @@ html(lang="en")
 
   body.has-background-light.Site
     nav.navbar.has-shadow.is-spaced.has-background-primary(role="navigation" aria-label="main navigation")
+
       div.navbar-brand
         div.navbar-item
           a.button.is-primary(href="#{page_path(@conn, :index)}")
@@ -27,7 +28,13 @@ html(lang="en")
               i.fas.fa-graduation-cap
             span.has-text-weight-bold.has-text-white = gettext("Graducation Ceremony Student's Council for Economics University Münster")
 
-      div.navbar-menu
+        div.navbar-burger(role="button" aria-label="menu" aria-expanded="false" data-target="navMenu")
+          span.has-background-white(aria-hidden="true")
+          span.has-background-white(aria-hidden="true")
+          span.has-background-white(aria-hidden="true")
+
+
+      div.navbar-menu(id="navMenu")
         = if @conn.assigns[:session] do
           div.navbar-end
             div.navbar-item

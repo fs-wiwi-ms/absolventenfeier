@@ -3,18 +3,6 @@ defmodule AbsolventenfeierWeb.UserController do
 
   alias Absolventenfeier.User
 
-  def index(conn, _params) do
-    users = User.get_users()
-
-    render(conn, "index.html", users: users)
-  end
-
-  def show(conn, %{"id" => user_id}) do
-    user = User.get_user(user_id)
-
-    render(conn, "show.html", user: user)
-  end
-
   def new(conn, _params) do
     user_changeset = User.change_user()
 

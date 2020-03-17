@@ -16,7 +16,7 @@ defmodule Absolventenfeier.Event do
 
   schema "events" do
     field(:published, :boolean, default: false)
-    field(:date_of_event, :utc_datetime, default: nil)
+    field(:date_of_event, :date, default: nil)
     field(:date_of_registration, :utc_datetime, default: nil)
     field(:date_of_tickets, :utc_datetime, default: nil)
     field(:start_of_registration, :utc_datetime, default: nil)
@@ -51,18 +51,23 @@ defmodule Absolventenfeier.Event do
     Event
     |> preload([:registrations, :term])
     |> where([e], e.published)
+    |> order_by([e, r], e.date_of_event)
     |> Repo.all()
   end
 
-  def get_events_for_user(user_id) do
-    Event
-    |> join(:left, [e], r in assoc(e, :registrations))
-    |> where([e, r], r.user_id == ^user_id)
-    |> Repo.all()
-  end
+  # def get_events_for_user(user_id) do
+  #   Event
+  #   |> join(:left, [e], r in assoc(e, :registrations))
+  #   |> where([e, r], r.user_id == ^user_id)
+  #   |> where([e, r], e.published)
+  #   |> order_by([e, r], e.date_of_event)
+  #   |> Repo.all()
+  # end
 
   def get_events() do
     Event
+    |> preload([:registrations, :term])
+    |> order_by([e, r], e.date_of_event)
     |> Repo.all()
   end
 
@@ -87,6 +92,51 @@ defmodule Absolventenfeier.Event do
     |> Repo.insert()
   end
 
+  def update_event(event_id, event_params) do
+    event =
+      Event
+      |> Repo.get(event_id)
+      |> Repo.preload([:term, :registrations])
+
+    term = Event.get_term(event_params["term_id"])
+
+    event_params =
+      event_params
+      |> Map.drop(["term_id"])
+      |> Map.put("term", term)
+      |> Map.put("registrations", [])
+
+    event
+    |> Event.changeset(event_params)
+    |> Repo.update()
+  end
+
+  def make_event_private(event_id) do
+    event =
+      Event
+      |> Repo.get(event_id)
+      |> Repo.preload([:term, :registrations])
+
+    event
+    |> Event.changeset(%{"published" => false})
+    |> Repo.update()
+  end
+
+  def publish_event(event_id) do
+    event =
+      Event
+      |> Repo.get(event_id)
+      |> Repo.preload([:term, :registrations])
+
+    event
+    |> Event.changeset(%{"published" => true})
+    |> Repo.update()
+  end
+
+  def delete_event(event) do
+    Repo.delete(event)
+  end
+
   def change_event(event \\ %Event{}, attrs \\ %{}) do
     event
     |> Repo.preload([:term, :registrations])
@@ -96,17 +146,11 @@ defmodule Absolventenfeier.Event do
   # -----------------------------------------------------------------
   # -- Registration
   # -----------------------------------------------------------------
-  def get_registrations() do
-    Registration
-    |> Repo.all()
-  end
-
   def get_registrations_for_event(event_id) do
-    Repo.all(from s in Registration, where: s.event_id == ^event_id)
-  end
-
-  def get_registrations_for_user(user_id) do
-    Repo.all(from s in Registration, where: s.user_id == ^user_id)
+    Registration
+    |> where(event_id: ^event_id)
+    |> preload([:user, :event])
+    |> Repo.all()
   end
 
   def user_registerd_for_event(event_id, user_id) do

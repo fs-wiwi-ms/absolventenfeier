@@ -1,0 +1,27 @@
+div.columns
+  div.column
+    div.box
+      div.table-container
+        table.table.is-striped.is-fullwidth.is-hoverable
+          thead.thead
+            tr
+              th = gettext("Fore name (complete)")
+              th = gettext("Last name")
+              th = gettext("Email")
+              th = gettext("Matriculation number")
+              th = gettext("Degree")
+              th = gettext("Course")
+          tbody.tbody
+            = for registration <- @registrations do
+              tr
+                td = registration.user.fore_name
+                td = registration.user.last_name
+                td = registration.user.email
+                td = registration.user.matriculation_number
+                td
+                  = get_degree_tag registration.degree
+                td
+                  = get_course_tag registration.course
+          tfoot.tfoot
+            tr
+              th.has-text-right(colspan="6") = "#{gettext("Count")}: #{@count}"

@@ -1,0 +1,6 @@
+div.columns
+  div.column
+    h2.title.is-2 = gettext("Create event")
+
+div.box
+  = render "_form.html", assigns

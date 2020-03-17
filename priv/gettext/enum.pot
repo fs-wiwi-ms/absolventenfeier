@@ -21,3 +21,9 @@ msgstr ""
 
 msgid "admin"
 msgstr ""
+
+msgid "summer_term"
+msgstr ""
+
+msgid "winter_term"
+msgstr ""

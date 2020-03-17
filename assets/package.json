@@ -8,6 +8,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
     "bulma": "^0.8.0",
+    "bulma-tooltip": "^3.0.2",
     "flatpickr": "^4.6.3",
     "phoenix": "^1.4.15",
     "phoenix_html": "^2.13.2"

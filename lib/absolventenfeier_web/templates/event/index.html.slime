@@ -1,7 +1,39 @@
+= if @user.role == :admin do
+  div.columns
+    div.column(align="right")
+      a.button.is-primary(href="#{event_path(@conn, :new)}")
+        span.icon.has-text-info
+          i.fas.fa-plus
+        span = gettext("Create event")
+
 = for event <- @events do
-  article.message.is-info
+  article.message(class="#{if event.published do "is-info" else "is-link" end}")
     div.message-header
-      p.title.is-5 = "#{gettext("Graduation Ceremony")} #{if event.term.type == :winter_term do gettext("WT") else gettext("ST") end} #{event.term.year}"
+      p.title.is-5(style="margin-bottom:0") = "#{gettext("Graduation Ceremony")} #{if event.term.type == :winter_term do gettext("WT") else gettext("ST") end} #{event.term.year}"
+      = if @user.role == :admin do
+        div.field.is-grouped
+          p.control
+            button.button.is-primary
+              a.icon.has-text-info(href="#{event_path(@conn, :edit, event.id)}" data-tooltip="#{gettext("Edit event")}")
+                i.fas.fa-pen
+          p.control
+            button.button.is-primary
+              = if event.published do
+                a.icon.has-text-info(href="#{event_path(@conn, :make_private, event.id)}" data-tooltip="#{gettext("Make private")}")
+                  i.fas.fa-ban
+              - else
+                a.icon.has-text-info(href="#{event_path(@conn, :publish, event.id)}" data-tooltip="#{gettext("Publish event")}")
+                  i.fa.fa-globe-europe
+          p.control
+            button.button.is-primary
+              a.icon.has-text-info(href="#{event_registration_path(@conn, :index, event.id)}" data-tooltip="#{gettext("Show registrations")}")
+                i.fas.fa-table
+          = form_for @conn, event_path(@conn, :delete, event.id), fn _f ->
+            input type="hidden" name="_method" value="delete"
+            p.control
+              button.button.is-danger
+                span.icon.has-text-white(data-method="post"   data-tooltip="#{gettext("Delete event")}" href="#")
+                  i.fas.fa-trash
 
     div.message-body
       div.columns
@@ -18,12 +50,12 @@
               tbody.tbody
                 tr
                   td = gettext("Registration phase")
-                  td = Timex.format!(event.start_of_registration, "{0D}.{0M}.{YYYY} {h24}:{m}")
-                  td = Timex.format!(event.date_of_registration, "{0D}.{0M}.{YYYY} {h24}:{m}")
+                  td = Timex.format!(Timex.Timezone.convert(event.start_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
+                  td = Timex.format!(Timex.Timezone.convert(event.date_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
                 tr
                   td = gettext("Ticketing phase")
-                  td = Timex.format!(event.start_of_tickets, "{0D}.{0M}.{YYYY} {h24}:{m}")
-                  td = Timex.format!(event.date_of_tickets, "{0D}.{0M}.{YYYY} {h24}:{m}")
+                  td = Timex.format!(Timex.Timezone.convert(event.start_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
+                  td = Timex.format!(Timex.Timezone.convert(event.date_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
 
         div.column(align="right")
           = case user_registerd_for_event(event, @user) do

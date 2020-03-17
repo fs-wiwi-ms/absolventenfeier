@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/ bash
 set -euo pipefail
 
 ssh $1 "mkdir -p /root/absolventenfeier"
