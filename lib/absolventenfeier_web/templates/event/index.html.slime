@@ -6,64 +6,74 @@
           i.fas.fa-plus
         span = gettext("Create event")
 
-= for event <- @events do
-  article.message(class="#{if event.published do "is-info" else "is-link" end}")
-    div.message-header
-      p.title.is-5(style="margin-bottom:0") = "#{gettext("Graduation Ceremony")} #{if event.term.type == :winter_term do gettext("WT") else gettext("ST") end} #{event.term.year}"
-      = if @user.role == :admin do
-        div.field.is-grouped
-          p.control
-            button.button.is-primary
-              a.icon.has-text-info(href="#{event_path(@conn, :edit, event.id)}" data-tooltip="#{gettext("Edit event")}")
-                i.fas.fa-pen
-          p.control
-            button.button.is-primary
-              = if event.published do
-                a.icon.has-text-info(href="#{event_path(@conn, :make_private, event.id)}" data-tooltip="#{gettext("Make private")}")
-                  i.fas.fa-ban
-              - else
-                a.icon.has-text-info(href="#{event_path(@conn, :publish, event.id)}" data-tooltip="#{gettext("Publish event")}")
-                  i.fa.fa-globe-europe
-          p.control
-            button.button.is-primary
-              a.icon.has-text-info(href="#{event_registration_path(@conn, :index, event.id)}" data-tooltip="#{gettext("Show registrations")}")
-                i.fas.fa-table
-          = form_for @conn, event_path(@conn, :delete, event.id), fn _f ->
-            input type="hidden" name="_method" value="delete"
+= if !@events or Enum.empty?(@events) do
+  div.subtitle
+    span = gettext("Keine zukünftigen Absolventenfeiern gefunden. Auf unseren Kanälen (")
+    a(href="https://fachschaft-wiwi.ms") = gettext("Homepage")
+    span ,
+    a(href="https://www.facebook.com/fachschaftwiwi.ms/") = gettext("Facebook")
+    span ,
+    a(href="https://www.instagram.com/fachschaft.wiwi.ms/") = gettext("Instagram")
+    span = gettext(") wirst du über neue Events informiert.")
+- else
+  = for event <- @events do
+    article.message(class="#{if event.published do "is-info" else "is-link" end}")
+      div.message-header
+        p.title.is-5(style="margin-bottom:0") = "#{gettext("Graduation Ceremony")} #{if event.term.type == :winter_term do gettext("WT") else gettext("ST") end} #{event.term.year}"
+        = if @user.role == :admin do
+          div.field.is-grouped
             p.control
-              button.button.is-danger
-                span.icon.has-text-white(data-method="post"   data-tooltip="#{gettext("Delete event")}" href="#")
-                  i.fas.fa-trash
+              button.button.is-primary
+                a.icon.has-text-info(href="#{event_path(@conn, :edit, event.id)}" data-tooltip="#{gettext("Edit event")}")
+                  i.fas.fa-pen
+            p.control
+              button.button.is-primary
+                = if event.published do
+                  a.icon.has-text-info(href="#{event_path(@conn, :make_private, event.id)}" data-tooltip="#{gettext("Make private")}")
+                    i.fas.fa-ban
+                - else
+                  a.icon.has-text-info(href="#{event_path(@conn, :publish, event.id)}" data-tooltip="#{gettext("Publish event")}")
+                    i.fa.fa-globe-europe
+            p.control
+              button.button.is-primary
+                a.icon.has-text-info(href="#{event_registration_path(@conn, :index, event.id)}" data-tooltip="#{gettext("Show registrations")}")
+                  i.fas.fa-table
+            = form_for @conn, event_path(@conn, :delete, event.id), fn _f ->
+              input type="hidden" name="_method" value="delete"
+              p.control
+                button.button.is-danger
+                  span.icon.has-text-white(data-method="post"   data-tooltip="#{gettext("Delete event")}" href="#")
+                    i.fas.fa-trash
 
-    div.message-body
-      div.columns
-        div.column
-          div(style="margin-bottom:2rem")
-            p.title.is-5 = Timex.format!(event.date_of_event, "{0D}.{0M}.{YYYY}")
-          div(style="margin-bottom:2rem")
-            table.table(style="background-color: rgba(0, 0, 0, 0.0);")
-              thead.thead
-                tr
-                  th
-                  th = gettext("Start")
-                  th = gettext("End")
-              tbody.tbody
-                tr
-                  td = gettext("Registration phase")
-                  td = Timex.format!(Timex.Timezone.convert(event.start_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
-                  td = Timex.format!(Timex.Timezone.convert(event.date_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
-                tr
-                  td = gettext("Ticketing phase")
-                  td = Timex.format!(Timex.Timezone.convert(event.start_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
-                  td = Timex.format!(Timex.Timezone.convert(event.date_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
+      div.message-body
+        div.columns
+          div.column
+            div(style="margin-bottom:2rem")
+              p.title.is-5 = Timex.format!(event.date_of_event, "{0D}.{0M}.{YYYY}")
+            div(style="margin-bottom:2rem")
+              table.table(style="background-color: rgba(0, 0, 0, 0.0);")
+                thead.thead
+                  tr
+                    th
+                    th = gettext("Start")
+                    th = gettext("End")
+                tbody.tbody
+                  tr
+                    td = gettext("Registration phase")
+                    td = Timex.format!(Timex.Timezone.convert(event.start_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
+                    td = Timex.format!(Timex.Timezone.convert(event.date_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
+                  tr
+                    td = gettext("Ticketing phase")
+                    td = Timex.format!(Timex.Timezone.convert(event.start_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
+                    td = Timex.format!(Timex.Timezone.convert(event.date_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
 
-        div.column(align="right")
-          = case user_registerd_for_event(event, @user) do
-            - %Registration{} = registration ->
-              a.button.is-success.is-outlined(disabled style="margin-bottom:1rem") = gettext("Already registered")
-              / a.button(href="#{event_registration_path(@conn, :show, event.id, registration.id)}") test
-              = form_for @conn, registration_path(@conn, :delete, registration.id), [method: :delete], fn _form ->
-                = submit(gettext("Deregister"), class: "button is-danger is-outlined")
+          div.column(align="right")
+            = case user_registerd_for_event(event, @user) do
+              - %Registration{} = registration ->
+                a.button.is-success.is-outlined(disabled style="margin-bottom:1rem") = gettext("Already registered")
+                / a.button(href="#{event_registration_path(@conn, :show, event.id, registration.id)}") test
+                = form_for @conn, registration_path(@conn, :delete, registration.id), [method: :delete], fn _form ->
+                  = submit(gettext("Deregister"), class: "button is-danger is-outlined")
 
-            - nil ->
-              a.button.is-primary.is-outlined(href="#{event_registration_path(@conn, :new, event.id)}") = gettext("Register now")
+              - nil ->
+                a.button.is-primary.is-outlined(href="#{event_registration_path(@conn, :new, event.id)}") = gettext("Register now")
