@@ -1,0 +1,31 @@
+= form_for @changeset, @action, fn ticket_form ->
+  = hidden_input(ticket_form, :event_id, value: "#{@event_id}")
+
+  div.columns
+    div.column
+      label.label = gettext("Name")
+      = text_input(ticket_form, :name, class: "input")
+      = error_label(@changeset, :name)
+
+  div.columns
+    div.column
+      label.label = gettext("Price")
+      = number_input(ticket_form, :price, class: "input", step: 0.01)
+      = error_label(@changeset, :price)
+
+  div.columns
+    div.column
+      label.label = gettext("Count")
+      = number_input(ticket_form, :count, class: "input", min: -1)
+      = error_label(@changeset, :count)
+
+  div.columns
+    div.column
+      label.label = gettext("Max per User")
+      = number_input(ticket_form, :max_per_user, class: "input", min: -1)
+      = error_label(@changeset, :max_per_user)
+
+
+  div.columns
+    div.column.is-full
+      = submit gettext("Save"), class: "button is-primary"

@@ -33,6 +33,10 @@ config :phoenix, :template_engines,
   slim: PhoenixSlime.Engine,
   slime: PhoenixSlime.Engine
 
+config :absolventenfeier, :mollie,
+  api_url: "https://api.mollie.com/v2/",
+  host: "https://absolventenfeier.fachschaft-wiwi.ms"
+
 config :gettext, :default_locale, "de"
 
 # Import environment specific config. This must remain at the bottom

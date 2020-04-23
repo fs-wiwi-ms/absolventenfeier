@@ -9,8 +9,6 @@ services:
       - "4000:4000"
     restart: always
     env_file: ./app.env
-    volumes:
-     - /keys.d:/keys.d
 
   db:
     image: postgres:10.3-alpine

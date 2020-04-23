@@ -50,6 +50,8 @@ defmodule AbsolventenfeierWeb.EventController do
       |> get_session(:user_id)
       |> User.get_user()
 
+    event = Event.get_event(id, [:tickets])
+
     case user.role do
       :admin ->
         event_changeset =
@@ -60,7 +62,8 @@ defmodule AbsolventenfeierWeb.EventController do
         render(conn, "edit.html",
           terms: get_terms(),
           changeset: event_changeset,
-          action: event_path(conn, :update, id)
+          action: event_path(conn, :update, id),
+          event: event
         )
 
       :user ->

@@ -1,0 +1,53 @@
+button#open-modal
+div.modal
+  div.modal-background
+  div.modal-card
+    header.modal-card-head
+      p.card-header-title
+        = @payment.description
+      button.delete#close-modal
+
+    div.modal-card-body
+      div.content
+        = case @payment.method do
+          - "paypal" ->
+            span.icon.is-large(data-tooltip="#{gettext("Paid with PayPal.")}")
+              i.fab.fa-3x.fa-cc-paypal
+
+          - n when n in ["creditcard", "debitcard"] ->
+            span.icon.is-large(data-tooltip="#{gettext("Paid with credit card.")}")
+              i.fas.fa-3x.fa-credit-card
+
+          - "banktransfer" ->
+            span.icon.is-large(data-tooltip="#{gettext("Paid with bank transfer.")}")
+              i.fas.fa-3x.fa-money-check
+
+          - "sofort" ->
+            span.tag.is-dark.is-large(data-tooltip="#{gettext("Paid with Sofort Banking.")}") Sofort
+
+          - nil ->
+
+        = case get_payment_status(@payment) do
+          - :open ->
+            p open
+
+          - :paid ->
+            p Paid
+
+            = case @payment.method do
+              - "paypal" ->
+
+              - n when n in ["creditcard", "debitcard"] ->
+
+              - "banktransfer" ->
+
+              - "sofort" ->
+
+              - nil ->
+
+          - n when n in [:error] ->
+            p Error
+    footer.modal-card-foot
+    /   button.button Save
+    /   button.button Edit
+    /   button.button Delete

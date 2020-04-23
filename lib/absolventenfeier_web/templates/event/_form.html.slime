@@ -1,4 +1,4 @@
-= form_for @changeset, @action, fn event_form ->
+= form_for @changeset, @action, [id: "event_form"],fn event_form ->
   h5.subtitle.is-5 = gettext("General")
   div.columns
     div.column

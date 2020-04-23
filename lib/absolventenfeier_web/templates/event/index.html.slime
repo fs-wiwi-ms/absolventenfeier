@@ -36,34 +36,98 @@
                   i.fas.fa-trash
 
     div.message-body
-      div.columns
+      p.title.is-6 = gettext("Date of event")
+      p.subtitle.is-6 = Timex.format!(event.date_of_event, "{0D}.{0M}.{YYYY}")
+      div.is-divider(style="margin: 0.5rem 0;")
+      div.columns(style="margin-bottom: 0;")
         div.column
-          div(style="margin-bottom:2rem")
-            p.title.is-5 = Timex.format!(event.date_of_event, "{0D}.{0M}.{YYYY}")
-          div(style="margin-bottom:2rem")
-            table.table(style="background-color: rgba(0, 0, 0, 0.0);")
-              thead.thead
-                tr
-                  th
-                  th = gettext("Start")
-                  th = gettext("End")
-              tbody.tbody
-                tr
-                  td = gettext("Registration phase")
-                  td = Timex.format!(Timex.Timezone.convert(event.start_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
-                  td = Timex.format!(Timex.Timezone.convert(event.date_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
-                tr
-                  td = gettext("Ticketing phase")
-                  td = Timex.format!(Timex.Timezone.convert(event.start_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
-                  td = Timex.format!(Timex.Timezone.convert(event.date_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
-
+            p.title.is-6 = gettext("Registration phase")
+            = if user_registerd_for_event(event, @user) do
+              div.tags.has-addons
+                span.tag.is-light
+                  span.icon
+                      i.fas.fa-check
+                span.tag.is-success = gettext("Already registered")
+            - else
+              div.tags.has-addons
+                span.tag.is-light
+                  span.icon
+                    i.fas.fa-exclamation
+                span.tag.is-danger = gettext("Not registered yet")
+            p.is-size-6
+              span = gettext("Start")
+              span :
+              span = Timex.format!(Timex.Timezone.convert(event.start_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
+            p.is-size-6
+              span = gettext("End")
+              span :
+              span = Timex.format!(Timex.Timezone.convert(event.date_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
         div.column(align="right")
-          = case user_registerd_for_event(event, @user) do
-            - %Registration{} = registration ->
-              a.button.is-success.is-outlined(disabled style="margin-bottom:1rem") = gettext("Already registered")
-              / a.button(href="#{event_registration_path(@conn, :show, event.id, registration.id)}") test
-              = form_for @conn, registration_path(@conn, :delete, registration.id), [method: :delete], fn _form ->
-                = submit(gettext("Deregister"), class: "button is-danger is-outlined")
+            = case user_registerd_for_event(event, @user) do
+              - %Registration{} = registration ->
+                = form_for @conn, registration_path(@conn, :delete, registration.id), [method: :delete], fn _form ->
+                  button.button.is-danger.is-outlined(type="submit")
+                    span.icon
+                      i.fas.fa-times
+                    span = gettext("Deregister")
+
+              - nil ->
+                a.button.is-primary.is-outlined(href="#{event_registration_path(@conn, :new, event.id)}")
+                  span.icon
+                    i.fas.fa-file-signature
+                  span = gettext("Register now")
+      div.is-divider(style="margin: 0.5rem 0;")
+      div.columns(style="margin-bottom: 0;")
+        div.column
+          p.title.is-6 = gettext("Ticketing phase")
+          = if user_ordered_for_event(event, @user) do
+            div.tags.has-addons
+              span.tag.is-light
+                span.icon
+                    i.fas.fa-check
+              span.tag.is-success = gettext("Already ordered")
+          - else
+            div.tags.has-addons
+              span.tag.is-light
+                span.icon
+                  i.fas.fa-exclamation
+              span.tag.is-danger = gettext("Not ordered yet")
+          p.is-size-6
+            span = gettext("Start")
+            span :
+            span = Timex.format!(Timex.Timezone.convert(event.start_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
+          p.is-size-6
+            span = gettext("End")
+            span :
+            span = Timex.format!(Timex.Timezone.convert(event.date_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")
+        div.column(align="right")
+          = case user_ordered_for_event(event, @user) do
+            - %Order{} = order ->
+              = form_for @conn, order_path(@conn, :delete, order.id), [method: :delete], fn _form ->
+                a.button.is-primary.is-outlined(href="#{order_path(@conn, :edit, order.id)}")
+                  span.icon
+                    i.fas.fa-pen
+                  span = gettext("Change order")
+                button.button.is-danger.is-outlined(type="submit")
+                  span.icon
+                    i.fas.fa-times
+                  span = gettext("Delete order")
+                = case get_payment_status_for_order(order) |> IO.inspect do
+                  - :none ->
+                    a.button.is-primary.is-outlined(href="#{order_payment_path(@conn, :new, order.id)}")
+                      span.icon
+                        i.fas.fa-money-bill
+                      span = gettext("Pay now!")
+                  - n when n in [:open, :paid] ->
+                    a.button.is-primary.is-outlined(href="#{payment_path(@conn, :show, order.payment.id)}")
+                      span.icon
+                        i.fas.fa-money-bill
+                      span = gettext("Show payment!")
+                  - n when n in [:error] ->
+                    p Error
 
             - nil ->
-              a.button.is-primary.is-outlined(href="#{event_registration_path(@conn, :new, event.id)}") = gettext("Register now")
+              a.button.is-primary.is-outlined(href="#{event_order_path(@conn, :new, event.id)}")
+                span.icon
+                  i.fas.fa-ticket-alt
+                span = gettext("Order now")

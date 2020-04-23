@@ -38,7 +38,7 @@ defmodule Absolventenfeier.MixProject do
       {:argon2_elixir, "~> 2.0"},
       {:comeonin, "~> 5.3.0"},
       {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.3.4"},
+      {:ecto_sql, "~> 3.4.2"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -53,7 +53,8 @@ defmodule Absolventenfeier.MixProject do
       {:timex, "~> 3.0"},
       {:mix_test_watch, "~> 1.0", only: :test},
       {:ex_machina, "~> 2.4", only: :test},
-      {:mox, "~> 0.5", only: :test}
+      {:mox, "~> 0.5", only: :test},
+      {:number, "~> 1.0.1"}
     ]
   end
 

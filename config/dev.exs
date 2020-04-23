@@ -41,5 +41,9 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
+config :absolventenfeier, :mollie,
+  api_key: "test_b6Vkb4GQRhaDafGgJHferuWcGdVRpm",
+  host: "http://hoge.cloud:3000"
+
 config :logger,
   level: :debug

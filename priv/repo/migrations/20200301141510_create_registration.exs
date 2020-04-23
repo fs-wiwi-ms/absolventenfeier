@@ -8,8 +8,8 @@ defmodule Absolventenfeier.Repo.Migrations.CreateRegistration do
     create table(:registrations, primary_key: false) do
       add :id, :uuid, primary_key: true
 
-      add :user_id, references(:users, type: :uuid)
-      add :event_id, references(:events, type: :uuid)
+      add :user_id, references(:users, type: :uuid, on_delete: :delete_all)
+      add :event_id, references(:events, type: :uuid, on_delete: :delete_all)
 
       add :degree, :degree_type
       add :course, :course_type
