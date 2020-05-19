@@ -55,7 +55,7 @@ defmodule AbsolventenfeierWeb.OrderController do
 
       other ->
         conn
-        |> put_flash(:error, gettext("Ticketing already closed!"))
+        |> put_flash(:error, gettext("Ticketing closed!"))
         |> redirect(to: event_path(conn, :index))
     end
   end

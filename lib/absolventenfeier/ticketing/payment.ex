@@ -82,15 +82,15 @@ defmodule Absolventenfeier.Ticketing.Payment do
         Authorization: "Bearer " <> Keyword.get(mollie, :api_key)
       )
 
-    # %{
-    #   mollie_id: mollie_payment["id"],
-    #   status: mollie_payment["status"],
-    #   method: mollie_payment["method"],
-    #   amount_value: mollie_payment["amount"]["value"],
-    #   amount_currency: mollie_payment["amount"]["currency"],
-    #   description: mollie_payment["description"],
-    #   webhook_url: mollie_payment["_links"]["checkout"]["href"]
-    # }
+    %{
+      mollie_id: mollie_payment["id"],
+      status: mollie_payment["status"],
+      method: mollie_payment["method"],
+      amount_value: mollie_payment["amount"]["value"],
+      amount_currency: mollie_payment["amount"]["currency"],
+      description: mollie_payment["description"],
+      # webhook_url: mollie_payment["_links"]["checkout"]["href"]
+    }
   end
 
   def get_payments() do

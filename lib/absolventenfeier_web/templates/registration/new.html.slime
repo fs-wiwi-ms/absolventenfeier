@@ -19,6 +19,22 @@ div.columns
           = select(registration_form, :course, @course_types)
     div.columns
       div.column
+        h5.title.is-5 = gettext("For the virtual graduation ceremony we want to send you a goodie bag. Herefore we need your adress.")
+    div.columns.is-multiline
+      div.column.is-6
+        = label(registration_form, :street, gettext("Adress"))
+        = text_input(registration_form, :street, class: "input", type: "text")
+      div.column.is-6
+        = label(registration_form, :house_number, gettext("House number"))
+        = text_input(registration_form, :house_number, class: "input", type: "text")
+      div.column.is-6
+        = label(registration_form, :zip_code, gettext("Zip code"))
+        = text_input(registration_form, :zip_code, class: "input", type: "number")
+      div.column.is-6
+        = label(registration_form, :city, gettext("City"))
+        = text_input(registration_form, :city, class: "input", type: "text")
+    div.columns
+      div.column
         h5.title.is-5 = gettext("Declaration of consent")
         h6.subtitle.is-6 = gettext("I hereby agree that the graduation ceremony team of the student council of the Faculty of Economics and Business Administration will receive my certificate from the examination office of the Faculty of Economics and Business Administration in order to present it to me at the graduation ceremony. I also agree that photos of me and my companions may be published. Tickets can only be returned if the graduation ceremony is cancelled.")
 
