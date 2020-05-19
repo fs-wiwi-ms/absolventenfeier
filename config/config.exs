@@ -19,7 +19,7 @@ config :absolventenfeier, AbsolventenfeierWeb.Endpoint,
   http: [:inet6, port: 4000],
   url: [host: "localhost"],
   render_errors: [view: AbsolventenfeierWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Absolventenfeier.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: Absolventenfeier.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,
