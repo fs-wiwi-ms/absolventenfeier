@@ -38,6 +38,7 @@ defmodule AbsolventenfeierWeb do
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
+      use Number
 
       import AbsolventenfeierWeb.ErrorHelpers
       import AbsolventenfeierWeb.Gettext

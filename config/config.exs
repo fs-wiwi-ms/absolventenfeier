@@ -19,7 +19,7 @@ config :absolventenfeier, AbsolventenfeierWeb.Endpoint,
   http: [:inet6, port: 4000],
   url: [host: "localhost"],
   render_errors: [view: AbsolventenfeierWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Absolventenfeier.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: Absolventenfeier.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -32,6 +32,10 @@ config :phoenix, :json_library, Jason
 config :phoenix, :template_engines,
   slim: PhoenixSlime.Engine,
   slime: PhoenixSlime.Engine
+
+config :absolventenfeier, :mollie,
+  api_url: "https://api.mollie.com/v2/",
+  host: "https://absolventenfeier.fachschaft-wiwi.ms"
 
 config :gettext, :default_locale, "de"
 

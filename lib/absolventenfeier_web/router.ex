@@ -7,14 +7,6 @@ defmodule AbsolventenfeierWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-  end
-
-  pipeline :protected_browser_no_login do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_flash
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
     plug(AbsolventenfeierWeb.Authentication, type: :api_or_browser, forward_to_login: false)
   end
 
@@ -32,7 +24,7 @@ defmodule AbsolventenfeierWeb.Router do
   end
 
   scope "/", AbsolventenfeierWeb do
-    pipe_through(:protected_browser_no_login)
+    pipe_through(:browser)
 
     get "/", PageController, :index
   end
@@ -52,10 +44,23 @@ defmodule AbsolventenfeierWeb.Router do
 
     resources "/events", EventController, only: [:index, :new, :create, :edit, :update, :delete] do
       resources "/registrations", RegistrationController, only: [:index, :new]
+      resources "/tickets", TicketController, only: [:new]
+      resources "/orders", OrderController, only: [:index, :new]
     end
 
     resources "/registrations", RegistrationController, only: [:create, :delete]
+    resources "/tickets", TicketController, only: [:edit, :create, :update, :delete]
+
+    resources "/orders", OrderController, only: [:edit, :update, :create, :delete] do
+      # resources "/payments", PaymentController, only: [:new]
+    end
+
+    resources "/payments", PaymentController, only: [:show]
 
     resources "/sessions", SessionController, only: [:delete]
+  end
+
+  scope "/api", AbsolventenfeierWeb do
+    post "/webhook", PaymentController, :webhook
   end
 end

@@ -30,16 +30,29 @@ defmodule AbsolventenfeierWeb.RegistrationController do
       |> get_session(:user_id)
       |> User.get_user()
 
-    registration_changeset = Event.change_registration(%{"event" => event, "user" => user})
+    case Event.get_event_state(event) do
+      :registration_open ->
+        registration_changeset = Event.change_registration(%{"event" => event, "user" => user})
 
-    render(conn, "new.html",
-      user: user,
-      event: event,
-      degree_types: get_degree_types(),
-      course_types: get_course_types(),
-      changeset: registration_changeset,
-      action: registration_path(conn, :create)
-    )
+        render(conn, "new.html",
+          user: user,
+          event: event,
+          degree_types: get_degree_types(),
+          course_types: get_course_types(),
+          changeset: registration_changeset,
+          action: registration_path(conn, :create)
+        )
+
+      :private ->
+        conn
+        |> put_flash(:error, gettext("Event is still private!"))
+        |> redirect(to: event_path(conn, :index))
+
+      _other ->
+        conn
+        |> put_flash(:error, gettext("Registration closed!"))
+        |> redirect(to: event_path(conn, :index))
+    end
   end
 
   def create(conn, %{"registration" => registration}) do
@@ -76,13 +89,21 @@ defmodule AbsolventenfeierWeb.RegistrationController do
   end
 
   def delete(conn, %{"id" => id}) do
-    id
-    |> Event.get_registration()
-    |> Event.delete_registration()
+    registration = Event.get_registration(id)
 
-    conn
-    |> put_flash(:info, gettext("Registration deleted."))
-    |> redirect(to: event_path(conn, :index))
+    case Event.get_event_state(registration.event) do
+      :registration_open ->
+        Event.delete_registration(registration)
+
+        conn
+        |> put_flash(:info, gettext("Registration deleted."))
+        |> redirect(to: event_path(conn, :index))
+
+      _other ->
+        conn
+        |> put_flash(:warning, gettext("Registration already closed."))
+        |> redirect(to: event_path(conn, :index))
+    end
   end
 
   defp get_degree_types() do

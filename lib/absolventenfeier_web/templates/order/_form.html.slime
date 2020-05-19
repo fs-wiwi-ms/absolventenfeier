@@ -1,0 +1,44 @@
+/ = form_for @changeset, @action, fn order_form ->
+/   = hidden_input(order_form, :event_id, value: "#{@event.id}")
+/   = hidden_input(order_form, :user_id, value: "#{@user.id}")
+/   = for ticket <- @event.tickets do
+/     div.columns
+/       div.column.is-one-third
+/         div.title.is-5
+/           span = ticket.name
+/           span = "(#{number_to_delimited(ticket.price, precision: 2, separator: ",", separator: ".")} €)"
+/         div.subtitle.is-6 = "Du kannst maximal #{ticket.max_per_user} Ticket/s bestellen"
+/       div.column
+/         label.label = gettext("Count")
+/         = hidden_input(String.to_atom("order[order_positions][#{ticket.id}]"), :ticket_id, value: "#{ticket.id}")
+
+/         = number_input(String.to_atom("order[order_positions][#{ticket.id}]"), :count, class: "input", min: 0,max: ticket.max_per_user)
+/         = error_label(@changeset, :id)
+
+/   div.columns
+/     div.column.is-full
+/       = submit gettext("Save"), class: "button is-primary"
+
+
+= form_for @changeset, @action, fn order_form ->
+  = hidden_input(order_form, :event_id, value: "#{@event.id}")
+  = hidden_input(order_form, :user_id, value: "#{@user.id}")
+  = inputs_for order_form, :order_positions, fn order_position_form ->
+    - ticket = order_position_form.data.ticket || order_position_form.params["ticket"]
+    = if ticket do
+      div.columns
+        div.column.is-one-third
+          div.title.is-5
+            span = ticket.name
+            span = "(#{number_to_delimited(ticket.price, precision: 2, separator: ",", separator: ".")} €)"
+          div.subtitle.is-6 = "Du kannst maximal #{ticket.max_per_user} Ticket/s bestellen"
+        div.column
+          label.label = gettext("Count")
+          = hidden_input(order_position_form, :ticket_id, value: "#{ticket.id}")
+
+          = number_input(order_position_form, :count, class: "input", min: 0 ,max: ticket.max_per_user)
+          = error_label(@changeset, :id)
+
+  div.columns
+    div.column.is-full
+      = submit gettext("Save"), class: "button is-primary"
