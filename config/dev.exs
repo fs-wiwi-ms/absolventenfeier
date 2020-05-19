@@ -42,7 +42,6 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 config :absolventenfeier, :mollie,
-  api_key: "test_b6Vkb4GQRhaDafGgJHferuWcGdVRpm",
   host: "http://hoge.cloud:3000"
 
 config :logger,

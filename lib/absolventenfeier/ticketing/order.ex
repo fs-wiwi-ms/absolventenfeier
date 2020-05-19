@@ -51,7 +51,7 @@ defmodule Absolventenfeier.Ticketing.Order do
     |> Repo.all()
   end
 
-  def get_order(id, preload \\ []) do
+  def get_order(id) do
     Order
     |> preload([:event, :user, :payment, order_positions: :ticket])
     |> Repo.get(id)
@@ -64,7 +64,7 @@ defmodule Absolventenfeier.Ticketing.Order do
 
     order_positions =
       order_params["order_positions"]
-      |> Enum.map(fn {key, value} -> value end)
+      |> Enum.map(fn {_key, value} -> value end)
 
     order_params =
       order_params
@@ -109,7 +109,6 @@ defmodule Absolventenfeier.Ticketing.Order do
         OrderPosition.prepare_changeset(ticket)
       end)
 
-    order_params =
       %{}
       |> Map.put("event", event)
       |> Map.put("order_positions", order_positions)

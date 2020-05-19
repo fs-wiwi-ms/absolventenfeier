@@ -52,7 +52,7 @@ defmodule AbsolventenfeierWeb.Router do
     resources "/tickets", TicketController, only: [:edit, :create, :update, :delete]
 
     resources "/orders", OrderController, only: [:edit, :update, :create, :delete] do
-      resources "/payments", PaymentController, only: [:new]
+      # resources "/payments", PaymentController, only: [:new]
     end
 
     resources "/payments", PaymentController, only: [:show]

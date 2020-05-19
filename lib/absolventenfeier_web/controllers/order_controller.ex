@@ -26,7 +26,7 @@ defmodule AbsolventenfeierWeb.OrderController do
           action: order_path(conn, :create)
         )
 
-      other ->
+      _other ->
         conn
         |> put_flash(:error, gettext("Ticketing already closed!"))
         |> redirect(to: event_path(conn, :index))
@@ -39,7 +39,7 @@ defmodule AbsolventenfeierWeb.OrderController do
       |> get_session(:user_id)
       |> User.get_user()
 
-    order = Order.get_order(id, [:event, :user, order_positions: :ticket])
+    order = Order.get_order(id)
     event = Event.get_event(order.event_id, [:tickets])
 
     case Event.get_event_state(event) do
@@ -53,7 +53,7 @@ defmodule AbsolventenfeierWeb.OrderController do
           action: order_path(conn, :update, id)
         )
 
-      other ->
+      _other ->
         conn
         |> put_flash(:error, gettext("Ticketing closed!"))
         |> redirect(to: event_path(conn, :index))
@@ -134,7 +134,7 @@ defmodule AbsolventenfeierWeb.OrderController do
             |> redirect(to: event_path(conn, :index))
         end
 
-      other ->
+      _other ->
         conn
         |> put_flash(:error, gettext("Ticketing already closed!"))
         |> redirect(to: event_path(conn, :index))

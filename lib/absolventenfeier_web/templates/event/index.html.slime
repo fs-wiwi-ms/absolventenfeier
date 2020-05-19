@@ -122,7 +122,7 @@
                       span.tag.is-light
                         span.icon
                           i.fas.fa-check
-                      span.tag.is-success = gettext("Already ordered")
+                      span.tag.is-success = gettext("Order successfull")
               - nil ->
                 div.tags.has-addons
                   span.tag.is-light
@@ -151,10 +151,10 @@
                           span.icon
                             i.fas.fa-times
                           span = gettext("Delete order")
-                        a.button.is-primary.is-outlined(href="#{order_payment_path(@conn, :new, order.id)}")
-                          span.icon
-                            i.fas.fa-money-bill
-                          span = gettext("Pay now!")
+                        / a.button.is-primary.is-outlined(href="#{order_payment_path(@conn, :new, order.id)}")
+                        /   span.icon
+                        /     i.fas.fa-money-bill
+                        /   span = gettext("Pay now!")
                     - n when n in [:open, :paid] ->
                     - n when n in [:error] ->
               - nil ->

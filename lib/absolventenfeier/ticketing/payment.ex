@@ -79,7 +79,7 @@ defmodule Absolventenfeier.Ticketing.Payment do
       Absolventenfeier.Request.get(
         Keyword.get(mollie, :api_url) <> "payments/" <> id,
         %{},
-        Authorization: "Bearer " <> Keyword.get(mollie, :api_key)
+        Authorization: "Bearer " <> System.get_env("MOLLIE_API_KEY")
       )
 
     %{

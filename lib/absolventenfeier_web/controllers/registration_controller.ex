@@ -48,7 +48,7 @@ defmodule AbsolventenfeierWeb.RegistrationController do
         |> put_flash(:error, gettext("Event is still private!"))
         |> redirect(to: event_path(conn, :index))
 
-      other ->
+      _other ->
         conn
         |> put_flash(:error, gettext("Registration closed!"))
         |> redirect(to: event_path(conn, :index))
@@ -99,7 +99,7 @@ defmodule AbsolventenfeierWeb.RegistrationController do
         |> put_flash(:info, gettext("Registration deleted."))
         |> redirect(to: event_path(conn, :index))
 
-      other ->
+      _other ->
         conn
         |> put_flash(:warning, gettext("Registration already closed."))
         |> redirect(to: event_path(conn, :index))

@@ -24,17 +24,14 @@ defmodule AbsolventenfeierWeb.PaymentController do
         conn
         |> redirect(external: payment.webhook_url)
 
-      {:error, changeset} ->
+      {:error, _changeset} ->
         conn
         |> put_flash(:error, gettext("Error while creating payment!"))
         |> redirect(to: event_path(conn, :index))
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    payment =
-      Payment.get_payment(id)
-
+  def show(conn, %{"id" => _id}) do
     conn
     |> redirect(to: event_path(conn, :index))
   end
