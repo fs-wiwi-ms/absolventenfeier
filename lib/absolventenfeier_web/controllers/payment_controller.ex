@@ -32,11 +32,10 @@ defmodule AbsolventenfeierWeb.PaymentController do
   end
 
   def show(conn, %{"id" => id}) do
-    payment = Payment.get_payment(id)
+    payment =
+      Payment.get_payment(id)
 
     conn
-    |> render("show.html",
-      payment: payment
-    )
+    |> redirect(to: event_path(conn, :index))
   end
 end
