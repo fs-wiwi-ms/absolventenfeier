@@ -24,7 +24,6 @@
   = hidden_input(order_form, :event_id, value: "#{@event.id}")
   = hidden_input(order_form, :user_id, value: "#{@user.id}")
   = inputs_for order_form, :order_positions, fn order_position_form ->
-    - IO.inspect order_position_form
     - ticket = order_position_form.data.ticket || order_position_form.params["ticket"]
     = if ticket do
       div.columns

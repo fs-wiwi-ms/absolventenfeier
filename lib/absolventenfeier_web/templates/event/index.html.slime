@@ -6,7 +6,16 @@
           i.fas.fa-plus
         span = gettext("Create event")
 
-= if @events && ! Enum.empty?@events do
+= if !@events or Enum.empty?(@events) do
+  div.subtitle
+    span = gettext("Keine zukünftigen Absolventenfeiern gefunden. Auf unseren Kanälen (")
+    a(href="https://fachschaft-wiwi.ms") = gettext("Homepage")
+    span ,
+    a(href="https://www.facebook.com/fachschaftwiwi.ms/") = gettext("Facebook")
+    span ,
+    a(href="https://www.instagram.com/fachschaft.wiwi.ms/") = gettext("Instagram")
+    span = gettext(") wirst du über neue Events informiert.")
+- else
   = for event <- @events do
     article.message(class="#{if event.published do "is-info" else "is-link" end}")
       div.message-header
@@ -162,5 +171,3 @@
                   span.icon
                     i.fas.fa-ticket-alt
                   span = gettext("Order now")
-- else
-  p.title.is-5 = gettext("No events in the future found.")

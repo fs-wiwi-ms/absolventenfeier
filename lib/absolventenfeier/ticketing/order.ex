@@ -129,7 +129,7 @@ defmodule Absolventenfeier.Ticketing.Order do
   end
 
   def get_payment_status_for_order(order) do
-    order = Repo.preload(order, [:payment]) |> IO.inspect
+    order = Repo.preload(order, [:payment])
 
     Payment.get_payment_status(order.payment)
   end
