@@ -11,7 +11,7 @@
     "bulma-divider": "^0.2.0",
     "bulma-tooltip": "^3.0.2",
     "flatpickr": "^4.6.3",
-    "phoenix": "^1.4.15",
+    "phoenix": "^1.5.3",
     "phoenix_html": "^2.13.2"
   },
   "devDependencies": {
