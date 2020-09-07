@@ -1,22 +1,27 @@
 defmodule AbsolventenfeierWeb.Router do
   use AbsolventenfeierWeb, :router
 
-  pipeline :browser do
+  import Phoenix.LiveDashboard.Router
+
+  pipeline :unsecure_browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+  end
+
+  pipeline :browser do
     plug(AbsolventenfeierWeb.Authentication, type: :api_or_browser, forward_to_login: false)
   end
 
   pipeline :protected_browser do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_flash
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
     plug(AbsolventenfeierWeb.Authentication, type: :api_or_browser, forward_to_login: true)
+  end
+
+  pipeline :admins_only do
+    plug(AbsolventenfeierWeb.Authentication, type: :api_or_browser, forward_to_login: true)
+    plug(AbsolventenfeierWeb.AdminOnly)
   end
 
   pipeline :api do
@@ -24,23 +29,24 @@ defmodule AbsolventenfeierWeb.Router do
   end
 
   scope "/", AbsolventenfeierWeb do
-    pipe_through(:browser)
+    pipe_through([:unsecure_browser, :browser])
 
     get "/", PageController, :index
   end
 
   scope "/public", AbsolventenfeierWeb, as: :public do
-    pipe_through(:browser)
+    pipe_through([:unsecure_browser, :browser])
 
     resources("/users", UserController, only: [:new, :create])
     resources("/sessions", SessionController, only: [:new, :create])
   end
 
   scope "/", AbsolventenfeierWeb do
-    pipe_through(:protected_browser)
+    pipe_through([:unsecure_browser, :protected_browser])
 
     get "/events/:id/publish", EventController, :publish
     get "/events/:id/make_private", EventController, :make_private
+    get "/events/:id/archive", EventController, :archive
 
     resources "/events", EventController, only: [:index, :new, :create, :edit, :update, :delete] do
       resources "/registrations", RegistrationController, only: [:index, :new]
@@ -58,6 +64,11 @@ defmodule AbsolventenfeierWeb.Router do
     resources "/payments", PaymentController, only: [:show]
 
     resources "/sessions", SessionController, only: [:delete]
+  end
+
+  scope "/" do
+    pipe_through([:unsecure_browser, :admins_only])
+    live_dashboard "/dashboard"
   end
 
   scope "/api", AbsolventenfeierWeb do

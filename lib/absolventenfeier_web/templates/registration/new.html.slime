@@ -17,22 +17,22 @@ div.columns
         h5.title.is-5 = gettext("Please choose the programm you took.")
         div.select.is-multiple
           = select(registration_form, :course, @course_types)
-    div.columns
-      div.column
-        h5.title.is-5 = gettext("For the virtual graduation ceremony we want to send you a goodie bag. Herefore we need your adress.")
-    div.columns.is-multiline
-      div.column.is-6
-        = label(registration_form, :street, gettext("Adress"))
-        = text_input(registration_form, :street, class: "input", type: "text")
-      div.column.is-6
-        = label(registration_form, :house_number, gettext("House number"))
-        = text_input(registration_form, :house_number, class: "input", type: "text")
-      div.column.is-6
-        = label(registration_form, :zip_code, gettext("Zip code"))
-        = text_input(registration_form, :zip_code, class: "input", type: "number")
-      div.column.is-6
-        = label(registration_form, :city, gettext("City"))
-        = text_input(registration_form, :city, class: "input", type: "text")
+    / div.columns
+    /   div.column
+    /     h5.title.is-5 = gettext("For the virtual graduation ceremony we want to send you a goodie bag. Herefore we need your adress.")
+    / div.columns.is-multiline
+    /   div.column.is-6
+    /     = label(registration_form, :street, gettext("Adress"))
+    /     = text_input(registration_form, :street, class: "input", type: "text")
+    /   div.column.is-6
+    /     = label(registration_form, :house_number, gettext("House number"))
+    /     = text_input(registration_form, :house_number, class: "input", type: "text")
+    /   div.column.is-6
+    /     = label(registration_form, :zip_code, gettext("Zip code"))
+    /     = text_input(registration_form, :zip_code, class: "input", type: "number")
+    /   div.column.is-6
+    /     = label(registration_form, :city, gettext("City"))
+    /     = text_input(registration_form, :city, class: "input", type: "text")
     div.columns
       div.column
         h5.title.is-5 = gettext("Declaration of consent")

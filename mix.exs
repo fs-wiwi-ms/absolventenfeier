@@ -20,7 +20,7 @@ defmodule Absolventenfeier.MixProject do
   def application do
     [
       mod: {Absolventenfeier.Application, []},
-      extra_applications: [:logger, :runtime_tools, :httpoison]
+      extra_applications: [:logger, :runtime_tools, :httpoison, :runtime_tools, :os_mon]
     ]
   end
 
@@ -54,7 +54,8 @@ defmodule Absolventenfeier.MixProject do
       {:mix_test_watch, "~> 1.0", only: :test},
       {:ex_machina, "~> 2.4", only: :test},
       {:mox, "~> 0.5", only: :test},
-      {:number, "~> 1.0.1"}
+      {:number, "~> 1.0.1"},
+      {:phoenix_live_dashboard, "~> 0.1"}
     ]
   end
 

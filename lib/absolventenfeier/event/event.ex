@@ -16,6 +16,7 @@ defmodule Absolventenfeier.Event do
 
   schema "events" do
     field(:published, :boolean, default: false)
+    field(:archived, :boolean, default: false)
     field(:date_of_event, :date, default: nil)
     field(:date_of_registration, :utc_datetime, default: nil)
     field(:date_of_tickets, :utc_datetime, default: nil)
@@ -34,6 +35,7 @@ defmodule Absolventenfeier.Event do
     event
     |> cast(attrs, [
       :published,
+      :archived,
       :date_of_event,
       :date_of_registration,
       :date_of_tickets,
@@ -69,6 +71,7 @@ defmodule Absolventenfeier.Event do
   def get_events() do
     Event
     |> preload([:registrations, :term, :tickets])
+    |> where([e], not e.archived)
     |> order_by([e, r], e.date_of_event)
     |> Repo.all()
   end
@@ -121,6 +124,17 @@ defmodule Absolventenfeier.Event do
 
     event
     |> Event.changeset(%{"published" => false})
+    |> Repo.update()
+  end
+
+  def archive(event_id) do
+    event =
+      Event
+      |> Repo.get(event_id)
+      |> Repo.preload([:term, :registrations, :tickets])
+
+    event
+    |> Event.changeset(%{"archived" => true})
     |> Repo.update()
   end
 

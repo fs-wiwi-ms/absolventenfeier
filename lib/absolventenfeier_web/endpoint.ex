@@ -5,6 +5,8 @@ defmodule AbsolventenfeierWeb.Endpoint do
     websocket: true,
     longpoll: false
 
+  socket "/live", Phoenix.LiveView.Socket
+
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phx.digest
@@ -22,6 +24,10 @@ defmodule AbsolventenfeierWeb.Endpoint do
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
   end
+
+  plug Phoenix.LiveDashboard.RequestLogger,
+    param_key: "request_logger",
+    cookie_key: "request_logger"
 
   plug Plug.RequestId
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
@@ -57,9 +63,14 @@ defmodule AbsolventenfeierWeb.Endpoint do
         System.get_env("SECRET_KEY_BASE") ||
           raise("expected the SECRET_KEY_BASE environment variable to be set")
 
+      live_view_signing_salt =
+        System.get_env("LIVE_VIEW_SIGNING_SALT") ||
+          raise("expected the LIVE_VIEW_SIGNING_SALT environment variable to be set")
+
       config =
         config
         |> Keyword.put(:secret_key_base, secret_key_base)
+        |> Keyword.put(:live_view, [signing_salt: live_view_signing_salt])
 
       {:ok, config}
     else

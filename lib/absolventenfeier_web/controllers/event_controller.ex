@@ -189,6 +189,33 @@ defmodule AbsolventenfeierWeb.EventController do
     end
   end
 
+  def archive(conn, %{"id" => id}) do
+    user =
+      conn
+      |> get_session(:user_id)
+      |> User.get_user()
+
+    case user.role do
+      :admin ->
+        case Event.archive(id) do
+          {:ok, _event} ->
+            conn
+            |> put_flash(:info, gettext("Event is now archived!"))
+            |> redirect(to: event_path(conn, :index))
+
+          {:error, _changeset} ->
+            conn
+            |> put_flash(:error, gettext("Error while archiving event!"))
+            |> redirect(to: event_path(conn, :index))
+        end
+
+      :user ->
+        conn
+        |> put_flash(:error, gettext("This action is permitted!"))
+        |> redirect(to: event_path(conn, :index))
+    end
+  end
+
   def delete(conn, %{"id" => id}) do
     user =
       conn

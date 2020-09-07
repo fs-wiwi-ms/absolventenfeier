@@ -34,6 +34,11 @@
                 - else
                   a.icon.has-text-info(href="#{event_path(@conn, :publish, event.id)}" data-tooltip="#{gettext("Publish event")}")
                     i.fa.fa-globe-europe
+            = if !event.published do
+              p.control
+                button.button.is-primary
+                  a.icon.has-text-info(href="#{event_path(@conn, :archive, event.id)}" data-tooltip="#{gettext("Archive event")}")
+                    i.fa.fa-archive
             p.control
               button.button.is-primary
                 a.icon.has-text-info(href="#{event_registration_path(@conn, :index, event.id)}" data-tooltip="#{gettext("Show registrations")}")
