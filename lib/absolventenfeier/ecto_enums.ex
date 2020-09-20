@@ -15,7 +15,8 @@ defenum(DegreeType, :degree_type, [
 
 defenum(UserRole, :user_role, [
   :user,
-  :admin
+  :admin,
+  :mollie
 ])
 
 defenum(TermType, :term_type, [
