@@ -43,7 +43,7 @@ defmodule Absolventenfeier.User do
     user
     |> changeset(attrs)
     |> validate_password
-    |> unique_constraint(:user_name)
+    |> unique_constraint(:email)
   end
 
   defp validate_password(changeset) do
