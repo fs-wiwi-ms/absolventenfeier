@@ -32,6 +32,7 @@ defmodule AbsolventenfeierWeb.Router do
     pipe_through([:unsecure_browser, :browser])
 
     get "/", PageController, :index
+    get "/privacy", PageController, :privacy
   end
 
   scope "/public", AbsolventenfeierWeb, as: :public do
@@ -58,7 +59,7 @@ defmodule AbsolventenfeierWeb.Router do
     resources "/tickets", TicketController, only: [:edit, :create, :update, :delete]
 
     resources "/orders", OrderController, only: [:edit, :update, :create, :delete] do
-      # resources "/payments", PaymentController, only: [:new]
+      resources "/payments", PaymentController, only: [:new]
     end
 
     resources "/payments", PaymentController, only: [:show]

@@ -1,54 +1,52 @@
 h1.title.is-3 = gettext("Graduation Ceremony")
 
-div.columns
-  div.column
-    div.box
-      h3.subtitle.is-5 =gettext("Hint")
-      div.columns
-        div.column
-          span = gettext("Please create an account to register for the next graduation ceremony. Insert ")
-          span.has-text-weight-semibold = gettext("all names")
-          span =gettext(", otherwise were not able to get your bachelor or master certificate. If you have questions please contact ")
-          span
-            a.has-text-link.has-text-weight-semibold(href="mailto:absolventenfeier@fachschaft-wiwi.ms") absolventenfeier@fachschaft-wiwi.ms
-          span .
-          br
-          br
-          span =gettext("If you have any suggestions, errors or other problems regarding the display, please contact:")
-          span
-            a.has-text-link.has-text-weight-semibold(href="mailto:admin@fachschaft-wiwi.ms") admin@fachschaft-wiwi.ms
-          span =gettext(". If you report errors, please attach a screenshot and description (such as operating system and browser).")
+div.box
+  h3.subtitle.is-5 =gettext("Hint")
+  div.columns
+    div.column
+      span = gettext("Please create an account to register for the next graduation ceremony. Insert ")
+      span.has-text-weight-semibold = gettext("all names")
+      span =gettext(", otherwise were not able to get your bachelor or master certificate. If you have questions please contact ")
+      span
+        a.has-text-link.has-text-weight-semibold(href="mailto:absolventenfeier@fachschaft-wiwi.ms") absolventenfeier@fachschaft-wiwi.ms
+      span .
+      br
+      br
+      span =gettext("If you have any suggestions, errors or other problems regarding the display, please contact:")
+      span
+        a.has-text-link.has-text-weight-semibold(href="mailto:admin@fachschaft-wiwi.ms") admin@fachschaft-wiwi.ms
+      span =gettext(". If you report errors, please attach a screenshot and description (such as operating system and browser).")
 
-      = if !@conn.assigns[:session] do
+  = if !@conn.assigns[:session] do
+    div.columns
+      div.column.is-narrow
+        a.button.is-info(href="#{public_session_path(@conn, :new)}") = gettext("Login")
+      div.column.is-narrow
+        a.button.is-link(href="#{public_user_path(@conn, :new)}") = gettext("Create Account")
+  - else
+    div.columns
+      div.column.is-narrow
+        div.subtitle.is-6 = gettext("Your are already logged in.")
+        a.button.is-info(href="#{event_path(@conn, :index)}") = gettext("Show upcoming graduation ceremonies")
+
+- user = get_user(@conn)
+= if user do
+  = case user.role do
+    - _ ->
+    - :admin ->
+      div.box
+        h3.subtitle.is-5 =gettext("Admin-Corner")
+        div.columns
+          div.column
+            span =gettext("This area is not important for you! Only important functions for our graduation ceremony team are stored here.")
         div.columns
           div.column.is-narrow
-            a.button.is-info(href="#{public_session_path(@conn, :new)}") = gettext("Login")
+            a.button.is-danger.is-outlined(href="#{}" disabled data-tooltip="Dies geht nur auf der Eventübersichtsseite.")
+              span.icon
+                i.fas.fa-file-upload
+              span =gettext("Evaluate Registrations")
           div.column.is-narrow
-            a.button.is-link(href="#{public_user_path(@conn, :new)}") = gettext("Create Account")
-      - else
-        div.columns
-          div.column.is-narrow
-            div.subtitle.is-6 = gettext("Your are already logged in.")
-            a.button.is-info(href="#{event_path(@conn, :index)}") = gettext("Show upcoming graduation ceremonies")
-
-    - user = get_user(@conn)
-    = if user do
-      = case user.role do
-        - :user ->
-        - :admin ->
-          div.box
-            h3.subtitle.is-5 =gettext("Admin-Corner")
-            div.columns
-              div.column
-                span =gettext("This area is not important for you! Only important functions for our graduation ceremony team are stored here.")
-            div.columns
-              div.column.is-narrow
-                a.button.is-danger.is-outlined(href="#{}" disabled data-tooltip="Dies geht nur auf der Eventübersichtsseite.")
-                  span.icon
-                    i.fas.fa-file-upload
-                  span =gettext("Evaluate Registrations")
-              div.column.is-narrow
-                a.button.is-danger.is-outlined(href="#{event_path(@conn, :new)}")
-                  span.icon
-                    i.fas.fa-graduation-cap
-                  span =gettext("Create new graduation ceremony")
+            a.button.is-danger.is-outlined(href="#{event_path(@conn, :new)}")
+              span.icon
+                i.fas.fa-graduation-cap
+              span =gettext("Create new graduation ceremony")

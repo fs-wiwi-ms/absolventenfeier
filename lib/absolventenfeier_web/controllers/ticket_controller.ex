@@ -20,7 +20,7 @@ defmodule AbsolventenfeierWeb.TicketController do
           action: ticket_path(conn, :create)
         )
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: event_path(conn, :index))
@@ -48,7 +48,7 @@ defmodule AbsolventenfeierWeb.TicketController do
           action: ticket_path(conn, :update, id)
         )
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: event_path(conn, :index))
@@ -79,7 +79,7 @@ defmodule AbsolventenfeierWeb.TicketController do
             )
         end
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: event_path(conn, :index))
@@ -110,7 +110,7 @@ defmodule AbsolventenfeierWeb.TicketController do
             )
         end
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: event_path(conn, :index))
@@ -139,7 +139,7 @@ defmodule AbsolventenfeierWeb.TicketController do
             |> redirect(to: event_path(conn, :edit, ticket.event_id))
         end
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: event_path(conn, :index))

@@ -23,6 +23,9 @@ msgstr "Business Economics"
 msgid "economics"
 msgstr "Economics"
 
+msgid "interdisciplinary_studies"
+msgstr "Interdisciplinary Studies"
+
 msgid "bachelor"
 msgstr "Bachelor"
 

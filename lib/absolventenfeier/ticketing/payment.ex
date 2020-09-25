@@ -58,7 +58,7 @@ defmodule Absolventenfeier.Ticketing.Payment do
           webhookUrl: "#{Keyword.get(mollie, :host)}/api/webhook",
           method: [:creditcard, :sofort, :paypal, :banktransfer, :directdebit]
         },
-        Authorization: "Bearer " <> Keyword.get(mollie, :api_key)
+        Authorization: "Bearer " <> System.get_env("MOLLIE_API_KEY")
       )
 
     %{

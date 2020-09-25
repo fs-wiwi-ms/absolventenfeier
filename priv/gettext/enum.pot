@@ -10,6 +10,9 @@ msgstr ""
 msgid "economics"
 msgstr ""
 
+msgid "interdisciplinary_studies"
+msgstr ""
+
 msgid "bachelor"
 msgstr ""
 

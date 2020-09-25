@@ -23,6 +23,9 @@ msgstr "BWL"
 msgid "economics"
 msgstr "VWL"
 
+msgid "interdisciplinary_studies"
+msgstr "Interdisziplinäre Studien"
+
 msgid "bachelor"
 msgstr "Bachelor"
 

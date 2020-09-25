@@ -1,0 +1,64 @@
+div.steps
+  = case registration_step(@event, @user) do
+    - 1 ->
+      = step("", "", "fa fa-clock", gettext("Registration"), gettext("Registration is still closed. It opens at %{time}.", time: Timex.format!(Timex.Timezone.convert(@event.start_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")))
+    - 2 ->
+      = step("is-success", "is-active", "fa fa-check", gettext("Registration"), gettext("You are registered for the event. Registration is open till %{time}.", time: Timex.format!(Timex.Timezone.convert(@event.date_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")))
+    - 3 ->
+      = step("is-warning", "is-active", "fas fa-user-plus", gettext("Registration"), gettext("Registration is open till %{time}.", time: Timex.format!(Timex.Timezone.convert(@event.date_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")))
+    - 4 ->
+      = step("is-success", "is-completed", "fa fa-check", gettext("Registration"),  gettext "You are registered for the event.")
+    - 5 ->
+      = step("is-danger", "is-completed", "fa fa-times", gettext("Registration"), gettext "You are NOT registered for the event.")
+    - _ ->
+      = step("", "", "", gettext("Registration"), gettext("Unknown event state"))
+
+  = case ticketing_step(@event, @user) do
+    - 1 ->
+      = step("", "", "fa fa-clock", gettext("Ticketing"), gettext "Ticketing is still closed. It will open after Registration is closed.")
+    - 2 ->
+      = step("", "", "fa fa-clock", gettext("Ticketing"), gettext("Ticketing opens at %{time}.", time: Timex.format!(Timex.Timezone.convert(@event.start_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")))
+    - 3 ->
+      = step("is-danger", "is-completed", "fa fa-times", gettext("Ticketing"), gettext "As you did not register for the event, you cannot participate.")
+    - 4 ->
+      = step("is-danger", "is-completed", "fa fa-times", gettext("Ticketing"), gettext "You did not order tickets for the event.")
+    - 5 ->
+      = step("is-warning", "is-active", "fas fa-ticket-alt", gettext("Ticketing"), gettext("Ticketing is open till %{time}.", time: Timex.format!(Timex.Timezone.convert(@event.date_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")))
+    - 6 ->
+      = step("is-success", "is-completed", "fa fa-check", gettext("Ticketing"), gettext("You ordered tickets for the event. Ticketing is open till %{time}.", time: Timex.format!(Timex.Timezone.convert(@event.date_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")))
+    - 7 ->
+      = step("is-success", "is-completed", "fa fa-check", gettext("Ticketing"), gettext "You ordered tickets for the event.")
+    - _ ->
+      = step("", "", "", gettext("Ticketing"), gettext("Unknown event state"))
+
+  = case payment_step(@event, @user) do
+    - 1 ->
+      = step("","", "fa fa-clock", gettext("Payment"), gettext "You do not have completed all the previous steps to participate at the ceremony.")
+    - 2 ->
+      = step("is-danger", "is-completed", "fa fa-times", gettext("Payment"), gettext "As you did not complete all steps, you cannot participate.")
+    - 3 ->
+      = step("is-warning", "is-active", "fa fa-clock", gettext("Payment"), gettext "We are waiting that the money arrives in our bank account.")
+    - 4 ->
+      = step("is-completed", "is-success", "fa fa-check", gettext("Payment"), gettext "We recieved your payment.")
+    - 5 ->
+      = step("is-warning", "is-active", "fas fa-exclamation-triangle", gettext("Payment"), gettext "There is an error in your payment.")
+    - 6 ->
+      = step("is-warning", "is-active", "fas fa-money-bill-alt", gettext("Payment"), gettext "Please pay the tickets.")
+    - _ ->
+      = step("", "", "", gettext("Payment"), gettext("Unknown event state"))
+
+  = case graduation_step(@event, @user) do
+    - 1 ->
+      = step("", "", "fa fa-clock", gettext("Graduation ceremony"), gettext "You do not have completed all the previous steps to participate at the ceremony.")
+    - 2 ->
+      = step("is-danger", "is-completed", "fa fa-times", gettext("Graduation ceremony"), gettext "As you did not complete all steps, you cannot participate.")
+    - 3 ->
+      = step("is-success", "is-completed", "fas fa-graduation-cap", gettext("Graduation ceremony"), gettext "You did it! See you at the event.")
+    - 4 ->
+      = step("is-success", "is-completed", "fas fa-graduation-cap", gettext("Graduation ceremony"), gettext "Today is the day!")
+    - 5 ->
+      = step("is-success", "is-completed", "fas fa-graduation-cap", gettext("Graduation ceremony"), gettext "Hope you had fun! Good luck in your further life.")
+    - 6 ->
+      = step("is-warning", "is-active", "fas fa-graduation-cap", gettext("Graduation ceremony"), gettext "You can pay at the graducation ceremony aswell.")
+    - _ ->
+      = step("", "", "", gettext("Graduation ceremony"), gettext("Unknown event state"))

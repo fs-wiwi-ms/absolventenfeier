@@ -15,7 +15,7 @@ defmodule AbsolventenfeierWeb.RegistrationController do
         count = Enum.count(registrations)
         render(conn, "index.html", registrations: registrations, count: count)
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: page_path(conn, :index))

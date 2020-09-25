@@ -11,7 +11,7 @@ defmodule AbsolventenfeierWeb.EventController do
 
     events =
       case user.role do
-        :user ->
+        n when n in [:user, :mollie] ->
           Event.get_events_for_registration()
 
         :admin ->
@@ -37,7 +37,7 @@ defmodule AbsolventenfeierWeb.EventController do
           action: event_path(conn, :create)
         )
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: event_path(conn, :index))
@@ -66,7 +66,7 @@ defmodule AbsolventenfeierWeb.EventController do
           event: event
         )
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: event_path(conn, :index))
@@ -97,7 +97,7 @@ defmodule AbsolventenfeierWeb.EventController do
             )
         end
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: event_path(conn, :index))
@@ -128,7 +128,7 @@ defmodule AbsolventenfeierWeb.EventController do
             )
         end
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: event_path(conn, :index))
@@ -155,7 +155,7 @@ defmodule AbsolventenfeierWeb.EventController do
             |> redirect(to: event_path(conn, :index))
         end
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: event_path(conn, :index))
@@ -182,7 +182,7 @@ defmodule AbsolventenfeierWeb.EventController do
             |> redirect(to: event_path(conn, :index))
         end
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: event_path(conn, :index))
@@ -209,7 +209,7 @@ defmodule AbsolventenfeierWeb.EventController do
             |> redirect(to: event_path(conn, :index))
         end
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: event_path(conn, :index))
@@ -241,7 +241,7 @@ defmodule AbsolventenfeierWeb.EventController do
             |> redirect(to: event_path(conn, :index))
         end
 
-      :user ->
+      _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
         |> redirect(to: event_path(conn, :index))

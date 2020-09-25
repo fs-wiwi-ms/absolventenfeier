@@ -4,7 +4,9 @@ defenum(CourseType, :course_type, [
   :none,
   :information_systems,
   :business_economics,
-  :economics
+  :economics,
+  :interdisciplinary_studies
+
 ])
 
 defenum(DegreeType, :degree_type, [
