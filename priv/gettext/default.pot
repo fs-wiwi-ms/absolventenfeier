@@ -206,17 +206,17 @@ msgid ". If you report errors, please attach a screenshot and description (such 
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/page/index.html.slime:37
+#: lib/absolventenfeier_web/templates/page/index.html.slime:36
 msgid "Admin-Corner"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/page/index.html.slime:51
+#: lib/absolventenfeier_web/templates/page/index.html.slime:50
 msgid "Create new graduation ceremony"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/page/index.html.slime:46
+#: lib/absolventenfeier_web/templates/page/index.html.slime:45
 msgid "Evaluate Registrations"
 msgstr ""
 
@@ -241,12 +241,12 @@ msgid "Registration phase"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/page/index.html.slime:40
+#: lib/absolventenfeier_web/templates/page/index.html.slime:39
 msgid "This area is not important for you! Only important functions for our graduation ceremony team are stored here."
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:92
+#: lib/absolventenfeier_web/templates/event/index.html.slime:90
 msgid "Ticketing phase"
 msgstr ""
 
@@ -269,16 +269,6 @@ msgstr ""
 #, elixir-format
 #: lib/absolventenfeier_web/templates/page/index.html.slime:28
 msgid "Your are already logged in."
-msgstr ""
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:158
-msgid "End"
-msgstr ""
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:154
-msgid "Start"
 msgstr ""
 
 #, elixir-format
@@ -472,7 +462,7 @@ msgid "Available"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:172
+#: lib/absolventenfeier_web/templates/event/index.html.slime:163
 msgid "Change order"
 msgstr ""
 
@@ -503,7 +493,7 @@ msgid "Creating ticket successful!"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:176
+#: lib/absolventenfeier_web/templates/event/index.html.slime:167
 msgid "Delete order"
 msgstr ""
 
@@ -655,7 +645,7 @@ msgid "Not registered yet"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:188
+#: lib/absolventenfeier_web/templates/event/index.html.slime:179
 msgid "Order now"
 msgstr ""
 
@@ -694,7 +684,7 @@ msgid "Paid with credit card."
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:181
+#: lib/absolventenfeier_web/templates/event/index.html.slime:172
 msgid "Pay now!"
 msgstr ""
 

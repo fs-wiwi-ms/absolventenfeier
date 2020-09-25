@@ -73,7 +73,7 @@ defmodule AbsolventenfeierWeb.EventView do
       :ticketing_open ->
         if user_registerd_for_event(event, user) do
           case user_ordered_for_event(event, user) do
-            %Order{} = order ->
+            %Order{} = _order ->
               6
             _ ->
               5
@@ -84,7 +84,7 @@ defmodule AbsolventenfeierWeb.EventView do
       n when n in [:upcoming_event, :running_event, :expired_event] ->
         if user_registerd_for_event(event, user) do
           case user_ordered_for_event(event, user) do
-            %Order{} = order ->
+            %Order{} = _order ->
               7
             _ ->
               4

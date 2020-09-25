@@ -32,7 +32,6 @@ div.box
 - user = get_user(@conn)
 = if user do
   = case user.role do
-    - _ ->
     - :admin ->
       div.box
         h3.subtitle.is-5 =gettext("Admin-Corner")
@@ -50,3 +49,4 @@ div.box
               span.icon
                 i.fas.fa-graduation-cap
               span =gettext("Create new graduation ceremony")
+    - _ ->
