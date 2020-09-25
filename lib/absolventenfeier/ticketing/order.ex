@@ -109,9 +109,9 @@ defmodule Absolventenfeier.Ticketing.Order do
         OrderPosition.prepare_changeset(ticket)
       end)
 
-      %{}
-      |> Map.put("event", event)
-      |> Map.put("order_positions", order_positions)
+    %{}
+    |> Map.put("event", event)
+    |> Map.put("order_positions", order_positions)
   end
 
   def change_order(order \\ %Order{}, attrs) do

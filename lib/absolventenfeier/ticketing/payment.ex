@@ -88,7 +88,7 @@ defmodule Absolventenfeier.Ticketing.Payment do
       method: mollie_payment["method"],
       amount_value: mollie_payment["amount"]["value"],
       amount_currency: mollie_payment["amount"]["currency"],
-      description: mollie_payment["description"],
+      description: mollie_payment["description"]
       # webhook_url: mollie_payment["_links"]["checkout"]["href"]
     }
   end

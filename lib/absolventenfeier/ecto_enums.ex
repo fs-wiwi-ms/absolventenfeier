@@ -6,7 +6,6 @@ defenum(CourseType, :course_type, [
   :business_economics,
   :economics,
   :interdisciplinary_studies
-
 ])
 
 defenum(DegreeType, :degree_type, [

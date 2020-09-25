@@ -167,11 +167,16 @@ defmodule Absolventenfeier.Event do
           Timex.compare(event.start_of_tickets, Timex.now()),
           Timex.compare(event.date_of_tickets, Timex.now()),
           Timex.compare(event.date_of_event, Timex.now(), :day)} do
-      {1, 1, _, _, 1} -> :registration_closed # pre-registration
-      {-1, 1, _, _, 1} -> :registration_open # registration-period
-      {_, _, 1, 1, 1} -> :ticketing_closed # pre-ticketing
-      {_, _, -1, 1, 1} -> :ticketing_open # ticketing-period
-      {-1, -1, -1, -1, 1} -> :upcoming_event # after-ticketing
+      # pre-registration
+      {1, 1, _, _, 1} -> :registration_closed
+      # registration-period
+      {-1, 1, _, _, 1} -> :registration_open
+      # pre-ticketing
+      {_, _, 1, 1, 1} -> :ticketing_closed
+      # ticketing-period
+      {_, _, -1, 1, 1} -> :ticketing_open
+      # after-ticketing
+      {-1, -1, -1, -1, 1} -> :upcoming_event
       {-1, -1, -1, -1, 0} -> :running_event
       {_, _, _, _, -1} -> :expired_event
     end

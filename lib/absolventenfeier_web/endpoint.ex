@@ -70,7 +70,7 @@ defmodule AbsolventenfeierWeb.Endpoint do
       config =
         config
         |> Keyword.put(:secret_key_base, secret_key_base)
-        |> Keyword.put(:live_view, [signing_salt: live_view_signing_salt])
+        |> Keyword.put(:live_view, signing_salt: live_view_signing_salt)
 
       {:ok, config}
     else

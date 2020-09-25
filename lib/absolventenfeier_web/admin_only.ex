@@ -10,9 +10,9 @@ defmodule AbsolventenfeierWeb.AdminOnly do
   @doc false
   def call(conn, _) do
     user =
-    conn
-    |> get_session(:user_id)
-    |> User.get_user()
+      conn
+      |> get_session(:user_id)
+      |> User.get_user()
 
     case user.role do
       :admin ->

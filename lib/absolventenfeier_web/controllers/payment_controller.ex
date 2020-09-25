@@ -37,6 +37,7 @@ defmodule AbsolventenfeierWeb.PaymentController do
             |> put_flash(:error, gettext("Error while creating payment!"))
             |> redirect(to: event_path(conn, :index))
         end
+
       _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))

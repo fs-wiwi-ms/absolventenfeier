@@ -3,7 +3,9 @@ defmodule Absolventenfeier.Repo.Migrations.UpdateCourseTypes do
   @disable_ddl_transaction true
 
   def up do
-    Ecto.Migration.execute "ALTER TYPE course_type ADD VALUE IF NOT EXISTS 'interdisciplinary_studies'"
+    Ecto.Migration.execute(
+      "ALTER TYPE course_type ADD VALUE IF NOT EXISTS 'interdisciplinary_studies'"
+    )
   end
 
   def down do
