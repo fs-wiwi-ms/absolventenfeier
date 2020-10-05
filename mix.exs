@@ -38,7 +38,7 @@ defmodule Absolventenfeier.MixProject do
       {:argon2_elixir, "~> 2.0"},
       {:comeonin, "~> 5.3.0"},
       {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.4.2"},
+      {:ecto_sql, "~> 3.5.0"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
