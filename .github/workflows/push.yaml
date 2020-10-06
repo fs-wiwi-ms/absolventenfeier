@@ -25,5 +25,5 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64 #,linux/arm64,linux/386
           push: true
-          tags: fs-wiwi-ms/absolventenfeier:latest
+          tags: ghcr.io/fs-wiwi-ms/absolventenfeier:latest
         if: github.ref == 'refs/heads/production'
