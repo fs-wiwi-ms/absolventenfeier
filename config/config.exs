@@ -33,30 +33,8 @@ config :phoenix, :template_engines,
   slim: PhoenixSlime.Engine,
   slime: PhoenixSlime.Engine
 
-host =
-  System.get_env("HOST") ||
-    raise """
-    environment variable HOST is missing.
-    """
-
-mollie_api_key =
-  System.get_env("MOLLIE_API_KEY") ||
-    raise """
-    environment variable MOLLIE_API_KEY is missing.
-    """
-
 config :absolventenfeier, :mollie,
-  api_url: "https://api.mollie.com/v2/",
-  host: host,
-  api_key: mollie_api_key
-
-from_address =
-  System.get_env("SMTP_ADDRESS") ||
-    raise """
-    environment variable SMTP_ADDRESS is missing.
-    """
-
-config :absolventenfeier, :mailer, from_address: from_address
+  api_url: "https://api.mollie.com/v2/"
 
 config :gettext, :default_locale, "de"
 

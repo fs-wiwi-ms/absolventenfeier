@@ -27,6 +27,7 @@ config :absolventenfeier, Absolventenfeier.Mailer,
   port: {:system, "SMTP_PORT"},
   username: {:system, "SMTP_USERNAME"},
   password: {:system, "SMTP_PASSWORD"},
+  from_address: {:system, "SMTP_FROM_ADDRESS"},
   ssl: true,
   tls: :always,
   auth: :always

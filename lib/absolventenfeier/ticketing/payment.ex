@@ -51,8 +51,8 @@ defmodule Absolventenfeier.Ticketing.Payment do
         %{
           amount: %{currency: "#{currency}", value: "#{value}"},
           description: "#{description}",
-          redirectUrl: "#{Keyword.get(mollie, :host)}/payments/#{interal_payment_id}",
-          webhookUrl: "#{Keyword.get(mollie, :host)}/api/webhook",
+          redirectUrl: "#{System.get_env("HOST")}/payments/#{interal_payment_id}",
+          webhookUrl: "#{System.get_env("HOST")}/api/webhook",
           method: [:creditcard, :sofort, :paypal, :banktransfer, :directdebit]
         },
         Authorization: "Bearer " <> System.get_env("MOLLIE_API_KEY")
