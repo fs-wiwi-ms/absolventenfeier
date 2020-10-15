@@ -2,10 +2,18 @@ use Mix.Config
 
 config :logger, level: :info
 
+database_url =
+  System.get_env("DATABASE_URL") ||
+    raise """
+    environment variable DATABASE_URL is missing.
+    For example: ecto://USER:PASS@HOST/DATABASE
+    """
+
 # Configure your database
 config :absolventenfeier, Absolventenfeier.Repo,
   show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  pool_size: 10,
+  url: database_url
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
@@ -42,7 +50,7 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-config :absolventenfeier, :mollie, host: "http://hoge.cloud:3000"
+config :absolventenfeier, Absolventenfeier.Mailer, adapter: Bamboo.LocalAdapter
 
 config :logger,
   level: :debug

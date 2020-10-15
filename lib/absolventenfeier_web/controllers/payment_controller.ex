@@ -1,8 +1,7 @@
 defmodule AbsolventenfeierWeb.PaymentController do
   use AbsolventenfeierWeb, :controller
 
-  alias Absolventenfeier.User
-  alias Absolventenfeier.Ticketing.{Order, Payment}
+  alias Absolventenfeier.Ticketing.{Order, Payment, PromotionCode}
 
   require Logger
 
@@ -18,35 +17,40 @@ defmodule AbsolventenfeierWeb.PaymentController do
   end
 
   def new(conn, %{"order_id" => order_id}) do
-    user =
-      conn
-      |> get_session(:user_id)
-      |> User.get_user()
+    order = Order.get_order(order_id)
+    promotion_codes = PromotionCode.get_promotion_code_by_order_id(order_id)
+    payment_changeset = Payment.change_bank_transfer_payment_from_order(order)
+    changeset = PromotionCode.change_promotion_code()
 
-    case user.role do
-      n when n in [:admin, :mollie] ->
-        order = Order.get_order(order_id)
+    render(conn, "new.html", %{
+      changeset: changeset,
+      action: order_promotion_code_path(conn, :create, order_id),
+      promotion_codes: promotion_codes,
+      order: order,
+      payment_changeset: payment_changeset,
+      payment_action: order_payment_path(conn, :create, order.id)
+    })
+  end
 
-        case Payment.create_payment_from_order(order) do
-          {:ok, payment} ->
-            conn
-            |> redirect(external: payment.webhook_url)
+  def create(conn, %{"payment" => _payment, "order_id" => order_id}) do
+    order = Order.get_order(order_id)
 
-          {:error, _changeset} ->
-            conn
-            |> put_flash(:error, gettext("Error while creating payment!"))
-            |> redirect(to: event_path(conn, :index))
-        end
-
-      _ ->
+    case Payment.create_payment(order) do
+      {:ok, payment} ->
         conn
-        |> put_flash(:error, gettext("This action is permitted!"))
-        |> redirect(to: page_path(conn, :index))
+        |> put_flash(:info, gettext("Creating payment successful!"))
+        |> redirect(to: payment_path(conn, :show, payment.id))
+
+      {:error, _changeset} ->
+        conn
+        |> put_flash(:error, gettext("Error while creating payment!"))
+        |> redirect(to: order_payment_path(conn, :new, order.id))
     end
   end
 
-  def show(conn, %{"id" => _id}) do
-    conn
-    |> redirect(to: event_path(conn, :index))
+  def show(conn, %{"id" => id}) do
+    payment = Payment.get_payment(id)
+
+    render(conn, "show.html", %{payment: payment})
   end
 end

@@ -25,29 +25,55 @@ const FLATPICKR_DATE_CONFIG = {
 
 function initDatePickers() {
   flatpickr(
-    document.querySelectorAll(".datetimepicker"),
-    FLATPICKR_DATETIME_CONFIG,
+    document.querySelectorAll(".datetimepicker"), FLATPICKR_DATETIME_CONFIG,
   );
   flatpickr(
-    document.querySelectorAll(".datepicker"),
-    FLATPICKR_DATE_CONFIG,
+    document.querySelectorAll(".datepicker"), FLATPICKR_DATE_CONFIG,
   );
 }
 
-if (document.readyState !== "loading") {
-  initDatePickers();
-} else {
-  document.addEventListener("DOMContentLoaded", initDatePickers);
+function initCheckBoxHideShow() {
+  document.querySelector("#checkBoxClick").addEventListener("click", (e) => {
+    let checkBox = <HTMLInputElement> document.getElementById("checkBoxElem");
+    let content = document.getElementById("checkBoxContent");
+    // If the checkbox is checked, display the output text
+    if (checkBox.checked == true){
+      content.style.display = "block";
+    } else {
+      content.style.display = "none";
+    }
+  });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Get all "navbar-burger" elements
-  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+function initModals() {
+  document.querySelector("#open-modal").addEventListener("click", (e) => {
+    e.preventDefault();
+    let modal = document.querySelector(".modal");  // assuming you have only 1
+    let html = document.querySelector("html");
+    modal.classList.add("is-active");
+    html.classList.add("is-clipped");
 
+    modal.querySelector(".modal-background").addEventListener("click", (e) => {
+      e.preventDefault();
+      modal.classList.remove("is-active");
+      html.classList.remove("is-clipped");
+    });
+
+    modal.querySelector("#close-modal").addEventListener("click", (e) => {
+      e.preventDefault();
+      modal.classList.remove("is-active");
+      html.classList.remove("is-clipped");
+    });
+  });
+}
+
+function initNavBarBurger() {
+    // Get all "navbar-burger" elements
+  const navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
   // Check if there are any navbar burgers
-  if ($navbarBurgers.length > 0) {
+  if (navbarBurgers.length > 0) {
     // Add a click event on each of them
-    $navbarBurgers.forEach(el => {
+    navbarBurgers.forEach((el) => {
       el.addEventListener("click", () => {
         // Get the target from the "data-target" attribute
         const target = el.dataset.target;
@@ -59,26 +85,19 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-});
+}
 
-document.querySelector('#open-modal').addEventListener('click', function(event) {
-  event.preventDefault();
-  let modal = document.querySelector('.modal');  // assuming you have only 1
-  let html = document.querySelector('html');
-  modal.classList.add('is-active');
-  html.classList.add('is-clipped');
+function initComponents () {
+  initNavBarBurger();
+  initDatePickers();
+  initCheckBoxHideShow();
+  initModals();
+}
 
-  modal.querySelector('.modal-background').addEventListener('click', function(e) {
-    e.preventDefault();
-    modal.classList.remove('is-active');
-    html.classList.remove('is-clipped');
-  });
+if (document.readyState !== "loading") {
+  initComponents();
+} else {
+  document.addEventListener("DOMContentLoaded", initComponents);
+}
 
-  modal.querySelector('#close-modal').addEventListener('click', function(e) {
-    e.preventDefault();
-    modal.classList.remove('is-active');
-    html.classList.remove('is-clipped');
-  });
-});
-
-import "./theme.sass";
+import "./app.sass";

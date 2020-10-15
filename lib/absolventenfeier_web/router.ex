@@ -28,6 +28,10 @@ defmodule AbsolventenfeierWeb.Router do
     plug :accepts, ["json"]
   end
 
+  if Mix.env() == :dev do
+    forward "/sent_emails", Bamboo.SentEmailViewerPlug
+  end
+
   scope "/", AbsolventenfeierWeb do
     pipe_through([:unsecure_browser, :browser])
 
@@ -40,6 +44,12 @@ defmodule AbsolventenfeierWeb.Router do
 
     resources("/users", UserController, only: [:new, :create])
     resources("/sessions", SessionController, only: [:new, :create])
+
+    resources(
+      "/password_reset_tokens",
+      PasswordResetTokenController,
+      only: [:new, :create, :show, :update]
+    )
   end
 
   scope "/", AbsolventenfeierWeb do
@@ -59,8 +69,11 @@ defmodule AbsolventenfeierWeb.Router do
     resources "/tickets", TicketController, only: [:edit, :create, :update, :delete]
 
     resources "/orders", OrderController, only: [:edit, :update, :create, :delete] do
-      resources "/payments", PaymentController, only: [:new]
+      resources "/payments", PaymentController, only: [:new, :create]
+      resources "/promotion_code", PromotionCodeController, only: [:create]
     end
+
+    resources "/promotion_code", PromotionCodeController, only: [:delete]
 
     resources "/payments", PaymentController, only: [:show]
 

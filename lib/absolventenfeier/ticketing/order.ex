@@ -11,19 +11,20 @@ defmodule Absolventenfeier.Ticketing.Order do
   @foreign_key_type :binary_id
 
   schema "orders" do
-    field :sum, :integer, default: 0, virtual: true
+    field :sum, :float, default: 0, virtual: true
 
     belongs_to(:event, Absolventenfeier.Event)
     belongs_to(:user, Absolventenfeier.User)
 
     has_many(:order_positions, Absolventenfeier.Ticketing.OrderPosition)
+    has_many(:promotion_codes, Absolventenfeier.Ticketing.PromotionCode)
     has_one(:payment, Absolventenfeier.Ticketing.Payment)
 
     timestamps()
   end
 
   @doc false
-  def changeset(order, attrs) do
+  defp changeset(order, attrs) do
     order
     |> cast(attrs, [])
     |> put_assoc(:user, attrs["user"] || order.user)
@@ -31,7 +32,7 @@ defmodule Absolventenfeier.Ticketing.Order do
     |> put_assoc(:order_positions, attrs["order_positions"] || order.order_positions)
   end
 
-  def changeset_edit(order, attrs) do
+  defp changeset_edit(order, attrs) do
     order
     |> cast(attrs, [])
     |> put_assoc(:user, attrs["user"] || order.user)
@@ -53,7 +54,7 @@ defmodule Absolventenfeier.Ticketing.Order do
 
   def get_order(id) do
     Order
-    |> preload([:event, :user, :payment, order_positions: :ticket])
+    |> preload([:event, :user, :payment, promotion_codes: :promotion, order_positions: :ticket])
     |> Repo.get(id)
     |> calculate_sum
   end
@@ -75,7 +76,7 @@ defmodule Absolventenfeier.Ticketing.Order do
 
     %Order{}
     |> Repo.preload([:event, :user, :order_positions, :payment])
-    |> Order.changeset_edit(order_params)
+    |> changeset_edit(order_params)
     |> Repo.insert()
   end
 
@@ -95,7 +96,7 @@ defmodule Absolventenfeier.Ticketing.Order do
       |> Map.put("user", user)
 
     order
-    |> Order.changeset_edit(order_params)
+    |> changeset_edit(order_params)
     |> Repo.update()
   end
 
@@ -117,7 +118,7 @@ defmodule Absolventenfeier.Ticketing.Order do
   def change_order(order \\ %Order{}, attrs) do
     order
     |> Repo.preload([:event, :user, :order_positions])
-    |> Order.changeset(attrs)
+    |> changeset(attrs)
   end
 
   def user_ordered_for_event(event_id, user_id) do
@@ -140,6 +141,11 @@ defmodule Absolventenfeier.Ticketing.Order do
         temp_sum + op.ticket.price * op.count
       end)
 
-    Map.put(order, :sum, sum)
+    discount =
+      Enum.reduce(order.promotion_codes, 0, fn pc, temp_sum ->
+        temp_sum + pc.promotion.discount
+      end)
+
+    Map.put(order, :sum, sum - discount)
   end
 end

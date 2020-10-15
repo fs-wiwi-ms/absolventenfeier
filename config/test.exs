@@ -10,5 +10,7 @@ config :absolventenfeier, AbsolventenfeierWeb.Endpoint,
   server: false,
   secret_key_base: "UrwGy41yrDwJsejSAcTrlVTIbyAUDZzIT5LQheRbcE6tltjuHKSnONcHvlX9+BwY"
 
+config :absolventenfeier, Absolventenfeier.Mailer, adapter: Bamboo.TestAdapter
+
 # Print only warnings and errors during test
 config :logger, level: :warn

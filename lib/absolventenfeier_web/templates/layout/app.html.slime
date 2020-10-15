@@ -77,6 +77,16 @@ html(lang="en")
       div.content
         div.columns
           div.column.is-narrow
+            a.button.is-primary(href="https://fachschaft-wiwi.ms/privacy-policy/")
+              / span.icon.has-text-white
+              /   i.fab.fa-github
+              span.has-text-white = gettext("Legal")
+          div.column.is-narrow
+            a.button.is-primary(href="#{page_path(@conn, :privacy)}")
+                / span.icon.has-text-white
+                /   i.fab.fa-github
+                span.has-text-white = gettext("Privacy")
+          div.column.is-narrow
             a.button.is-primary(href="https://github.com/fs-wiwi-ms/absolventenfeier")
               span.icon.has-text-white
                 i.fab.fa-github

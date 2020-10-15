@@ -1,28 +1,35 @@
-div.columns
-  div.column
-    h2.title.is-2 = gettext("Login")
+/ div.box
 
-div.box
+div.container
+  h2.title = gettext("Login")
+
   = form_for @conn, @action, fn user_form ->
-    div.columns
-      div.column
-        label.label = gettext("Email")
-        = text_input(user_form, :email, class: "input", type: "email")
+    div.field
+      label.label = gettext("Email")
+      div.control.has-icons-left
+        = text_input(user_form, :email, class: "input", type: "email", placeholder: "test@example.com")
+        span.icon.is-left
+            i.fas.fa-envelope
 
-    div.columns
-      div.column
-        label.label = gettext("Password")
+    div.field
+      label.label = gettext("Password")
+      div.control.has-icons-left
         = password_input(user_form, :password, class: "input", type: "password")
+        span.icon.is-left
+            i.fas.fa-asterisk
 
-    div.columns
-      div.column.is-full
-        = checkbox(user_form, :remember_me, class: "checkbox")
-          = label(user_form, :remember_me, gettext("Remember me"))
+    div.field
+      = checkbox(user_form, :remember_me, class: "is-checkradio is-link")
+        = label(user_form, :remember_me, gettext("Remember me"))
 
-    div.columns
-      div.column.is-full
-        = submit gettext("Login"), class: "button is-primary"
-    div.columns
-      div.column.is-full
-        p.has-text-info.has-text-weight-semibold.label = gettext("You don't have an account yet? Register now!")
-        a.button.is-info.is-outlined(href="#{public_user_path(@conn, :new)}") = gettext("Create Account")
+    div.field
+      = submit gettext("Login"), class: "button is-link"
+    div.field
+      a.button.is-outlined.is-warning(href="#{ public_password_reset_token_path(@conn, :new) }") = gettext("Forgot Password")
+
+div.container
+  div.is-divider
+
+div.container
+  p.has-text-weight-semibold.label = gettext("You don't have an account yet? Register now!")
+  a.button.is-link.is-outlined(href="#{public_user_path(@conn, :new)}") = gettext("Create Account")

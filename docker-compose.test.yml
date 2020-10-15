@@ -27,7 +27,6 @@ services:
       - sync
     command: sh -c "yarn install && yarn run watch"
 
-
   db:
     image: postgres:10.3-alpine
     environment:

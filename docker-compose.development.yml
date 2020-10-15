@@ -15,6 +15,8 @@ services:
       DATABASE_URL: "psql://absolventenfeier:absolventenfeier@db/absolventenfeier"
       SECRET_KEY_BASE: vmOZLCImcoi+PBCMC/N6BnQ8t6LmSRyONqK3T0iNSV9hx2pt7502lV2mN2alVAFe
       MOLLIE_API_KEY: test_b6Vkb4GQRhaDafGgJHferuWcGdVRpm
+      SMTP_ADDRESS: test@absolventenfeier.de
+      HOST: hoge.cloud:3000
     ports:
       - "4000:4000"
 

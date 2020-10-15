@@ -1,7 +1,7 @@
 const path = require("path");
 const glob = require("glob");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
@@ -9,8 +9,7 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 module.exports = (env, options) => ({
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
+      new TerserPlugin({
         parallel: true,
         sourceMap: false,
       }),
@@ -19,7 +18,7 @@ module.exports = (env, options) => ({
   },
   context: path.resolve(__dirname, "src"),
   entry: {
-    app: "./app/index.ts",
+    app: "./app/index.ts"
   },
   output: {
     filename: "./js/[name].js",

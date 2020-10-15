@@ -25,7 +25,7 @@ defmodule Absolventenfeier.Ticketing.Payment do
   end
 
   @doc false
-  def changeset(payment, attrs) do
+  defp changeset(payment, attrs) do
     payment
     |> cast(attrs, [
       :mollie_id,
@@ -38,21 +38,18 @@ defmodule Absolventenfeier.Ticketing.Payment do
     ])
   end
 
+  # -----------------------------------------------------------------
+  # -- Mollie
+  # -----------------------------------------------------------------
+
   defp create_mollie_payment(value, currency, interal_payment_id, description) do
     mollie = Application.get_env(:absolventenfeier, :mollie)
-
-    value_string =
-      Number.Delimit.number_to_delimited(Float.round(value, 2),
-        precision: 2,
-        delimiter: "",
-        separator: "."
-      )
 
     {:ok, mollie_payment} =
       Absolventenfeier.Request.post(
         Keyword.get(mollie, :api_url) <> "payments",
         %{
-          amount: %{currency: "#{currency}", value: "#{value_string}"},
+          amount: %{currency: "#{currency}", value: "#{value}"},
           description: "#{description}",
           redirectUrl: "#{Keyword.get(mollie, :host)}/payments/#{interal_payment_id}",
           webhookUrl: "#{Keyword.get(mollie, :host)}/api/webhook",
@@ -79,7 +76,7 @@ defmodule Absolventenfeier.Ticketing.Payment do
       Absolventenfeier.Request.get(
         Keyword.get(mollie, :api_url) <> "payments/" <> id,
         %{},
-        Authorization: "Bearer " <> System.get_env("MOLLIE_API_KEY")
+        Authorization: "Bearer " <> Keyword.get(mollie, :api_key)
       )
 
     %{
@@ -93,6 +90,23 @@ defmodule Absolventenfeier.Ticketing.Payment do
     }
   end
 
+  def refresh_payment_by_mollie_id(mollie_id) do
+    payment =
+      Payment
+      |> Repo.get_by(mollie_id: mollie_id)
+      |> Repo.preload([:order])
+
+    payment_params = get_mollie_payment(mollie_id)
+
+    payment
+    |> changeset(payment_params)
+    |> Repo.update()
+  end
+
+  # -----------------------------------------------------------------
+  # -- Payments
+  # -----------------------------------------------------------------
+
   def get_payments() do
     Payment
     |> preload([:order])
@@ -105,7 +119,13 @@ defmodule Absolventenfeier.Ticketing.Payment do
     |> Repo.preload(preload)
   end
 
-  def create_payment_from_order(order) do
+  def get_payment_by_order_id(order_id, preload \\ []) do
+    Payment
+    |> Repo.get_by(order_id: order_id)
+    |> Repo.preload(preload)
+  end
+
+  def change_mollie_payment_from_order(order) do
     payment_id = Ecto.UUID.generate()
     order_changeset = Ecto.build_assoc(order, :payment, id: payment_id)
 
@@ -120,7 +140,37 @@ defmodule Absolventenfeier.Ticketing.Payment do
       )
 
     order_changeset
-    |> Payment.changeset(payment_params)
+    |> changeset(payment_params)
+  end
+
+  def change_bank_transfer_payment_from_order(order) do
+    payment_id = Ecto.UUID.generate()
+    order_changeset = Ecto.build_assoc(order, :payment, id: payment_id)
+
+    value_string =
+      Number.Delimit.number_to_delimited(Float.round(order.sum, 2),
+        precision: 2,
+        delimiter: "",
+        separator: "."
+      )
+
+    order_changeset
+    |> changeset(%{
+      mollie_id: nil,
+      status: "open",
+      method: "manual_bank_transfer",
+      amount_value: value_string,
+      amount_currency: "EUR",
+      description:
+        "Absolventenfeier Bestellung ##{String.slice(order.id, 0..7)} von #{order.user.fore_name} #{
+          order.user.last_name
+        }"
+    })
+  end
+
+  def create_payment(order) do
+    order
+    |> change_bank_transfer_payment_from_order
     |> Repo.insert()
   end
 
@@ -134,19 +184,6 @@ defmodule Absolventenfeier.Ticketing.Payment do
   #   |> Payment.changeset(payment_params)
   #   |> Repo.update()
   # end
-
-  def refresh_payment_by_mollie_id(mollie_id) do
-    payment =
-      Payment
-      |> Repo.get_by(mollie_id: mollie_id)
-      |> Repo.preload([:order])
-
-    payment_params = get_mollie_payment(mollie_id)
-
-    payment
-    |> Payment.changeset(payment_params)
-    |> Repo.update()
-  end
 
   def delete_payment(payment) do
     Repo.delete(payment)

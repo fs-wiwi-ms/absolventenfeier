@@ -8,8 +8,10 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
     "bulma": "^0.8.0",
+    "bulma-checkradio": "^1.1.1",
     "bulma-divider": "^0.2.0",
     "bulma-steps": "^2.2.1",
+    "bulma-switch": "^2.0.0",
     "bulma-tooltip": "^3.0.2",
     "flatpickr": "^4.6.3",
     "phoenix": "^1.4.15",
@@ -34,7 +36,7 @@
     "tslint-loader": "^3.5.4",
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.6.4",
-    "uglifyjs-webpack-plugin": "^2.2.0",
+    "terser-webpack-plugin": "^4.2.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9"
   }

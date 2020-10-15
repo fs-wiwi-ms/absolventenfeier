@@ -18,7 +18,7 @@ defmodule Absolventenfeier.Request do
   def post(url, params, headers \\ []) do
     HTTPoison.post(
       url,
-      Poison.encode!(params),
+      Jason.encode!(params),
       headers ++
         [
           {"Content-Type", "application/json"}
@@ -30,12 +30,12 @@ defmodule Absolventenfeier.Request do
   defp handle_response({:ok, response}) do
     try do
       with {:status_code, "2" <> _} <- {:status_code, "#{response.status_code}"},
-           {:json, {:ok, response_body}} <- {:json, Poison.decode(response.body)} do
+           {:json, {:ok, response_body}} <- {:json, Jason.decode(response.body)} do
         {:ok, response_body}
       else
         {:status_code, status_code} ->
           Logger.debug(inspect(status_code))
-          Logger.debug(inspect(Poison.decode!(response.body)))
+          Logger.debug(inspect(Jason.decode!(response.body)))
           {:error, "status_code"}
 
         {:json, {:error, message}} ->
@@ -43,7 +43,7 @@ defmodule Absolventenfeier.Request do
           {:error, "decode_failed"}
       end
     rescue
-      Poison.SyntaxError ->
+      Jason.DecodeError ->
         {:error, "decode_failed"}
     end
   end

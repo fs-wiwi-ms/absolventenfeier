@@ -22,6 +22,7 @@ defmodule Absolventenfeier.User do
     field(:role, UserRole, default: :user)
 
     has_many(:sessions, Absolventenfeier.User.Session)
+    has_many(:password_reset_tokens, Absolventenfeier.User.PasswordResetToken)
 
     timestamps()
   end
@@ -44,6 +45,12 @@ defmodule Absolventenfeier.User do
     |> changeset(attrs)
     |> validate_password
     |> unique_constraint(:email)
+  end
+
+  defp changeset_password(user, attrs) do
+    user
+    |> cast(attrs, [:password])
+    |> validate_password()
   end
 
   defp validate_password(changeset) do
@@ -78,6 +85,10 @@ defmodule Absolventenfeier.User do
     |> Repo.get(id)
   end
 
+  def get_user_by_email(email) do
+    Repo.get_by(User, email: email)
+  end
+
   def create_user(user_params) do
     %User{}
     |> changeset_create(user_params)
@@ -87,5 +98,18 @@ defmodule Absolventenfeier.User do
   def change_user(user \\ %User{}, user_params \\ %{}) do
     user
     |> changeset(user_params)
+  end
+
+  def create_user_changeset(%Absolventenfeier.User.PasswordResetToken{} = token) do
+    token
+    |> Ecto.assoc(:user)
+    |> Repo.one()
+    |> changeset(%{})
+  end
+
+  def change_user_password(user, user_params) do
+    user
+    |> changeset_password(user_params)
+    |> Repo.update()
   end
 end

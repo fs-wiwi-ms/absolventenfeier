@@ -20,7 +20,7 @@ defmodule Absolventenfeier.MixProject do
   def application do
     [
       mod: {Absolventenfeier.Application, []},
-      extra_applications: [:logger, :runtime_tools, :httpoison, :runtime_tools, :os_mon]
+      extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end
 
@@ -33,27 +33,28 @@ defmodule Absolventenfeier.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.5.0"},
-      {:phoenix_pubsub, "~> 2.0"},
-      {:argon2_elixir, "~> 2.0"},
-      {:comeonin, "~> 5.3.0"},
-      {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.4.2"},
-      {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
-      {:phoenix_slime, "~> 0.13.1"},
-      {:ecto_enum, "~> 1.3"},
-      {:poison, "~> 4.0.1"},
-      {:httpoison, "~> 1.6"},
-      {:distillery, "~> 2.0"},
-      {:timex, "~> 3.0"},
       {:mix_test_watch, "~> 1.0", only: :test},
       {:ex_machina, "~> 2.4", only: :test},
       {:mox, "~> 0.5", only: :test},
+      {:phoenix, "~> 1.5.0"},
+      {:phoenix_pubsub, "~> 2.0"},
+      {:phoenix_ecto, "~> 4.0"},
+      {:phoenix_html, "~> 2.1"},
+      {:phoenix_slime, "~> 0.13.1"},
+      {:argon2_elixir, "~> 2.0"},
+      {:comeonin, "~> 5.3.0"},
+      {:ecto_sql, "~> 3.4.2"},
+      {:postgrex, ">= 0.0.0"},
+      {:gettext, "~> 0.11"},
+      {:jason, "~> 1.0"},
+      {:plug_cowboy, "~> 2.0"},
+      {:ecto_enum, "~> 1.3"},
+      {:httpoison, "~> 1.6"},
+      {:distillery, "~> 2.0"},
+      {:timex, "~> 3.0"},
+      {:bamboo, "~> 1.5"},
+      {:bamboo_smtp, "~> 2.0"},
       {:number, "~> 1.0.1"},
       {:phoenix_live_dashboard, "~> 0.1"}
     ]

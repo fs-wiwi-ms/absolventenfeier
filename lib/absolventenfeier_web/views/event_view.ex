@@ -3,7 +3,7 @@ defmodule AbsolventenfeierWeb.EventView do
 
   alias Absolventenfeier.Event
   alias Absolventenfeier.Event.Registration
-  alias Absolventenfeier.Ticketing.Order
+  alias Absolventenfeier.Ticketing.{Order, Payment}
 
   def user_registerd_for_event(event, user) do
     Event.user_registerd_for_event(event.id, user.id)
