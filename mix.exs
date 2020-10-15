@@ -44,7 +44,7 @@ defmodule Absolventenfeier.MixProject do
       {:phoenix_slime, "~> 0.13.1"},
       {:argon2_elixir, "~> 2.0"},
       {:comeonin, "~> 5.3.0"},
-      {:ecto_sql, "~> 3.4.2"},
+      {:ecto_sql, "~> 3.5.1"},
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
