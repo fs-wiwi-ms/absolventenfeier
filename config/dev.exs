@@ -2,18 +2,10 @@ use Mix.Config
 
 config :logger, level: :info
 
-database_url =
-  System.get_env("DATABASE_URL") ||
-    raise """
-    environment variable DATABASE_URL is missing.
-    For example: ecto://USER:PASS@HOST/DATABASE
-    """
-
 # Configure your database
 config :absolventenfeier, Absolventenfeier.Repo,
   show_sensitive_data_on_connection_error: true,
-  pool_size: 10,
-  url: database_url
+  pool_size: 10
 
 # For development, we disable any cache and enable
 # debugging and code reloading.

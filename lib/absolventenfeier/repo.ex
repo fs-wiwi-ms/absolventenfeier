@@ -4,9 +4,10 @@ defmodule Absolventenfeier.Repo do
     adapter: Ecto.Adapters.Postgres
 
   @doc """
-  Callback for dynamic configured options
+  Dynamically loads the repository url from the
+  DATABASE_URL environment variable.
   """
   def init(_, opts) do
-    {:ok, opts}
+    {:ok, Keyword.put(opts, :url, System.get_env("DATABASE_URL"))}
   end
 end
