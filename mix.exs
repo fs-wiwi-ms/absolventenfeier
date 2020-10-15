@@ -55,8 +55,6 @@ defmodule Absolventenfeier.MixProject do
       {:timex, "~> 3.0"},
       {:bamboo, "~> 1.5"},
       {:bamboo_smtp, "~> 2.0"},
-      {:swoosh, "~> 1.0"},
-      {:gen_smtp, "~> 0.13"},
       {:number, "~> 1.0.1"},
       {:phoenix_live_dashboard, "~> 0.1"}
     ]
