@@ -26,6 +26,17 @@ jobs:
           platforms: linux/amd64 #,linux/arm64,linux/386
           push: true
           tags: ghcr.io/fs-wiwi-ms/absolventenfeier:latest
+        env:
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          SECRET_KEY_BASE: ${{secrets.SECRET_KEY_BASE}}
+          MOLLIE_API_KEY: ${{secrets.MOLLIE_API_KEY}}
+          LIVE_VIEW_SIGNING_SALT: ${{secrets.LIVE_VIEW_SIGNING_SALT}}
+          HOST: ${{secrets.HOST}}
+          SMTP_HOST: ${{secrets.SMTP_HOST}}
+          SMTP_USER_NAME: ${{secrets.SMTP_USER_NAME}}
+          SMTP_PASSWORD: ${{secrets.SMTP_PASSWORD}}
+          SMTP_PORT: ${{secrets.SMTP_PORT}}
+          SMTP_ADDRESS: ${{secrets.SMTP_ADDRESS}}
         if: github.ref == 'refs/heads/production'
       - name: Build and push
         uses: docker/build-push-action@v2
@@ -35,4 +46,15 @@ jobs:
           platforms: linux/amd64 #,linux/arm64,linux/386
           push: true
           tags: ghcr.io/fs-wiwi-ms/absolventenfeier:master
+        env:
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          SECRET_KEY_BASE: ${{secrets.SECRET_KEY_BASE}}
+          MOLLIE_API_KEY: ${{secrets.MOLLIE_API_KEY}}
+          LIVE_VIEW_SIGNING_SALT: ${{secrets.LIVE_VIEW_SIGNING_SALT}}
+          HOST: ${{secrets.HOST}}
+          SMTP_HOST: ${{secrets.SMTP_HOST}}
+          SMTP_USER_NAME: ${{secrets.SMTP_USER_NAME}}
+          SMTP_PASSWORD: ${{secrets.SMTP_PASSWORD}}
+          SMTP_PORT: ${{secrets.SMTP_PORT}}
+          SMTP_ADDRESS: ${{secrets.SMTP_ADDRESS}}
         if: github.ref == 'refs/heads/master'
