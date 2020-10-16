@@ -155,33 +155,36 @@
                         span.is-danger = gettext("Not ordered yet")
 
               div.column(align="right")
-              = case user_ordered_for_event(event, @user) do
-                - %Order{} = order ->
-                  = case get_payment_status_for_order(order) do
-                      - :none ->
-                        = form_for @conn, order_path(@conn, :delete, order.id), [method: :delete], fn _form ->
-                          button.button.is-danger.is-outlined(type="submit")
-                            span.icon
-                              i.fas.fa-times
-                            span = gettext("Delete order")
-                        a.button.is-primary.is-outlined(href="#{order_path(@conn, :edit, order.id)}")
-                          span.icon
-                            i.fas.fa-pen
-                          span = gettext("Change order")
-                        a.button.is-primary.is-outlined(href="#{order_payment_path(@conn, :new, order.id)}")
-                          span.icon
-                            i.fas.fa-money-bill
-                          span = gettext("Pay now!")
-                      - n when n in [:open, :paid] ->
-                        - payment = Payment.get_payment_by_order_id(order.id)
-                        a.button.is-primary.is-outlined(href="#{payment_path(@conn, :show, payment.id)}")
-                          span.icon
-                            i.fas.fa-money-bill
-                          span = gettext("Show payment!")
-                      - n when n in [:error] ->
+              = case user_registerd_for_event(event, @user) do
+                - %Registration{} = registration ->
+                  = case user_ordered_for_event(event, @user) do
+                    - %Order{} = order ->
+                      = case get_payment_status_for_order(order) do
+                          - :none ->
+                            = form_for @conn, order_path(@conn, :delete, order.id), [method: :delete], fn _form ->
+                              button.button.is-danger.is-outlined(type="submit")
+                                span.icon
+                                  i.fas.fa-times
+                                span = gettext("Delete order")
+                            a.button.is-primary.is-outlined(href="#{order_path(@conn, :edit, order.id)}")
+                              span.icon
+                                i.fas.fa-pen
+                              span = gettext("Change order")
+                            a.button.is-primary.is-outlined(href="#{order_payment_path(@conn, :new, order.id)}")
+                              span.icon
+                                i.fas.fa-money-bill
+                              span = gettext("Pay now!")
+                          - n when n in [:open, :paid] ->
+                            - payment = Payment.get_payment_by_order_id(order.id)
+                            a.button.is-primary.is-outlined(href="#{payment_path(@conn, :show, payment.id)}")
+                              span.icon
+                                i.fas.fa-money-bill
+                              span = gettext("Show payment!")
+                          - n when n in [:error] ->
+                    - nil ->
+                      a.button.is-primary.is-outlined(href="#{event_order_path(@conn, :new, event.id)}")
+                        span.icon
+                          i.fas.fa-ticket-alt
+                        span = gettext("Order now")
                 - nil ->
-                  a.button.is-primary.is-outlined(href="#{event_order_path(@conn, :new, event.id)}")
-                    span.icon
-                      i.fas.fa-ticket-alt
-                    span = gettext("Order now")
           - _ ->
