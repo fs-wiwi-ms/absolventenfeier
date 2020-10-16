@@ -1,7 +1,7 @@
 ##
 # Assets
 
-FROM node:14.13.0-slim AS assets
+FROM node:14-slim AS assets
 
 RUN set -xe; \
     apt-get update; \
@@ -21,7 +21,6 @@ ARG ENV=prod
 ENV NODE_ENV $ENV
 
 RUN yarn install
-RUN ls -lah ./node_modules/.bin
 
 RUN yarn run deploy
 # RUN if [ "$ENV" = "prod" ]; then yarn run deploy; fi

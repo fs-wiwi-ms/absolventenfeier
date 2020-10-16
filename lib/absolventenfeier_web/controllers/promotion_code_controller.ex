@@ -28,7 +28,7 @@ defmodule AbsolventenfeierWeb.PromotionCodeController do
       {:error, _changeset} ->
         conn
         |> put_flash(:error, gettext("Error while checking promotion code!"))
-        |> redirect(to: order_payment_path(conn, :new, promotion_code.order_id))
+        |> redirect(to: order_payment_path(conn, :new, order_id))
     end
   end
 

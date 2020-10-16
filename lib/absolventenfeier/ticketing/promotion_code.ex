@@ -23,6 +23,7 @@ defmodule Absolventenfeier.Ticketing.PromotionCode do
   defp changeset(promotion_code, attrs) do
     promotion_code
     |> cast(attrs, [:code])
+    |> validate_length(:code, min: 5, message: "")
     |> put_assoc(:order, attrs["order"] || promotion_code.order)
     |> put_assoc(:promotion, attrs["promotion"] || promotion_code.promotion)
   end
