@@ -74,21 +74,19 @@ defmodule AbsolventenfeierWeb.Endpoint do
       port =
         System.get_env("PORT") ||
           raise """
-          environment variable HOST is missing.
+          environment variable PORT is missing.
           """
 
       config =
         config
         |> Keyword.put(:secret_key_base, secret_key_base)
         |> Keyword.put(:live_view, signing_salt: live_view_signing_salt)
-        |> Keyword.put(:http,
-          signing_salt: [
+        |> Keyword.put(:http, [
             port: port,
             transport_options: [socket_opts: [:inet6]]
           ]
         )
-        |> Keyword.put(:url,
-          signing_salt: [
+        |> Keyword.put(:url, [
             host: host,
             port: 443
           ]

@@ -60,7 +60,7 @@ defmodule Absolventenfeier.User.PasswordResetToken do
       {:ok, token} ->
         user
         |> Email.password_reset_email(token)
-        |> Mailer.deliver_now()
+        # |> Mailer.deliver_now()
 
       _other ->
         nil

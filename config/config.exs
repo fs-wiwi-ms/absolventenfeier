@@ -11,7 +11,7 @@ config :absolventenfeier,
   ecto_repos: [Absolventenfeier.Repo]
 
 config :absolventenfeier, Absolventenfeier.Repo,
-  pool_size: 10,
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   log: false
 
 # Configures the endpoint

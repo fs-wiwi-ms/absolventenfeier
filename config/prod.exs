@@ -10,27 +10,24 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 
-config :absolventenfeier, Absolventenfeier.Repo,
-  ssl: true,
-  adapter: Ecto.Adapters.Postgres,
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
-
 config :absolventenfeier, AbsolventenfeierWeb.Endpoint,
   load_from_system_env: true,
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true
 
-config :absolventenfeier, Absolventenfeier.Mailer,
-  adapter: Bamboo.SMTPAdapter,
-  server: {:system, "SMTP_HOST"},
-  hostname: {:system, "HOST"},
-  port: {:system, "SMTP_PORT"},
-  username: {:system, "SMTP_USERNAME"},
-  password: {:system, "SMTP_PASSWORD"},
-  from_address: {:system, "SMTP_FROM_ADDRESS"},
-  ssl: true,
-  tls: :always,
-  auth: :always
+# config :absolventenfeier, Absolventenfeier.Mailer,
+#   adapter: Bamboo.SMTPAdapter,
+#   server: "smtp.office365.com",
+#   hostname: "absolventenfeier.fachschaft-wiwi.ms",
+#   port: 587,
+#   username: {:system, "SMTP_USERNAME"},
+#   password: {:system, "SMTP_PASSWORD"},
+#   tls: :never,
+#   allowed_tls_versions: [:"tlsv1", :"tlsv1.1", :"tlsv1.2"],
+#   ssl: false,
+#   retries: 1,
+#   no_mx_lookups: false,
+#   auth: :always
 
 # Do not print debug messages in production
 config :logger, level: :info

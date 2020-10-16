@@ -17,6 +17,8 @@ services:
       MOLLIE_API_KEY: test_b6Vkb4GQRhaDafGgJHferuWcGdVRpm
       SMTP_ADDRESS: test@absolventenfeier.de
       HOST: hoge.cloud:3000
+      LIVE_VIEW_SIGNING_SALT: wi1jaiJei4aiZuDi5Roab3saengeem7h
+      PORT: 4000
     ports:
       - "4000:4000"
 
