@@ -16,7 +16,7 @@ defmodule Absolventenfeier.User.Email do
     |> to(user.email)
     |> from(System.get_env("SMTP_FROM_ADDRESS"))
     |> subject(dgettext("email", "reset_password"))
-    |> html_body(password_reset_url)
-    |> text_body(password_reset_url)
+    |> html_body(System.get_env("HOST") <> password_reset_url)
+    |> text_body(System.get_env("HOST") <> password_reset_url)
   end
 end
