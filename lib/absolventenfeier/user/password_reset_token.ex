@@ -23,7 +23,6 @@ defmodule Absolventenfeier.User.PasswordResetToken do
   end
 
   @doc false
-  @spec changeset(Token.t(), map) :: Ecto.Changeset.t()
   def changeset(token, attrs) do
     token
     |> cast(attrs, [:user_id])

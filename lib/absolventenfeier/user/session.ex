@@ -36,7 +36,6 @@ defmodule Absolventenfeier.User.Session do
     timestamps()
   end
 
-  @spec changeset(Absolventenfeier.Session.t(), map) :: Ecto.Changeset.t()
   defp changeset(session, %{refresh_token: false} = attrs) do
     session
     |> cast(attrs, [:user_agent, :ip])
@@ -62,7 +61,6 @@ defmodule Absolventenfeier.User.Session do
   @access_token_validity 24 * 60 * 60
 
   # Returns wether a session has a valid access token.
-  @spec valid_access_token?(Absolventenfeier.Session.t(), String.t()) :: boolean
   defp valid_access_token?(_, nil), do: false
 
   defp valid_access_token?(session, access_token) do
@@ -75,7 +73,6 @@ defmodule Absolventenfeier.User.Session do
   @refresh_token_validity 90 * 24 * 60 * 60
 
   # Returns wether a session's refresh token is valid.
-  @spec valid_refresh_token?(Absolventenfeier.Session.t(), String.t()) :: boolean
   defp valid_refresh_token?(_, nil), do: false
 
   defp valid_refresh_token?(session, refresh_token) do
@@ -95,8 +92,6 @@ defmodule Absolventenfeier.User.Session do
   If the access token is expired but the refresh token is valid it will issue
   a new set of tokens which will be included in the returned session.
   """
-  @spec verify_session(String.t() | nil, String.t() | nil) ::
-          {:ok, Absolventenfeier.User.Session.t()} | {:error, String.t()}
   def verify_session(access_token, refresh_token)
 
   def verify_session(nil, nil) do
@@ -145,21 +140,12 @@ defmodule Absolventenfeier.User.Session do
     end
   end
 
-  # @doc "Lists sessions of a user by user_id"
-  # @spec list_sessions(String.t()) :: [Session.t()]
-  # def list_sessions(user_id) do
-  #   Repo.all(from(s in Session, where: s.user_id == ^user_id))
-  # end
-
   @doc "Fetches a session"
-  @spec get_session!(String.t()) :: Absolventenfeier.User.Session.t()
   def get_session!(id) do
     Repo.get!(Absolventenfeier.User.Session, id)
   end
 
   @doc "Creates a session for a user identified by email and password"
-  @spec create_session(String.t(), String.t(), Map.t()) ::
-          {:ok, Absolventenfeier.User.Session.t()} | {:error, atom}
   def create_session(email, password, params) do
     with {:ok, user} <-
            User
@@ -179,8 +165,6 @@ defmodule Absolventenfeier.User.Session do
   end
 
   @doc "Creates a session for a user *without verifying its password."
-  @spec create_session(User.t(), Map.t()) ::
-          {:ok, Absolventenfeier.User.Session.t()} | {:error, atom}
   def create_session(user, params) do
     user
     |> Ecto.build_assoc(:sessions)
@@ -189,8 +173,6 @@ defmodule Absolventenfeier.User.Session do
   end
 
   @doc "Delete session"
-  @spec delete_session(Absolventenfeier.User.Session.t()) ::
-          {:ok, Absolventenfeier.User.Session.t()}
   def delete_session(session) do
     Repo.delete(session)
   end

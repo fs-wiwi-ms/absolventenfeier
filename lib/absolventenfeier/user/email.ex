@@ -3,7 +3,6 @@ defmodule Absolventenfeier.User.Email do
   import AbsolventenfeierWeb.Gettext
 
   @doc "Creates a new email for user with password_reset_url and password_reset_token"
-  @spec password_reset_email(User.t(), Token.t()) :: Email.t()
   def password_reset_email(user, token) do
     password_reset_url =
       AbsolventenfeierWeb.Router.Helpers.public_password_reset_token_path(

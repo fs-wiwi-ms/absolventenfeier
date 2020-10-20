@@ -60,5 +60,23 @@ config :absolventenfeier, Absolventenfeier.Mailer,
   no_mx_lookups: false,
   auth: :always
 
+sentry_dsn =
+  System.get_env("SENTRY_DSN") ||
+    raise """
+    environment variable SENTRY_DSN is missing.
+    You can generate one by calling: mix phx.gen.secret
+    """
+
+config :sentry,
+  dsn: sentry_dsn,
+  environment_name: :prod,
+  enable_source_code_context: true,
+  root_source_code_path: File.cwd!(),
+  tags: %{
+    env: "production"
+  },
+  included_environments: [:prod]
+
 # Do not print debug messages in production
-config :logger, level: :info
+config :logger,
+  backends: [:console, Sentry.LoggerBackend]

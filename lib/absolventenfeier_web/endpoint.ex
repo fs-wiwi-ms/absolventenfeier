@@ -1,4 +1,5 @@
 defmodule AbsolventenfeierWeb.Endpoint do
+  use Sentry.PlugCapture
   use Phoenix.Endpoint, otp_app: :absolventenfeier
 
   socket "/socket", AbsolventenfeierWeb.UserSocket,
@@ -37,6 +38,8 @@ defmodule AbsolventenfeierWeb.Endpoint do
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
 
+  plug Sentry.PlugContext
+
   plug Plug.MethodOverride
   plug Plug.Head
 
@@ -44,9 +47,9 @@ defmodule AbsolventenfeierWeb.Endpoint do
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
-    store: :cookie,
-    key: "_absolventenfeier_key",
-    signing_salt: "THszJmjd"
+  store: :cookie,
+  key: "_absolventenfeier_key",
+  signing_salt: "THszJmjd"
 
   plug AbsolventenfeierWeb.Router
 
@@ -54,7 +57,6 @@ defmodule AbsolventenfeierWeb.Endpoint do
   It receives the endpoint configuration and checks if
   configuration should be loaded from the system environment.
   """
-  @spec init(atom, Keyword.t()) :: {:ok, Keyword.t()} | no_return
   def init(_key, config) do
     {:ok, config}
   end
