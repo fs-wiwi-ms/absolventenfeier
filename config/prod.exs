@@ -15,19 +15,50 @@ config :absolventenfeier, AbsolventenfeierWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true
 
-# config :absolventenfeier, Absolventenfeier.Mailer,
-#   adapter: Bamboo.SMTPAdapter,
-#   server: "smtp.office365.com",
-#   hostname: "absolventenfeier.fachschaft-wiwi.ms",
-#   port: 587,
-#   username: {:system, "SMTP_USERNAME"},
-#   password: {:system, "SMTP_PASSWORD"},
-#   tls: :never,
-#   allowed_tls_versions: [:"tlsv1", :"tlsv1.1", :"tlsv1.2"],
-#   ssl: false,
-#   retries: 1,
-#   no_mx_lookups: false,
-#   auth: :always
+  secret_key_base =
+  System.get_env("SECRET_KEY_BASE") ||
+    raise """
+    environment variable SECRET_KEY_BASE is missing.
+    You can generate one by calling: mix phx.gen.secret
+    """
+
+live_view_signing_salt =
+  System.get_env("LIVE_VIEW_SALT") ||
+    raise """
+    environment variable LIVE_VIEW_SALT is missing.
+    You can generate one by calling: mix phx.gen.secret
+    """
+
+config :absolventenfeier, AbsolventenfeierWeb.Endpoint,
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  server: true,
+  url: [
+    host: System.get_env("HOST"),
+    port: 443,
+    scheme: "https"
+  ],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  http: [:inet6, port: String.to_integer(System.get_env("PORT") || "4000")],
+  secret_key_base: secret_key_base,
+  live_view: [
+    signing_salt: live_view_signing_salt
+  ]
+
+config :absolventenfeier, Absolventenfeier.Repo, ssl: true
+
+config :absolventenfeier, AbsolventenfeierWeb.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: System.get_env("SMTP_SERVER"),
+  hostname: System.get_env("HOST"),
+  port: System.get_env("SMTP_PORT"),
+  username: System.get_env("SMTP_USERNAME"),
+  password: System.get_env("SMTP_PASSWORD"),
+  tls: :always,
+  allowed_tls_versions: [:tlsv1, :"tlsv1.1", :"tlsv1.2"],
+  ssl: false,
+  retries: 1,
+  no_mx_lookups: false,
+  auth: :always
 
 # Do not print debug messages in production
 config :logger, level: :info
