@@ -46,7 +46,7 @@ config :absolventenfeier, AbsolventenfeierWeb.Endpoint,
 
 config :absolventenfeier, Absolventenfeier.Repo, ssl: true
 
-config :absolventenfeier, AbsolventenfeierWeb.Mailer,
+config :absolventenfeier, Absolventenfeier.Mailer,
   adapter: Bamboo.SMTPAdapter,
   server: System.get_env("SMTP_SERVER"),
   hostname: System.get_env("HOST"),
