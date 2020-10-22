@@ -976,7 +976,7 @@ msgstr "Passwort erfolgreich geändert"
 #, elixir-format
 #: lib/absolventenfeier_web/templates/payment/show.html.slime:46
 msgid "Please pay the sum to the bank account till the 6th November 2020. We will confirm that your payment arrived after that."
-msgstr "Bitte bezahle die aufgeführte Summe auf das oben genannte Konto bis zum 6. September. Wir werden die Bezahlung anschließend bestätigen."
+msgstr "Bitte bezahle die aufgeführte Summe auf das oben genannte Konto bis zum 6. November. Wir werden die Bezahlung anschließend bestätigen."
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/layout/app.html.slime:86

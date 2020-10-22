@@ -28,7 +28,7 @@ RUN yarn run deploy
 ##
 # App
 
-FROM elixir:1.9.4-slim AS app
+FROM elixir:1.10-slim AS app
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends \
