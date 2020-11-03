@@ -22,5 +22,6 @@ defmodule AbsolventenfeierWeb.RegistrationView do
   defp get_class_for_tag(:information_systems), do: "is-danger"
   defp get_class_for_tag(:economics), do: "is-info"
   defp get_class_for_tag(:business_economics), do: "is-link"
-  defp get_class_for_tag(:none), do: ""
+  defp get_class_for_tag(:interdisciplinary_studies), do: "is-warning"
+  defp get_class_for_tag(_), do: ""
 end
