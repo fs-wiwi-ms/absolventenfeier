@@ -69,7 +69,7 @@ If you like you can run `bin/test up`, which will start a separate stack which c
 ### Yarn
 
 * Check for outdated deps with `bin/compose run assets yarn outdated` and maybe change version constraints in `assets/package.json`.
-* Run `bin/compose run assets yarn ugrade`
+* Run `bin/compose run assets yarn upgrade`
 * Check app for errors before commiting
 
 ## Hosting and Deployment

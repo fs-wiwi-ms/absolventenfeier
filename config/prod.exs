@@ -15,7 +15,7 @@ config :absolventenfeier, AbsolventenfeierWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true
 
-  secret_key_base =
+secret_key_base =
   System.get_env("SECRET_KEY_BASE") ||
     raise """
     environment variable SECRET_KEY_BASE is missing.

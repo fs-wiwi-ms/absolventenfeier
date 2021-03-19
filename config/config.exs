@@ -33,8 +33,7 @@ config :phoenix, :template_engines,
   slim: PhoenixSlime.Engine,
   slime: PhoenixSlime.Engine
 
-config :absolventenfeier, :mollie,
-  api_url: "https://api.mollie.com/v2/"
+config :absolventenfeier, :mollie, api_url: "https://api.mollie.com/v2/"
 
 config :gettext, :default_locale, "de"
 
