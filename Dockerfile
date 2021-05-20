@@ -22,8 +22,7 @@ ENV NODE_ENV $ENV
 
 RUN yarn install
 
-RUN yarn run deploy
-# RUN if [ "$ENV" = "prod" ]; then yarn run deploy; fi
+RUN if [ "$ENV" = "prod" ]; then yarn run deploy; fi
 
 ##
 # App

@@ -43,4 +43,5 @@ div.box
           div.control
             input.input(type="text" value="#{@payment.amount_value}" readonly="true")
 
-  p = gettext("Please pay the sum to the bank account till the 6th November 2020. We will confirm that your payment arrived after that.")
+  = if (@payment.order.event.date_of_payments) do
+    p = gettext("Please pay the sum to the bank account till the %{date}. We will confirm that your payment arrived after that.", date: Timex.format!(@payment.order.event.date_of_payments, "{0D}.{0M}.{YYYY}"))

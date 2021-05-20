@@ -49,7 +49,7 @@ defmodule AbsolventenfeierWeb.PaymentController do
   end
 
   def show(conn, %{"id" => id}) do
-    payment = Payment.get_payment(id)
+    payment = Payment.get_payment(id, [order: [:event]])
 
     render(conn, "show.html", %{payment: payment})
   end

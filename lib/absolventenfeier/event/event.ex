@@ -20,6 +20,7 @@ defmodule Absolventenfeier.Event do
     field(:date_of_event, :date, default: nil)
     field(:date_of_registration, :utc_datetime, default: nil)
     field(:date_of_tickets, :utc_datetime, default: nil)
+    field(:date_of_payments, :date, default: nil)
     field(:start_of_registration, :utc_datetime, default: nil)
     field(:start_of_tickets, :utc_datetime, default: nil)
 
@@ -39,6 +40,7 @@ defmodule Absolventenfeier.Event do
       :date_of_event,
       :date_of_registration,
       :date_of_tickets,
+      :date_of_payments,
       :start_of_registration,
       :start_of_tickets
     ])
