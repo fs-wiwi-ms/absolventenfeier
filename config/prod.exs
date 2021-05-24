@@ -60,20 +60,25 @@ config :absolventenfeier, Absolventenfeier.Mailer,
   no_mx_lookups: false,
   auth: :always
 
+sentry_env =
+  System.get_env("SENTRY_ENV") ||
+    raise """
+    environment variable SENTRY_ENV is missing.
+    """
+
 sentry_dsn =
   System.get_env("SENTRY_DSN") ||
     raise """
     environment variable SENTRY_DSN is missing.
-    You can generate one by calling: mix phx.gen.secret
     """
 
 config :sentry,
   dsn: sentry_dsn,
-  environment_name: :prod,
+  environment_name: String.to_atom(sentry_env),
   enable_source_code_context: true,
   root_source_code_path: File.cwd!(),
   tags: %{
-    env: "production"
+    env: sentry_env
   },
   included_environments: [:prod]
 

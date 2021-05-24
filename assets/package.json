@@ -10,7 +10,7 @@
     "bulma": "^0.9.0",
     "bulma-checkradio": "^1.1.1",
     "bulma-divider": "^0.2.0",
-    "bulma-steps": "^2.2.1",
+    "bulma-o-steps": "^1.1.0",
     "bulma-switch": "^2.0.0",
     "bulma-tooltip": "^3.0.2",
     "flatpickr": "^4.6.3",
@@ -37,7 +37,7 @@
     "tslint-loader": "^3.5.4",
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^4.0.0",
-    "webpack": "^5.1.0",
+    "webpack": "^5.37.1",
     "webpack-cli": "^4.0.0"
   }
 }

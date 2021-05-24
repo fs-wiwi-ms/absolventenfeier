@@ -1,4 +1,4 @@
-div.steps
+ul.steps.is-small
   = case registration_step(@event, @user) do
     - 1 ->
       = step("", "", "fa fa-clock", gettext("Registration"), gettext("Registration is still closed. It opens at %{time}.", time: Timex.format!(Timex.Timezone.convert(@event.start_of_registration, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")))

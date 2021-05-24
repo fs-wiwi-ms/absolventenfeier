@@ -22,16 +22,16 @@ defmodule AbsolventenfeierWeb.EventView do
   end
 
   def step(tag_color, state, icon, title, description) do
-    content_tag :div, class: "step-item #{tag_color} #{state}" do
+    content_tag :li, class: "steps-segment #{state}" do
       [
-        content_tag :div, class: "step-marker" do
+        content_tag :a, class: "steps-marker #{tag_color}" do
           content_tag :span, class: "icon" do
             content_tag(:i, "", class: "#{icon}")
           end
         end,
-        content_tag :div, class: "step-details" do
+        content_tag :div, class: "steps-content" do
           [
-            content_tag :p, class: "step-title" do
+            content_tag :p, class: "is-size-4" do
               title
             end,
             content_tag :p do
