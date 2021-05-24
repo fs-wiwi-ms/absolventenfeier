@@ -36,7 +36,7 @@ defmodule Absolventenfeier.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:mix_test_watch, "~> 1.0", only: :test},
       {:ex_machina, "~> 2.4", only: :test},
-      {:mox, "~> 0.5", only: :test},
+      {:mox, "~> 1.0", only: :test},
       {:phoenix, "~> 1.5.0"},
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.0"},
