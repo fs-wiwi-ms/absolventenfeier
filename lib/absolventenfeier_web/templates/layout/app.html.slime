@@ -101,3 +101,5 @@ html(lang="en")
       gtag('js', new Date());
 
       gtag('config', 'UA-87690156-4');
+
+    script(async="true" defer="true" data-domain="absolventenfeier.fachschaft-wiwi.ms" src="https://plausible.io/js/plausible.js")
