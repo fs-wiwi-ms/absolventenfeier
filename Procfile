@@ -1,1 +1,1 @@
-release: eval "Klausurarchiv.Release.migrate"
+release: eval "Absolventenfeier.Release.migrate"

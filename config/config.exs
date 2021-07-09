@@ -19,8 +19,7 @@ config :absolventenfeier, AbsolventenfeierWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [view: AbsolventenfeierWeb.ErrorView, accepts: ~w(html json)],
   pubsub_server: Absolventenfeier.PubSub,
-  secret_key_base: "5HjSFjyGix751ubR/igyrzbfby3NsOc2Dn4DxldR4hpoqKIa3YEosx3psppajJRw",
-  live_view: [signing_salt: "pwCwZuECFRuIQKmFS1mblLgc68jg5dOw"]
+  secret_key_base: "5HjSFjyGix751ubR/igyrzbfby3NsOc2Dn4DxldR4hpoqKIa3YEosx3psppajJRw"
 
 # Configures Elixir's Logger
 config :logger, :console,
