@@ -11,15 +11,16 @@ config :absolventenfeier,
   ecto_repos: [Absolventenfeier.Repo]
 
 config :absolventenfeier, Absolventenfeier.Repo,
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-  log: false
+  log: false,
+  start_apps_before_migration: [:ssl]
 
 # Configures the endpoint
 config :absolventenfeier, AbsolventenfeierWeb.Endpoint,
-  http: [:inet6, port: 4000],
   url: [host: "localhost"],
   render_errors: [view: AbsolventenfeierWeb.ErrorView, accepts: ~w(html json)],
-  pubsub_server: Absolventenfeier.PubSub
+  pubsub_server: Absolventenfeier.PubSub,
+  secret_key_base: "5HjSFjyGix751ubR/igyrzbfby3NsOc2Dn4DxldR4hpoqKIa3YEosx3psppajJRw",
+  live_view: [signing_salt: "pwCwZuECFRuIQKmFS1mblLgc68jg5dOw"]
 
 # Configures Elixir's Logger
 config :logger, :console,

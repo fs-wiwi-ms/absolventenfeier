@@ -1,8 +1,6 @@
 defmodule AbsolventenfeierWeb.Router do
   use AbsolventenfeierWeb, :router
 
-  import Phoenix.LiveDashboard.Router
-
   pipeline :unsecure_browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -78,11 +76,6 @@ defmodule AbsolventenfeierWeb.Router do
     resources "/payments", PaymentController, only: [:show]
 
     resources "/sessions", SessionController, only: [:delete]
-  end
-
-  scope "/" do
-    pipe_through([:unsecure_browser, :admins_only])
-    live_dashboard "/dashboard"
   end
 
   scope "/api", AbsolventenfeierWeb do

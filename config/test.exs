@@ -7,8 +7,7 @@ config :absolventenfeier, Absolventenfeier.Repo, pool: Ecto.Adapters.SQL.Sandbox
 # you can enable the server option below.
 config :absolventenfeier, AbsolventenfeierWeb.Endpoint,
   http: [port: 4002],
-  server: false,
-  secret_key_base: "UrwGy41yrDwJsejSAcTrlVTIbyAUDZzIT5LQheRbcE6tltjuHKSnONcHvlX9+BwY"
+  server: false
 
 config :absolventenfeier, Absolventenfeier.Mailer, adapter: Bamboo.TestAdapter
 

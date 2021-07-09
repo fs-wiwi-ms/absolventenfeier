@@ -5,6 +5,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = (env, options) => ({
   optimization: {
@@ -81,5 +82,6 @@ module.exports = (env, options) => ({
         {from: "../static/", to: "./"}
       ],
     }),
+    new CompressionPlugin(),
   ],
 });

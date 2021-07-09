@@ -7,7 +7,7 @@ services:
       args:
         ENV: test
       target: app
-    command: sh -c "mix deps.get && mix test.watch --only wip"
+    command: sh -c "mix deps.get && mix ecto.migrate && mix test.watch --stale"
     depends_on:
       - db
       - sync

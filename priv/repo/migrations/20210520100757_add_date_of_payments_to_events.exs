@@ -5,7 +5,5 @@ defmodule Absolventenfeier.Repo.Migrations.AddDateOfPaymentsToEvents do
     alter table("events") do
       add :date_of_payments, :date
     end
-
-
   end
 end

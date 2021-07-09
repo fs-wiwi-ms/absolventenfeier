@@ -7,7 +7,7 @@ services:
       args:
         ENV: dev
       target: app
-    command: sh -c "mix deps.get && mix ecto.migrate && mix seed && mix phx.server"
+    command: sh -c "mix deps.get && mix ecto.migrate && mix run priv/repo/seeds.exs && mix phx.server"
     depends_on:
       - db
       - sync

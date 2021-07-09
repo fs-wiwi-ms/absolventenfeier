@@ -33,31 +33,31 @@ defmodule Absolventenfeier.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:mix_test_watch, "~> 1.0", only: :test},
+      {:appsignal_phoenix, "~> 2.0.0"},
+      {:appsignal, "~> 2.0"},
+      {:argon2_elixir, "~> 2.0"},
+      {:bamboo_smtp, "~> 3.0"},
+      {:bamboo, "~> 1.5"},
+      {:comeonin, "~> 5.3.0"},
+      {:ecto_enum, "~> 1.3"},
+      {:ecto_sql, "~> 3.5.1"},
       {:ex_machina, "~> 2.4", only: :test},
+      {:gettext, "~> 0.11"},
+      {:httpoison, "~> 1.6"},
+      {:jason, "~> 1.0"},
+      {:mix_test_watch, "~> 1.0", only: :test},
       {:mox, "~> 0.5", only: :test},
-      {:phoenix, "~> 1.5.0"},
-      {:phoenix_pubsub, "~> 2.0"},
+      {:number, "~> 1.0.1"},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.1"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_slime, "~> 0.13.1"},
-      {:argon2_elixir, "~> 2.0"},
-      {:comeonin, "~> 5.3.0"},
-      {:ecto_sql, "~> 3.5.1"},
+      {:phoenix, "~> 1.5.0"},
+      {:plug_cowboy, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
       {:sentry, "~> 8.0"},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
-      {:ecto_enum, "~> 1.3"},
-      {:httpoison, "~> 1.6"},
-      {:distillery, "~> 2.0"},
-      {:timex, "~> 3.0"},
-      {:bamboo, "~> 1.5"},
-      {:bamboo_smtp, "~> 3.0"},
-      {:number, "~> 1.0.1"},
-      {:phoenix_live_dashboard, "~> 0.1"}
+      {:timex, "~> 3.0"}
     ]
   end
 
@@ -69,11 +69,8 @@ defmodule Absolventenfeier.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      # cleanup: ["run priv/repo/cleanup.exs"],
-      # test: ["run priv/repo/block_test.exs"],
-      seed: ["run -e \"Absolventenfeier.DBTasks.seed()\" --no-start"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"],
-      "test.watch": ["ecto.create --quiet", "ecto.migrate", "test.watch"]
+      ci: ["deps.get", "test"]
     ]
   end
 end
