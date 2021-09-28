@@ -4,6 +4,3 @@ div.columns
 
 div.box
   = render "_form.html", assigns
-
-div.box
-  = render "_tickets.html", assigns

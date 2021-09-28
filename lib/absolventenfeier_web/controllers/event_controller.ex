@@ -50,7 +50,7 @@ defmodule AbsolventenfeierWeb.EventController do
       |> get_session(:user_id)
       |> User.get_user()
 
-    event = Event.get_event(id, [:tickets])
+    event = Event.get_event(id)
 
     case user.role do
       :admin ->

@@ -20,13 +20,13 @@ defmodule Absolventenfeier.Event do
     field(:date_of_event, :date, default: nil)
     field(:date_of_registration, :utc_datetime, default: nil)
     field(:date_of_tickets, :utc_datetime, default: nil)
-    field(:date_of_payments, :date, default: nil)
     field(:start_of_registration, :utc_datetime, default: nil)
     field(:start_of_tickets, :utc_datetime, default: nil)
+    field(:voucher_code, :string)
+    field(:pretix_shop_url, :string)
 
     belongs_to(:term, Absolventenfeier.Event.Term)
     has_many(:registrations, Absolventenfeier.Event.Registration, on_delete: :nothing)
-    has_many(:tickets, Absolventenfeier.Ticketing.Ticket, on_delete: :nothing)
 
     timestamps()
   end
@@ -40,13 +40,13 @@ defmodule Absolventenfeier.Event do
       :date_of_event,
       :date_of_registration,
       :date_of_tickets,
-      :date_of_payments,
       :start_of_registration,
-      :start_of_tickets
+      :start_of_tickets,
+      :voucher_code,
+      :pretix_shop_url
     ])
     |> put_assoc(:registrations, attrs["registrations"] || event.registrations)
     |> put_assoc(:term, attrs["term"] || event.term)
-    |> put_assoc(:tickets, attrs["tickets"] || event.tickets)
   end
 
   # -----------------------------------------------------------------
@@ -55,24 +55,15 @@ defmodule Absolventenfeier.Event do
 
   def get_events_for_registration() do
     Event
-    |> preload([:registrations, :term, :tickets])
+    |> preload([:registrations, :term])
     |> where([e], e.published)
     |> order_by([e, r], e.date_of_event)
     |> Repo.all()
   end
 
-  # def get_events_for_user(user_id) do
-  #   Event
-  #   |> join(:left, [e], r in assoc(e, :registrations))
-  #   |> where([e, r], r.user_id == ^user_id)
-  #   |> where([e, r], e.published)
-  #   |> order_by([e, r], e.date_of_event)
-  #   |> Repo.all()
-  # end
-
   def get_events() do
     Event
-    |> preload([:registrations, :term, :tickets])
+    |> preload([:registrations, :term])
     |> where([e], not e.archived)
     |> order_by([e, r], e.date_of_event)
     |> Repo.all()
@@ -95,7 +86,7 @@ defmodule Absolventenfeier.Event do
       |> Map.put("tickets", [])
 
     %Event{}
-    |> Repo.preload([:term, :registrations, :tickets])
+    |> Repo.preload([:term, :registrations])
     |> Event.changeset(event_params)
     |> Repo.insert()
   end
@@ -104,7 +95,7 @@ defmodule Absolventenfeier.Event do
     event =
       Event
       |> Repo.get(event_id)
-      |> Repo.preload([:term, :registrations, :tickets])
+      |> Repo.preload([:term, :registrations])
 
     term = Event.get_term(event_params["term_id"])
 
@@ -122,7 +113,7 @@ defmodule Absolventenfeier.Event do
     event =
       Event
       |> Repo.get(event_id)
-      |> Repo.preload([:term, :registrations, :tickets])
+      |> Repo.preload([:term, :registrations])
 
     event
     |> Event.changeset(%{"published" => false})
@@ -133,7 +124,7 @@ defmodule Absolventenfeier.Event do
     event =
       Event
       |> Repo.get(event_id)
-      |> Repo.preload([:term, :registrations, :tickets])
+      |> Repo.preload([:term, :registrations])
 
     event
     |> Event.changeset(%{"archived" => true})
@@ -144,7 +135,7 @@ defmodule Absolventenfeier.Event do
     event =
       Event
       |> Repo.get(event_id)
-      |> Repo.preload([:term, :registrations, :tickets])
+      |> Repo.preload([:term, :registrations])
 
     event
     |> Event.changeset(%{"published" => true})
@@ -157,7 +148,7 @@ defmodule Absolventenfeier.Event do
 
   def change_event(event \\ %Event{}, attrs \\ %{}) do
     event
-    |> Repo.preload([:term, :registrations, :tickets])
+    |> Repo.preload([:term, :registrations])
     |> Event.changeset(attrs)
   end
 

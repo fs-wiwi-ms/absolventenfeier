@@ -19,7 +19,7 @@ div.columns
           = select(registration_form, :course, @course_types)
     div.columns
       div.column
-        h5.title.is-5 = gettext("For the virtual graduation ceremony we want to send you a goodie bag. Herefore we need your adress.")
+        h5.title.is-5 = gettext("Due to the current situation, it is still uncertain how the event will take place. In case of a worsening of the situation, we need your address to be on the safe side.")
     div.columns.is-multiline
       div.column.is-6
         = label(registration_form, :street, gettext("Adress"))

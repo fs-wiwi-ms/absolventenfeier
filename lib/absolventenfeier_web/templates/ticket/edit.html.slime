@@ -1,6 +1,0 @@
-div.columns
-  div.column
-    h2.title.is-2 = gettext("Edit ticket")
-
-div.box
-  = render "_form.html", assigns

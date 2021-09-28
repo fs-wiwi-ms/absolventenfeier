@@ -1,16 +1,15 @@
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:138
-#: lib/absolventenfeier_web/templates/layout/app.html.slime:67
+#: lib/absolventenfeier_web/templates/layout/app.html.slime:70
 msgid "Error"
 msgstr "Fehler"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/layout/app.html.slime:53
+#: lib/absolventenfeier_web/templates/layout/app.html.slime:56
 msgid "Success"
 msgstr "Erfolg"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/layout/app.html.slime:91
+#: lib/absolventenfeier_web/templates/layout/app.html.slime:94
 msgid "Source Code"
 msgstr ""
 
@@ -106,7 +105,7 @@ msgid "WT"
 msgstr "WS"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/layout/app.html.slime:60
+#: lib/absolventenfeier_web/templates/layout/app.html.slime:63
 msgid "Warning"
 msgstr "Warnung"
 
@@ -279,9 +278,7 @@ msgid "Starts at"
 msgstr "Start"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/order/_form.html.slime:36
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:10 lib/absolventenfeier_web/templates/registration/index.html.slime:27
-#: lib/absolventenfeier_web/templates/ticket/_form.html.slime:18
+#: lib/absolventenfeier_web/templates/registration/index.html.slime:27
 msgid "Count"
 msgstr "Anzahl"
 
@@ -371,9 +368,7 @@ msgid "Registration"
 msgstr "Anmeldephase"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/_form.html.slime:34
-#: lib/absolventenfeier_web/templates/order/_form.html.slime:44 lib/absolventenfeier_web/templates/payment/new.html.slime:59
-#: lib/absolventenfeier_web/templates/ticket/_form.html.slime:31
+#: lib/absolventenfeier_web/templates/event/_form.html.slime:39
 msgid "Save"
 msgstr "Speichern"
 
@@ -393,9 +388,6 @@ msgstr "Semester"
 #: lib/absolventenfeier_web/controllers/event_controller.ex:133 lib/absolventenfeier_web/controllers/event_controller.ex:160
 #: lib/absolventenfeier_web/controllers/event_controller.ex:187 lib/absolventenfeier_web/controllers/event_controller.ex:214
 #: lib/absolventenfeier_web/controllers/event_controller.ex:246 lib/absolventenfeier_web/controllers/registration_controller.ex:20
-#: lib/absolventenfeier_web/controllers/ticket_controller.ex:25 lib/absolventenfeier_web/controllers/ticket_controller.ex:53
-#: lib/absolventenfeier_web/controllers/ticket_controller.ex:84 lib/absolventenfeier_web/controllers/ticket_controller.ex:115
-#: lib/absolventenfeier_web/controllers/ticket_controller.ex:144
 msgid "This action is permitted!"
 msgstr "Diese Aktion ist nicht erlaubt."
 
@@ -404,7 +396,6 @@ msgstr "Diese Aktion ist nicht erlaubt."
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:18 lib/absolventenfeier_web/templates/event/_steps.html.slime:20
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:22 lib/absolventenfeier_web/templates/event/_steps.html.slime:24
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:26 lib/absolventenfeier_web/templates/event/_steps.html.slime:28
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:30 lib/absolventenfeier_web/templates/event/_steps.html.slime:32
 msgid "Ticketing"
 msgstr "Kartenbestellzeitraum"
 
@@ -444,11 +435,6 @@ msgid "Available"
 msgstr "Verfügbar"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:169
-msgid "Change order"
-msgstr "Bestellung bearbeiten"
-
-#, elixir-format
 #: lib/absolventenfeier_web/templates/registration/new.html.slime:34
 msgid "City"
 msgstr "Stadt"
@@ -460,24 +446,8 @@ msgstr "Bestellung erstellen"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_tickets.html.slime:8
-#: lib/absolventenfeier_web/templates/ticket/new.html.slime:3
 msgid "Create ticket"
 msgstr "Ticket erstellen"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/order_controller.ex:74
-msgid "Creating order successful!"
-msgstr "Bestellung erfolgreich erstellt."
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/ticket_controller.ex:69
-msgid "Creating ticket successful!"
-msgstr "Ticket erfolgreich erstellt."
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:165
-msgid "Delete order"
-msgstr "Bestellung löschen"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_tickets.html.slime:41
@@ -485,23 +455,7 @@ msgid "Delete ticket"
 msgstr "Ticket löschen"
 
 #, elixir-format
-#: lib/absolventenfeier_web/controllers/order_controller.ex:128
-msgid "Deleting order successful!"
-msgstr "Bestellung erfolgreich gelöscht"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/ticket_controller.ex:133
-msgid "Deleting ticket successful!"
-msgstr "Ticket erfolgreich gelöscht"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/order/edit.html.slime:3
-msgid "Edit order"
-msgstr "Bestellung bearbeiten"
-
-#, elixir-format
 #: lib/absolventenfeier_web/templates/event/_tickets.html.slime:35
-#: lib/absolventenfeier_web/templates/ticket/edit.html.slime:3
 msgid "Edit ticket"
 msgstr "Ticket bearbeiten"
 
@@ -509,41 +463,6 @@ msgstr "Ticket bearbeiten"
 #: lib/absolventenfeier_web/controllers/event_controller.ex:208
 msgid "Error while archiving event!"
 msgstr "Fehler beim Archivieren des Events!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/order_controller.ex:79
-msgid "Error while creating order!"
-msgstr "Fehler bei der Erstellung der Bestellung!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/payment_controller.ex:46
-msgid "Error while creating payment!"
-msgstr "Fehler beim Erstellen der Zahlung!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/ticket_controller.ex:74
-msgid "Error while creating ticket!"
-msgstr "Fehler beim Erstellen des Tickets!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/order_controller.ex:133
-msgid "Error while deleting order!"
-msgstr "Fehler beim Löschen der Bestellung!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/ticket_controller.ex:138
-msgid "Error while deleting ticket!"
-msgstr "Fehler beim Löschen des Tickets!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/order_controller.ex:105
-msgid "Error while updating order!"
-msgstr "Fehler beim Bearbeiten der Bestellung!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/ticket_controller.ex:105
-msgid "Error while updating ticket!"
-msgstr "Fehler beim Bearbeiten des Tickets!"
 
 #, elixir-format
 #: lib/absolventenfeier_web/controllers/event_controller.ex:203
@@ -566,15 +485,15 @@ msgid "For the virtual graduation ceremony we want to send you a goodie bag. Her
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:52
+#: lib/absolventenfeier_web/templates/event/_steps.html.slime:48
+#: lib/absolventenfeier_web/templates/event/_steps.html.slime:50 lib/absolventenfeier_web/templates/event/_steps.html.slime:52
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:54 lib/absolventenfeier_web/templates/event/_steps.html.slime:56
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:58 lib/absolventenfeier_web/templates/event/_steps.html.slime:60
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:62 lib/absolventenfeier_web/templates/event/_steps.html.slime:64
+#: lib/absolventenfeier_web/templates/event/_steps.html.slime:58
 msgid "Graduation ceremony"
 msgstr "Absolventenfeier"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/layout/app.html.slime:29
+#: lib/absolventenfeier_web/templates/layout/app.html.slime:32
 msgid "Graducation Ceremony"
 msgstr "Absolventenfeier"
 
@@ -605,20 +524,13 @@ msgstr "Maximale Anzahl"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_tickets.html.slime:19
-#: lib/absolventenfeier_web/templates/ticket/_form.html.slime:24
 msgid "Max per User"
 msgstr "Maximale Anzahle für einen User"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_tickets.html.slime:17
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:33 lib/absolventenfeier_web/templates/ticket/_form.html.slime:6
 msgid "Name"
 msgstr "Name"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:152
-msgid "Not ordered yet"
-msgstr "Du hast noch keine Karten bestellt."
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/index.html.slime:71
@@ -626,63 +538,12 @@ msgid "Not registered yet"
 msgstr "Du bist noch nicht angemeldet."
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:185
+#: lib/absolventenfeier_web/templates/event/index.html.slime:98
 msgid "Order now"
 msgstr "Bestellung aufgeben"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:146
-msgid "Order successfull"
-msgstr "Bestellung erfolgreich"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:128
-msgid "Paid"
-msgstr "Bezahlt"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:114
-msgid "Paid with PayPal."
-msgstr "Bezahlt mit PayPal"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:126
-msgid "Paid with Sofort Banking."
-msgstr "Bezahlt mit Sofort"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:122
-msgid "Paid with bank transfer."
-msgstr "Bezahlt per Überweisung"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:118
-msgid "Paid with credit card."
-msgstr "Bezahlt mit Kreditkarte"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:173
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:77
-msgid "Pay now!"
-msgstr "Jetzt bezahlen!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:36
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:38 lib/absolventenfeier_web/templates/event/_steps.html.slime:40
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:42 lib/absolventenfeier_web/templates/event/_steps.html.slime:44
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:46 lib/absolventenfeier_web/templates/event/_steps.html.slime:48
-#: lib/absolventenfeier_web/templates/payment/show.html.slime:1
-msgid "Payment"
-msgstr "Bezahlung"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:104
-msgid "Pending"
-msgstr "Ausstehend"
-
-#, elixir-format
 #: lib/absolventenfeier_web/templates/event/_tickets.html.slime:18
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:9 lib/absolventenfeier_web/templates/ticket/_form.html.slime:12
 msgid "Price"
 msgstr "Preis"
 
@@ -697,15 +558,9 @@ msgid "Registration closed!"
 msgstr "Anmeldephase geschlossen"
 
 #, elixir-format
-#: lib/absolventenfeier_web/controllers/order_controller.ex:31
-#: lib/absolventenfeier_web/controllers/order_controller.ex:139
+#: lib/absolventenfeier_web/controllers/order_controller.ex:24
 msgid "Ticketing already closed!"
 msgstr "Kartenbestellzeitraum bereits geschlossen!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/order_controller.ex:58
-msgid "Ticketing closed!"
-msgstr "Kartenbestellzeitraum geschlossen!"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_tickets.html.slime:3
@@ -714,25 +569,9 @@ msgstr "Karten"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:14
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:32 lib/absolventenfeier_web/templates/event/_steps.html.slime:48
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:64
+#: lib/absolventenfeier_web/templates/event/_steps.html.slime:28 lib/absolventenfeier_web/templates/event/_steps.html.slime:58
 msgid "Unknown event state"
 msgstr "Nicht bekannter Eventstatus"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/order_controller.ex:100
-msgid "Updating order successful!"
-msgstr "Bestellung erfolgreich geändert!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/ticket_controller.ex:100
-msgid "Updating ticket successful!"
-msgstr "Event erfolgreich geändert!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:99
-msgid "We are waiting for the confirmation of your payment from our payment provider."
-msgstr "Wir warten auf die Bestätigung der Bezahlung durch unseren Provider"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/registration/new.html.slime:31
@@ -740,8 +579,7 @@ msgid "Zip code"
 msgstr "Postleitzahl"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:38
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:54
+#: lib/absolventenfeier_web/templates/event/_steps.html.slime:48
 msgid "As you did not complete all steps, you cannot participate."
 msgstr "Du hast leider nicht alle Schritte abgeschlossen, deshalb kannst du leider nicht an der Feier teilnehmen."
 
@@ -751,19 +589,9 @@ msgid "As you did not register for the event, you cannot participate."
 msgstr "Weil du dich nicht angemeldet hast kannst du leider nicht an der Feier teilnehmen."
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:60
+#: lib/absolventenfeier_web/templates/event/_steps.html.slime:56
 msgid "Hope you had fun! Good luck in your further life."
 msgstr "Wir hoffen du hattest Spaß, viel Glück in deinem weiteren Leben."
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:46
-msgid "Please pay the tickets."
-msgstr "Bitte bezahle deine bestellten Karten."
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:44
-msgid "There is an error in your payment."
-msgstr "Es ist ein Fehler in deiner Bezahlung aufgetreten. Bitte kontaktiere uns."
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:18
@@ -771,19 +599,9 @@ msgid "Ticketing is still closed. It will open after Registration is closed."
 msgstr "Der Kartenbestellzeitraum ist noch nicht geöffnet. Er wird nach der Anmeldephase öffnen."
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:58
+#: lib/absolventenfeier_web/templates/event/_steps.html.slime:54
 msgid "Today is the day!"
 msgstr "Heute ist dein Tag!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:40
-msgid "We are waiting that the money arrives in our bank account."
-msgstr "Wir warten darauf dass das Geld auf unserem Konto ankommt."
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:42
-msgid "We recieved your payment."
-msgstr "Wir haben deine Zahlung erhalten."
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:12
@@ -796,30 +614,9 @@ msgid "You are registered for the event."
 msgstr "Du bist für die Feier angemeldet."
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:62
-msgid "You can pay at the graducation ceremony aswell."
-msgstr "Du kannst auch auf der Absolventenfeier bezahlen."
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:56
-msgid "You did it! See you at the event."
-msgstr "Du hast es geschafft. Wir sehen uns auf der Feier."
-
-#, elixir-format
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:24
 msgid "You did not order tickets for the event."
 msgstr "Du hast keine Karten für die Feier bestellt."
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:36
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:52
-msgid "You do not have completed all the previous steps to participate at the ceremony."
-msgstr "Du hast nicht alle vorherigen Schritte abgeschlossen und kannst deshalb leider nicht teilnehmen."
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:30
-msgid "You ordered tickets for the event."
-msgstr "Du hast Karten für die Feier bestellt."
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:8
@@ -842,34 +639,9 @@ msgid "You are registered for the event. Registration is open till %{time}."
 msgstr "Du bist für die Feier angemeldet. Die Anmeldung ist offen bis zum %{time}."
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/_steps.html.slime:28
-msgid "You ordered tickets for the event. Ticketing is open till %{time}."
-msgstr "Du hast Karten für die Feier bestellt. Der Kartenbestellzeitraum ist offen bis zum %{time}."
-
-#, elixir-format
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:20
 msgid "Ticketing opens at %{time}."
 msgstr "Der Kartenbestellzeitraum ist offen ab dem %{time}."
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:42
-msgid "5€"
-msgstr ""
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/payment/show.html.slime:21
-msgid "BIC"
-msgstr ""
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/payment/show.html.slime:5
-msgid "Bank account"
-msgstr "Kontoinhaber"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:1
-msgid "Basket"
-msgstr "Warenkorb"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/password_reset_token/show.html.slime:2
@@ -877,49 +649,9 @@ msgid "Change password"
 msgstr "Passwort ändern"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:34
-msgid "Code"
-msgstr "Gutscheincode"
-
-#, elixir-format
 #: lib/absolventenfeier_web/controllers/password_reset_controller.ex:57
 msgid "Could not update password."
 msgstr "Passwort konnte nicht geändert werden."
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/payment_controller.ex:41
-msgid "Creating payment successful!"
-msgstr "Bezahlung erfolgreich erstellt."
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:49
-msgid "Delete promotion code"
-msgstr "Gutscheincode löschen"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/promotion_code_controller.ex:41
-msgid "Deleting promotion code successful!"
-msgstr "Gutscheincode erfolgreich gelöscht"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:35
-msgid "Discount"
-msgstr "Rabatt"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:23
-msgid "Discounts"
-msgstr "Gutscheincodes"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/promotion_code_controller.ex:30
-msgid "Error while checking promotion code!"
-msgstr "Fehler bei der Prüfung des Gutscheincodes!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/promotion_code_controller.ex:46
-msgid "Error while deleting promotion code!"
-msgstr "Fehler beim Löschen des Gutscheincodes!"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/session/new.html.slime:28
@@ -932,12 +664,7 @@ msgid "Forgot password"
 msgstr "Passwort vergessen"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/payment/show.html.slime:13
-msgid "IBAN"
-msgstr ""
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/layout/app.html.slime:81
+#: lib/absolventenfeier_web/templates/layout/app.html.slime:84
 msgid "Legal"
 msgstr "Impressum"
 
@@ -948,39 +675,14 @@ msgid "Link is not valid"
 msgstr "Link ist nicht gültig."
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:40
-msgid "MLP"
-msgstr ""
-
-#, elixir-format
 #: lib/absolventenfeier_web/controllers/password_reset_controller.ex:47
 msgid "Password changed succesful"
 msgstr "Passwort erfolgreich geändert"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/payment/show.html.slime:46
-msgid "Please pay the sum to the bank account till the 6th November 2020. We will confirm that your payment arrived after that."
-msgstr "Bitte bezahle die aufgeführte Summe auf das oben genannte Konto bis zum 6. November. Wir werden die Bezahlung anschließend bestätigen."
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/layout/app.html.slime:86
+#: lib/absolventenfeier_web/templates/layout/app.html.slime:89
 msgid "Privacy"
 msgstr "Datenschutz"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:56
-msgid "Promotion code"
-msgstr "Gutscheincode"
-
-#, elixir-format
-#: lib/absolventenfeier_web/controllers/promotion_code_controller.ex:25
-msgid "Promotion code accepted!"
-msgstr "Gutscheincode akzeptiert!"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/payment/show.html.slime:29
-msgid "Reference"
-msgstr "Verwendungszweck"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/password_reset_token/show.html.slime:21
@@ -993,27 +695,21 @@ msgid "Sent email"
 msgstr "Email senden"
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/index.html.slime:179
-msgid "Show payment!"
-msgstr "Bezahlhinweis anzeigen"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:11
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:66 lib/absolventenfeier_web/templates/payment/show.html.slime:37
-msgid "Sum"
-msgstr "Summe"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:8
-msgid "Ticket"
-msgstr "Karte"
-
-#, elixir-format
-#: lib/absolventenfeier_web/templates/payment/new.html.slime:61
-msgid "Total"
-msgstr "Gesamtpreis"
-
-#, elixir-format
 #: lib/absolventenfeier_web/controllers/password_reset_controller.ex:17
 msgid "We have sent you a mail"
 msgstr "Wir haben dir eine Mail geschickt."
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/event/_form.html.slime:34
+msgid "Payment due date"
+msgstr "Bezahlung"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/event/_steps.html.slime:52
+msgid "You are registered for the ceremony! Please order your tickets in the ticket shop for the ceremony by the {time}."
+msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/event/_steps.html.slime:50
+msgid "Unfortunately, you have not registered for the ceremony and therefore cannot participate."
+msgstr ""
