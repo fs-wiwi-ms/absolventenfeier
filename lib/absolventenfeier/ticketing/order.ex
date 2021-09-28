@@ -11,7 +11,7 @@ defmodule Absolventenfeier.Ticketing.Order do
   @foreign_key_type :binary_id
 
   schema "orders" do
-    field :sum, :float, default: 0, virtual: true
+    field :sum, :float, virtual: true
 
     belongs_to(:event, Absolventenfeier.Event)
     belongs_to(:user, Absolventenfeier.User)

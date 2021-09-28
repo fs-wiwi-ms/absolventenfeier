@@ -21,7 +21,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/registration/new.html.slime:3
-#: lib/absolventenfeier_web/templates/registration/new.html.slime:43
+#: lib/absolventenfeier_web/templates/registration/new.html.slime:44
 msgid "Create registration"
 msgstr ""
 
@@ -257,12 +257,12 @@ msgid "Your are already logged in."
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/registration/new.html.slime:39
+#: lib/absolventenfeier_web/templates/registration/new.html.slime:40
 msgid "I hereby agree that the graduation ceremony team of the student council of the Faculty of Economics and Business Administration will receive my certificate from the examination office of the Faculty of Economics and Business Administration in order to present it to me at the graduation ceremony. I also agree that photos of me and my companions may be published. Tickets can only be returned if the graduation ceremony is cancelled."
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/registration/new.html.slime:38
+#: lib/absolventenfeier_web/templates/registration/new.html.slime:39
 msgid "Declaration of consent"
 msgstr ""
 
@@ -371,7 +371,7 @@ msgid "Registration"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/event/_form.html.slime:34
+#: lib/absolventenfeier_web/templates/event/_form.html.slime:39
 #: lib/absolventenfeier_web/templates/order/_form.html.slime:44 lib/absolventenfeier_web/templates/payment/new.html.slime:59
 #: lib/absolventenfeier_web/templates/ticket/_form.html.slime:31
 msgid "Save"
@@ -429,7 +429,7 @@ msgid ") wirst du über neue Events informiert."
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/registration/new.html.slime:25
+#: lib/absolventenfeier_web/templates/registration/new.html.slime:26
 msgid "Adress"
 msgstr ""
 
@@ -449,7 +449,7 @@ msgid "Change order"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/registration/new.html.slime:34
+#: lib/absolventenfeier_web/templates/registration/new.html.slime:35
 msgid "City"
 msgstr ""
 
@@ -561,11 +561,6 @@ msgid "Facebook"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/registration/new.html.slime:22
-msgid "For the virtual graduation ceremony we want to send you a goodie bag. Herefore we need your adress."
-msgstr ""
-
-#, elixir-format
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:52
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:54 lib/absolventenfeier_web/templates/event/_steps.html.slime:56
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:58 lib/absolventenfeier_web/templates/event/_steps.html.slime:60
@@ -584,7 +579,7 @@ msgid "Homepage"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/registration/new.html.slime:28
+#: lib/absolventenfeier_web/templates/registration/new.html.slime:29
 msgid "House number"
 msgstr ""
 
@@ -735,7 +730,7 @@ msgid "We are waiting for the confirmation of your payment from our payment prov
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/registration/new.html.slime:31
+#: lib/absolventenfeier_web/templates/registration/new.html.slime:32
 msgid "Zip code"
 msgstr ""
 
@@ -958,11 +953,6 @@ msgid "Password changed succesful"
 msgstr ""
 
 #, elixir-format
-#: lib/absolventenfeier_web/templates/payment/show.html.slime:46
-msgid "Please pay the sum to the bank account till the 6th November 2020. We will confirm that your payment arrived after that."
-msgstr ""
-
-#, elixir-format
 #: lib/absolventenfeier_web/templates/layout/app.html.slime:86
 msgid "Privacy"
 msgstr ""
@@ -1016,4 +1006,19 @@ msgstr ""
 #, elixir-format
 #: lib/absolventenfeier_web/controllers/password_reset_controller.ex:17
 msgid "We have sent you a mail"
+msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/event/_form.html.slime:34
+msgid "Payment due date"
+msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/payment/show.html.slime:47
+msgid "Please pay the sum to the bank account till the %{date}. We will confirm that your payment arrived after that."
+msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/registration/new.html.slime:22
+msgid "Due to the current situation, it is still uncertain how the event will take place. In case of a worsening of the situation, we need your address to be on the safe side."
 msgstr ""

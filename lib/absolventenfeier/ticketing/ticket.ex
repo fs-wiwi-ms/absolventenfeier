@@ -12,7 +12,7 @@ defmodule Absolventenfeier.Ticketing.Ticket do
 
   schema "tickets" do
     field(:name, :string)
-    field(:price, :float, default: 0)
+    field(:price, :float)
     field(:count, :integer, default: -1)
     field(:max_per_user, :integer, default: -1)
 
