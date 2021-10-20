@@ -117,7 +117,7 @@ defmodule Absolventenfeier.Events.Pretix.Voucher do
       %{"code" => code}
       |> Map.put("registration", registration)
       |> Map.put("ticket", ticket)
-      |> Map.put("event", registration.event)
+      |> Map.put("event", event)
 
     voucher
     |> Repo.preload([:event, :ticket, :registration])

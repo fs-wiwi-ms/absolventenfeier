@@ -91,7 +91,7 @@ defmodule AbsolventenfeierWeb.RegistrationController do
   end
 
   def delete(conn, %{"id" => id}) do
-    registration = Event.get_registration(id)
+    registration = Registration.get_registration(id)
 
     case Event.get_event_state(registration.event) do
       :registration_open ->

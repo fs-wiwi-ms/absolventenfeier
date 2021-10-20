@@ -14,7 +14,6 @@ defmodule AbsolventenfeierWeb.EventView do
 
   def pretix_host, do: System.get_env("PRETIX_HOST")
 
-
   def get_event_state(event) do
     Event.get_event_state(event)
   end

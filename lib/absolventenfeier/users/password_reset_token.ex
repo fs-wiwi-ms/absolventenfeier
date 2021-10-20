@@ -17,7 +17,7 @@ defmodule Absolventenfeier.Users.PasswordResetToken do
   schema "password_reset_tokens" do
     field(:token, :string)
 
-    belongs_to(:user, Absolventenfeier.User)
+    belongs_to(:user, Absolventenfeier.Users.User)
 
     timestamps()
   end

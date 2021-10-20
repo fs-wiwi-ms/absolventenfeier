@@ -73,15 +73,11 @@ defmodule AbsolventenfeierWeb.Router do
 
     get "/events/:event_id/vouchers/batch_pretix_sync", VoucherController, :batch_pretix_sync
 
-    resources "/events", EventController, only: [:index, :new, :create, :edit, :update, :delete] do
+    resources "/events", EventController, only: [:new, :create, :edit, :update, :delete] do
       resources "/registrations", RegistrationController, only: [:index]
       resources "/tickets", TicketController, only: [:new]
     end
 
     resources "/tickets", TicketController, only: [:edit, :create, :update, :delete]
-  end
-
-  scope "/api", AbsolventenfeierWeb do
-    post "/webhook", PaymentController, :webhook
   end
 end

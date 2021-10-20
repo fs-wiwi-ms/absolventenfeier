@@ -10,10 +10,6 @@ defmodule Absolventenfeier.Events.Event do
     Term
   }
 
-  @graduate_ticket_count 1
-  @companion_ticket_count 3
-  @party_ticket_count 5
-
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
