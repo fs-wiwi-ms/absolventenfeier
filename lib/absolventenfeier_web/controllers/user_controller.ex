@@ -1,7 +1,7 @@
 defmodule AbsolventenfeierWeb.UserController do
   use AbsolventenfeierWeb, :controller
 
-  alias Absolventenfeier.User
+  alias Absolventenfeier.Users.User
 
   def new(conn, _params) do
     user_changeset = User.change_user()

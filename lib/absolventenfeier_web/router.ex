@@ -53,29 +53,32 @@ defmodule AbsolventenfeierWeb.Router do
   scope "/", AbsolventenfeierWeb do
     pipe_through([:unsecure_browser, :protected_browser])
 
+    resources "/events", EventController, only: [:index] do
+      resources "/registrations", RegistrationController, only: [:new]
+    end
+
+    resources "/registrations", RegistrationController, only: [:create, :delete]
+    resources "/sessions", SessionController, only: [:delete]
+  end
+
+  scope "/", AbsolventenfeierWeb do
+    pipe_through([:unsecure_browser, :admins_only])
     get "/events/:id/publish", EventController, :publish
     get "/events/:id/make_private", EventController, :make_private
     get "/events/:id/archive", EventController, :archive
 
+    get "/events/:event_id/tickets/:ticket_id/vouchers/batch_create",
+        VoucherController,
+        :batch_create
+
+    get "/events/:event_id/vouchers/batch_pretix_sync", VoucherController, :batch_pretix_sync
+
     resources "/events", EventController, only: [:index, :new, :create, :edit, :update, :delete] do
-      resources "/registrations", RegistrationController, only: [:index, :new]
+      resources "/registrations", RegistrationController, only: [:index]
       resources "/tickets", TicketController, only: [:new]
-      resources "/orders", OrderController, only: [:index, :new]
     end
 
-    resources "/registrations", RegistrationController, only: [:create, :delete]
     resources "/tickets", TicketController, only: [:edit, :create, :update, :delete]
-
-    resources "/orders", OrderController, only: [:edit, :update, :create, :delete] do
-      resources "/payments", PaymentController, only: [:new, :create]
-      resources "/promotion_code", PromotionCodeController, only: [:create]
-    end
-
-    resources "/promotion_code", PromotionCodeController, only: [:delete]
-
-    resources "/payments", PaymentController, only: [:show]
-
-    resources "/sessions", SessionController, only: [:delete]
   end
 
   scope "/api", AbsolventenfeierWeb do

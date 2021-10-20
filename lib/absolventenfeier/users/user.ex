@@ -1,10 +1,10 @@
-defmodule Absolventenfeier.User do
+defmodule Absolventenfeier.Users.User do
   use Ecto.Schema
 
   import Ecto.Changeset
   import Ecto.Query, warn: false
 
-  alias Absolventenfeier.{User, Repo}
+  alias Absolventenfeier.{Users.User, Repo}
 
   require Logger
 
@@ -21,8 +21,8 @@ defmodule Absolventenfeier.User do
     field(:password_hash, :string)
     field(:role, UserRole, default: :user)
 
-    has_many(:sessions, Absolventenfeier.User.Session)
-    has_many(:password_reset_tokens, Absolventenfeier.User.PasswordResetToken)
+    has_many(:sessions, Absolventenfeier.Users.Session)
+    has_many(:password_reset_tokens, Absolventenfeier.Users.PasswordResetToken)
 
     timestamps()
   end
@@ -100,7 +100,7 @@ defmodule Absolventenfeier.User do
     |> changeset(user_params)
   end
 
-  def create_user_changeset(%Absolventenfeier.User.PasswordResetToken{} = token) do
+  def create_user_changeset(%Absolventenfeier.Users.PasswordResetToken{} = token) do
     token
     |> Ecto.assoc(:user)
     |> Repo.one()

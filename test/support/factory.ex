@@ -19,7 +19,7 @@ defmodule Absolventenfeier.Factory do
   #   %Absolventenfeier.User{
   #     user_name: "tbho"
   #   }
-  #   |> Absolventenfeier.User.change_user(%{
+  #   |> Absolventenfeier.Users.change_user(%{
   #     "password" => @standard_password,
   #     "password_confirmation" => @standard_password,
   #     "private_key" => user_key.private_pem_string
@@ -31,7 +31,7 @@ defmodule Absolventenfeier.Factory do
   #   %Absolventenfeier.User{
   #     user_name: "tbho"
   #   }
-  #   |> Absolventenfeier.User.change_user(%{
+  #   |> Absolventenfeier.Users.change_user(%{
   #     "password" => @standard_password,
   #     "password_confirmation" => @standard_password,
   #     "private_key" => ""
@@ -45,7 +45,7 @@ defmodule Absolventenfeier.Factory do
   #   %Absolventenfeier.User{
   #     user_name: "tbho"
   #   }
-  #   |> Absolventenfeier.User.change_user(%{
+  #   |> Absolventenfeier.Users.change_user(%{
   #     "public_key" => user_key.public_pem_string
   #   })
   #   |> Ecto.Changeset.apply_changes()
@@ -80,7 +80,7 @@ defmodule Absolventenfeier.Factory do
   # end
 
   # def session_factory do
-  #   %Absolventenfeier.User.Session{
+  #   %Absolventenfeier.Users.Session{
   #     user: build(:private_user),
   #     ip: "127.0.0.1",
   #     user_agent: "Test",

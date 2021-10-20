@@ -44,8 +44,6 @@
                 a.icon.has-text-info(href="#{event_registration_path(@conn, :index, event.id)}" data-tooltip="#{gettext("Show registrations")}")
                   i.fas.fa-table
 
-
-
       div.message-body
         = render "_steps.html", assigns |> Map.put(:event, event) |> Map.put(:user, @user)
 
@@ -84,12 +82,29 @@
                       i.fas.fa-file-signature
                     span = gettext("Register now")
           - :ticketing_open ->
-            = if user_registerd_for_event(event, @user) do
-              p.title.is-6 = gettext("Ticketing phase")
-              div.columns
-                div.column
-                  a.button.is-primary.is-outlined(href="#{event_order_path(@conn, :new, event.id)}")
-                    span.icon
-                      i.fas.fa-ticket-alt
-                    span = gettext("Order now")
+            = case user_registerd_for_event(event, @user) do
+                - %Registration{} = registration ->
+                  p.title.is-6 = gettext("Ticketing phase")
+                  div.columns
+                    div.column
+                      span = gettext("With the following voucher codes you can order the specified tickets in our ticketshop. Please click the 'Order now' button to be redirected to the shop.")
+                  div.columns
+                    div.column
+                      = for voucher <- get_vouchers_for_registration(registration) do
+                          div.field.is-horizontal
+                            div.field-label.is-normal
+                              label.label = voucher.ticket.name
+                            div.field-body
+                              div.field
+                                p.control.has-icons-left
+                                  input.input(type="text" value="#{voucher.code}" readonly="true")
+                                  span.icon.is-small.is-left
+                                    i.fas.fa-ticket-alt
+                                p.help = gettext("You can order a maximum of %{count} ticket(s) of this type.", count: voucher.ticket.max_per_user)
+
+                      a.button.is-primary.is-outlined(href="#{pretix_host()}/absolventenfeier/#{event.pretix_event_slug}" target="_blank")
+                        span.icon
+                          i.fas.fa-shopping-cart
+                        span = gettext("Order now")
+                - nil ->
           - _ ->

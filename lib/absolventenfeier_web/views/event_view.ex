@@ -1,12 +1,19 @@
 defmodule AbsolventenfeierWeb.EventView do
   use AbsolventenfeierWeb, :view
 
-  alias Absolventenfeier.Event
-  alias Absolventenfeier.Event.Registration
+  alias Absolventenfeier.Events.{Registration, Event}
+  alias Absolventenfeier.Events.Pretix.{Voucher}
 
   def user_registerd_for_event(event, user) do
-    Event.user_registerd_for_event(event.id, user.id)
+    Registration.user_registerd_for_event(event.id, user.id)
   end
+
+  def get_vouchers_for_registration(registration) do
+    Voucher.get_vouchers_for_registration(registration.id)
+  end
+
+  def pretix_host, do: System.get_env("PRETIX_HOST")
+
 
   def get_event_state(event) do
     Event.get_event_state(event)
@@ -115,7 +122,7 @@ defmodule AbsolventenfeierWeb.EventView do
           2
         end
 
-        n when n in [:upcoming_event, :running_event] ->
+      n when n in [:upcoming_event, :running_event] ->
         if user_registerd_for_event(event, user) do
           4
         else

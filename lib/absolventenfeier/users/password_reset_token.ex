@@ -1,4 +1,4 @@
-defmodule Absolventenfeier.User.PasswordResetToken do
+defmodule Absolventenfeier.Users.PasswordResetToken do
   @moduledoc """
   Represents the database entity password reset tokens, that are emailed to
   users to enable them to reset their passwords.
@@ -9,7 +9,7 @@ defmodule Absolventenfeier.User.PasswordResetToken do
   import Ecto.Query
 
   alias Absolventenfeier.{Token, Repo, Mailer}
-  alias Absolventenfeier.User.{PasswordResetToken, Email}
+  alias Absolventenfeier.Users.{PasswordResetToken, Email}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

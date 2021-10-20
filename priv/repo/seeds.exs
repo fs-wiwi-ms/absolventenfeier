@@ -11,7 +11,7 @@
 # and so on) as they will fail if something goes wrong.
 
 alias Absolventenfeier.Repo
-alias Absolventenfeier.Event.{Term}
+alias Absolventenfeier.Events.{Term}
 import Ecto.Query, warn: false
 require Logger
 

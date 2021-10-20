@@ -1,4 +1,4 @@
-defmodule Absolventenfeier.User.Email do
+defmodule Absolventenfeier.Users.Email do
   import Bamboo.Email
   import AbsolventenfeierWeb.Gettext
 

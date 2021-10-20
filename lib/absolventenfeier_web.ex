@@ -69,7 +69,7 @@ defmodule AbsolventenfeierWeb do
             nil
 
           session ->
-            Absolventenfeier.User.get_user(session.user_id)
+            Absolventenfeier.Users.User.get_user(session.user_id)
         end
       end
     end

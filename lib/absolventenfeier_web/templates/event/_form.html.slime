@@ -32,13 +32,8 @@
   h5.subtitle.is-5 = gettext("Pretix")
   div.columns
     div.column
-      = label event_form, :pretix_shop_url, gettext("Shop short url"), class: "label"
-      = text_input event_form, :pretix_shop_url, class: "input"
-
-  div.columns
-    div.column
-      = label event_form, :voucher_code, gettext("Voucher code"), class: "label"
-      = text_input event_form, :voucher_code, class: "input"
+      = label event_form, :pretix_event_slug, gettext("Short event name (Pretix)"), class: "label"
+      = text_input event_form, :pretix_event_slug, class: "input"
 
   div.columns
     div.column.is-full

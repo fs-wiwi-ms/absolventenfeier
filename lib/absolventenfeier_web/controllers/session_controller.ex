@@ -1,7 +1,7 @@
 defmodule AbsolventenfeierWeb.SessionController do
   use AbsolventenfeierWeb, :controller
 
-  alias Absolventenfeier.User.Session
+  alias Absolventenfeier.Users.Session
 
   def new(conn, _params) do
     render(conn, "new.html", %{

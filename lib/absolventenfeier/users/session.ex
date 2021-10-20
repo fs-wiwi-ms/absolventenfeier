@@ -1,4 +1,4 @@
-defmodule Absolventenfeier.User.Session do
+defmodule Absolventenfeier.Users.Session do
   @moduledoc """
   Session are used to authenticate users. They are limited regarding their
   validity.
@@ -8,12 +8,12 @@ defmodule Absolventenfeier.User.Session do
   import Ecto.Changeset
 
   alias Absolventenfeier.{
-    User,
+    Users.User,
     Repo,
     Token
   }
 
-  alias Absolventenfeier.User.Session
+  alias Absolventenfeier.Users.Session
 
   use Ecto.Schema
 
@@ -31,7 +31,7 @@ defmodule Absolventenfeier.User.Session do
     field(:refresh_token, :string)
     field(:refresh_token_issued_at, :utc_datetime)
 
-    belongs_to(:user, Absolventenfeier.User)
+    belongs_to(:user, Absolventenfeier.Users.User)
 
     timestamps()
   end
@@ -142,7 +142,7 @@ defmodule Absolventenfeier.User.Session do
 
   @doc "Fetches a session"
   def get_session!(id) do
-    Repo.get!(Absolventenfeier.User.Session, id)
+    Repo.get!(Absolventenfeier.Users.Session, id)
   end
 
   @doc "Creates a session for a user identified by email and password"

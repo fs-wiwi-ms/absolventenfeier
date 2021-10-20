@@ -1,7 +1,8 @@
 defmodule AbsolventenfeierWeb.EventController do
   use AbsolventenfeierWeb, :controller
 
-  alias Absolventenfeier.{Event, User}
+  alias Absolventenfeier.Events.{Event, Term}
+  alias Absolventenfeier.Users.{User}
 
   def index(conn, _params) do
     user =
@@ -50,13 +51,13 @@ defmodule AbsolventenfeierWeb.EventController do
       |> get_session(:user_id)
       |> User.get_user()
 
-    event = Event.get_event(id)
+    event = Event.get_event(id, :tickets)
 
     case user.role do
       :admin ->
         event_changeset =
           id
-          |> Event.get_event()
+          |> Event.get_event([:tickets])
           |> Event.change_event(%{})
 
         render(conn, "edit.html",
@@ -249,7 +250,7 @@ defmodule AbsolventenfeierWeb.EventController do
   end
 
   defp get_terms() do
-    Enum.map(Event.get_terms(), fn term ->
+    Enum.map(Term.get_terms(), fn term ->
       {"
       #{Gettext.dgettext(AbsolventenfeierWeb.Gettext, "enum", Atom.to_string(term.type))}
       #{term.year}", term.id}

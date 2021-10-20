@@ -4,8 +4,7 @@ defmodule Absolventenfeier.Repo.Migrations.AddPretixCustomFieldsToEvents do
   def change do
     alter table("events") do
       remove :date_of_payments, :date
-      add :voucher_code, :string
-      add :pretix_shop_url, :string
+      add :pretix_event_slug, :string
     end
   end
 end

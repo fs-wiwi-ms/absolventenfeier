@@ -1,7 +1,7 @@
 defmodule Absolventenfeier.SessionTest do
   use Absolventenfeier.DataCase
 
-  alias Absolventenfeier.User.Session
+  alias Absolventenfeier.Users.Session
 
   import Absolventenfeier.Factory
 
