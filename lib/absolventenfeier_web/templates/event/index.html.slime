@@ -19,7 +19,7 @@
   = for event <- @events do
     article.message(class="#{if event.published do "is-info" else "is-link" end}")
       div.message-header
-        p.title.is-5(style="margin-bottom:0") = "#{gettext("Graduation Ceremony")} #{if event.term.type == :winter_term do gettext("WT") else gettext("ST") end} #{event.term.year} - #{Timex.format!(event.date_of_event, "{0D}.{0M}.{YYYY}")}"
+        p.title.is-5(style="margin-bottom:0") = "#{gettext("Graduation Ceremony")} #{if event.term.type == :winter_term do gettext("WT") else gettext("ST") end} #{event.term.year} #{event.suffix} - #{Timex.format!(event.date_of_event, "{0D}.{0M}.{YYYY}")}"
         = if @user.role == :admin do
           div.field.is-grouped
             p.control

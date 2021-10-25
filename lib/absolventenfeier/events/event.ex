@@ -22,6 +22,7 @@ defmodule Absolventenfeier.Events.Event do
     field(:start_of_registration, :utc_datetime, default: nil)
     field(:start_of_tickets, :utc_datetime, default: nil)
     field(:pretix_event_slug, :string)
+    field(:suffix, :string)
 
     belongs_to(:term, Absolventenfeier.Events.Term)
     has_many(:registrations, Absolventenfeier.Events.Registration, on_delete: :nothing)
