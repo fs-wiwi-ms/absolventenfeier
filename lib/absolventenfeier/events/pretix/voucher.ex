@@ -91,11 +91,10 @@ defmodule Absolventenfeier.Events.Pretix.Voucher do
     Enum.reduce(vouchers, Ecto.Multi.new(), fn voucher, multi ->
       pretix_voucher =
         Enum.find(pretix_vouchers, fn pretix_voucher ->
-          IO.inspect(pretix_voucher["code"])
           pretix_voucher["code"] == voucher.code |> String.upcase()
         end)
 
-      changeset = change_voucher(voucher, %{"pretix_id" => pretix_voucher["id"]}) |> IO.inspect()
+      changeset = change_voucher(voucher, %{"pretix_id" => pretix_voucher["id"]})
 
       Ecto.Multi.update(multi, voucher.code, changeset)
     end)

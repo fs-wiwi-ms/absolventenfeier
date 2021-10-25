@@ -3,7 +3,10 @@ div.columns
     h2.title.is-2 = gettext("Edit event")
 
 div.box
-  = render "_form.html", assigns
+  div.columns
+    div.column
+      = render "_form.html", assigns
 
-div.box
-  = render "_tickets.html", assigns
+  div.columns
+    div.column
+      = render "_tickets.html", assigns

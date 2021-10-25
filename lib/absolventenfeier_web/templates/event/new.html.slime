@@ -3,4 +3,6 @@ div.columns
     h2.title.is-2 = gettext("Create event")
 
 div.box
-  = render "_form.html", assigns
+  div.columns
+    div.column
+      = render "_form.html", assigns

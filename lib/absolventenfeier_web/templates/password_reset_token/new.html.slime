@@ -1,3 +1,8 @@
-div.container
-  h2.title = gettext("Forgot password")
-  = render "form.html", Map.put(assigns, :action, public_password_reset_token_path(@conn, :create))
+div.columns
+  div.column
+    h2.title = gettext("Forgot password")
+
+div.box
+  div.columns
+    div.column
+      = render "form.html", Map.put(assigns, :action, public_password_reset_token_path(@conn, :create))

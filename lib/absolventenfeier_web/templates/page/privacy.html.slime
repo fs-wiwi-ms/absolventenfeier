@@ -1,4 +1,7 @@
-h1.title.is-3 Datenschutzerklärung
+div.columns
+  div.column
+    h1.title.is-3 Datenschutzerklärung
+
 div.box
   div.column
     p Verantwortlicher im Sinne der Datenschutzgesetze, insbesondere der EU-Datenschutzgrundverordnung (DSGVO), ist:

@@ -30,7 +30,14 @@ defmodule Absolventenfeier.Events.Pretix.Api do
       end)
       |> Jason.encode!()
 
-    HTTPoison.post(pretix_host() <> uri, body, header)
+    HTTPoison.post(
+      pretix_host() <> uri,
+      body,
+      header,
+      [
+        recv_timeout: 15000 # 15 seconds
+      ]
+    )
     |> handle_response
   end
 

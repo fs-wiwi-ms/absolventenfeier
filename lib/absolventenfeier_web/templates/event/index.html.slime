@@ -66,21 +66,20 @@
                     span.tag.is-danger = gettext("Not registered yet")
 
 
-
               div.column(align="right")
-              = case user_registerd_for_event(event, @user) do
-                - %Registration{} = registration ->
-                  = form_for @conn, registration_path(@conn, :delete, registration.id), [method: :delete], fn _form ->
-                    button.button.is-danger.is-outlined(type="submit")
-                      span.icon
-                        i.fas.fa-times
-                      span = gettext("Deregister")
+                = case user_registerd_for_event(event, @user) do
+                  - %Registration{} = registration ->
+                    = form_for @conn, registration_path(@conn, :delete, registration.id), [method: :delete], fn _form ->
+                      button.button.is-danger.is-outlined(type="submit")
+                        span.icon
+                          i.fas.fa-times
+                        span = gettext("Deregister")
 
-                - nil ->
-                  a.button.is-primary.is-outlined(href="#{event_registration_path(@conn, :new, event.id)}")
-                    span.icon
-                      i.fas.fa-file-signature
-                    span = gettext("Register now")
+                  - nil ->
+                    a.button.is-primary.is-outlined(href="#{event_registration_path(@conn, :new, event.id)}")
+                      span.icon
+                        i.fas.fa-file-signature
+                      span = gettext("Register now")
           - :ticketing_open ->
             = case user_registerd_for_event(event, @user) do
                 - %Registration{} = registration ->

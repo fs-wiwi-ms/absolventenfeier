@@ -17,7 +17,7 @@ ul.steps.is-small
     - 1 ->
       = step("", "", "fa fa-clock", gettext("Ticketing"), gettext("Ticketing is still closed. It will open at %{time}.", time: Timex.format!(Timex.Timezone.convert(@event.start_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")))
     - 2 ->
-      = step("", "", "fa fa-clock", gettext("Ticketing"), gettext("Ticketing opens at %{time}.", time: Timex.format!(Timex.Timezone.convert(@event.start_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")))
+      = step("is-warning", "is-active", "fa fa-clock", gettext("Ticketing"), gettext("Ticketing opens at %{time}.", time: Timex.format!(Timex.Timezone.convert(@event.start_of_tickets, "CET"), "{0D}.{0M}.{YYYY} {h24}:{m}")))
     - 3 ->
       = step("is-danger", "", "fa fa-times", gettext("Ticketing"), gettext "As you did not register for the event, you cannot participate.")
     - 4 ->

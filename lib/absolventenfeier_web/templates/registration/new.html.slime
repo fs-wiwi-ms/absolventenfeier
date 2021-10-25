@@ -2,7 +2,6 @@ div.columns
   div.column
     h2.title.is-2 = gettext("Create registration")
 
-
 = form_for @changeset, @action, fn registration_form ->
   = hidden_input(registration_form, :user_id, value: "#{@user.id}")
   = hidden_input(registration_form, :event_id, value: "#{@event.id}")

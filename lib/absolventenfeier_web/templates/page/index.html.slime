@@ -1,4 +1,6 @@
-h1.title.is-3 = gettext("Graduation Ceremony")
+div.columns
+  div.column
+    h1.title.is-3 = gettext("Graduation Ceremony")
 
 div.box
   h3.subtitle.is-5 =gettext("Hint")
