@@ -1,7 +1,7 @@
 defmodule AbsolventenfeierWeb.Authentication do
   @moduledoc "Plug-compliant functions to authenticate requests"
 
-  alias Absolventenfeier.User.Session
+  alias Absolventenfeier.Users.Session
   import Plug.Conn
   import Phoenix.Controller, only: [redirect: 2, put_flash: 3, get_format: 1]
 

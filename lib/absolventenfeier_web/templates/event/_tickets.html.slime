@@ -6,6 +6,11 @@ div.columns
       span.icon.has-text-info
         i.fas.fa-plus
       span = gettext("Create ticket")
+    a.button.is-small.is-primary(href="#{voucher_path(@conn, :batch_pretix_sync, @event.id)}")
+      span.icon.has-text-info
+        i.fas.fa-sync-alt
+      span = gettext("Sync voucher codes")
+
 div.columns
   div.column
     = if Enum.empty?(@event.tickets) do
@@ -16,25 +21,25 @@ div.columns
           thead.thead
             tr
               th = gettext("Name")
-              th = gettext("Price")
+              th = gettext("pretix Ticket ID")
               th = gettext("Max per User")
-              th = gettext("Max Count")
-              th = gettext("Available")
               th
           tbody.tbody
             = for ticket <- @event.tickets do
               tr
                 td = ticket.name
-                td = ticket.price
+                td = ticket.pretix_ticket_id
                 td = ticket.max_per_user
-                td = ticket.count
-                td
                 td
                   div.field.is-grouped
                     p.control
                       button.button.is-small.is-primary
                         a.icon.has-text-info(href="#{ticket_path(@conn, :edit, ticket.id)}" data-tooltip="#{gettext("Edit ticket")}")
                           i.fas.fa-pen
+                    p.control
+                      button.button.is-small.is-primary
+                        a.icon.has-text-info(href="#{voucher_path(@conn, :batch_create, @event.id, ticket.id)}" data-tooltip="#{gettext("Create voucher codes")}")
+                          i.fas.fa-ticket-alt
                     = form_for @conn, ticket_path(@conn, :delete, ticket.id), fn _f ->
                       input type="hidden" name="_method" value="delete"
                       p.control

@@ -18,6 +18,9 @@ html(lang="en")
     link(rel="apple-touch-icon" href="#{static_path(@conn, "/images/icons/192.png") }")
     meta(name="theme-color" content="#092135")
 
+    link(rel="stylesheet" type="text/css" href="http://tickets.fachschaft-wiwi.ms/absolventenfeier/sose2021/widget/v1.css")
+    script(type="text/javascript" src="http://tickets.fachschaft-wiwi.ms/widget/v1.de.js" async="true")
+
   body.has-background-light.Site
     nav.navbar.has-shadow.is-spaced.has-background-primary(role="navigation" aria-label="main navigation")
 

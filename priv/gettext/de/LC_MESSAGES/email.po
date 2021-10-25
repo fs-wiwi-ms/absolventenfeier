@@ -12,6 +12,6 @@ msgstr ""
 "Plural-Forms: nplurals=2\n"
 
 #, elixir-format
-#: lib/absolventenfeier/user/email.ex:17
+#: lib/absolventenfeier/users/email.ex:17
 msgid "reset_password"
 msgstr ""

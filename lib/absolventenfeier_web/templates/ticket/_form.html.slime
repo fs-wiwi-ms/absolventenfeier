@@ -9,20 +9,14 @@
 
   div.columns
     div.column
-      label.label = gettext("Price")
-      = number_input(ticket_form, :price, class: "input", step: 0.01)
-      = error_label(@changeset, :price)
-
-  div.columns
-    div.column
-      label.label = gettext("Count")
-      = number_input(ticket_form, :count, class: "input", min: -1)
-      = error_label(@changeset, :count)
+      label.label = gettext("pretix Ticket Id")
+      = number_input(ticket_form, :pretix_ticket_id, class: "input", min: 0)
+      = error_label(@changeset, :pretix_ticket_id)
 
   div.columns
     div.column
       label.label = gettext("Max per User")
-      = number_input(ticket_form, :max_per_user, class: "input", min: -1)
+      = number_input(ticket_form, :max_per_user, class: "input", min: 0)
       = error_label(@changeset, :max_per_user)
 
 

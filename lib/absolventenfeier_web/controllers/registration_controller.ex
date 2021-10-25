@@ -1,7 +1,8 @@
 defmodule AbsolventenfeierWeb.RegistrationController do
   use AbsolventenfeierWeb, :controller
 
-  alias Absolventenfeier.{Event, User}
+  alias Absolventenfeier.Events.{Event, Registration}
+  alias Absolventenfeier.Users.{User}
 
   def index(conn, %{"event_id" => event_id}) do
     user =
@@ -11,7 +12,7 @@ defmodule AbsolventenfeierWeb.RegistrationController do
 
     case user.role do
       :admin ->
-        registrations = Event.get_registrations_for_event(event_id)
+        registrations = Registration.get_registrations_for_event(event_id)
         count = Enum.count(registrations)
         render(conn, "index.html", registrations: registrations, count: count)
 
@@ -32,7 +33,8 @@ defmodule AbsolventenfeierWeb.RegistrationController do
 
     case Event.get_event_state(event) do
       :registration_open ->
-        registration_changeset = Event.change_registration(%{"event" => event, "user" => user})
+        registration_changeset =
+          Registration.change_registration(%{"event" => event, "user" => user})
 
         render(conn, "new.html",
           user: user,
@@ -56,7 +58,7 @@ defmodule AbsolventenfeierWeb.RegistrationController do
   end
 
   def create(conn, %{"registration" => registration}) do
-    case Event.create_registration(registration) do
+    case Registration.create_registration(registration) do
       {:ok, _registration} ->
         conn
         |> put_flash(:info, gettext("Registration successful!"))
@@ -89,11 +91,11 @@ defmodule AbsolventenfeierWeb.RegistrationController do
   end
 
   def delete(conn, %{"id" => id}) do
-    registration = Event.get_registration(id)
+    registration = Registration.get_registration(id)
 
     case Event.get_event_state(registration.event) do
       :registration_open ->
-        Event.delete_registration(registration)
+        Registration.delete_registration(registration)
 
         conn
         |> put_flash(:info, gettext("Registration deleted."))

@@ -1,8 +1,7 @@
 defmodule AbsolventenfeierWeb.PasswordResetTokenController do
   use AbsolventenfeierWeb, :controller
 
-  alias Absolventenfeier.{User}
-  alias Absolventenfeier.User.PasswordResetToken
+  alias Absolventenfeier.Users.{PasswordResetToken, User}
 
   def new(conn, _params) do
     render(conn, "new.html")

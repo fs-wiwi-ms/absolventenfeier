@@ -29,10 +29,11 @@
       = label event_form, :date_of_tickets, gettext("Ends at"), class: "label"
       = text_input event_form, :date_of_tickets, default: DateTime.utc_now(), class: "input datetimepicker"
 
+  h5.subtitle.is-5 = gettext("Pretix")
   div.columns
     div.column
-      = label event_form, :date_of_payments, gettext("Payment due date"), class: "label"
-      = text_input event_form, :date_of_payments, default: Date.utc_today(), class: "input datepicker"
+      = label event_form, :pretix_event_slug, gettext("Short event name (Pretix)"), class: "label"
+      = text_input event_form, :pretix_event_slug, class: "input"
 
   div.columns
     div.column.is-full

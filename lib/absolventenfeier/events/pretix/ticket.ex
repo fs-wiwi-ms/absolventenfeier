@@ -1,22 +1,24 @@
-defmodule Absolventenfeier.Ticketing.Ticket do
+defmodule Absolventenfeier.Events.Pretix.Ticket do
   use Ecto.Schema
 
   import Ecto.Query, warn: false
   import Ecto.Changeset
 
-  alias Absolventenfeier.{Event, Repo}
-  alias Absolventenfeier.Ticketing.{Ticket}
+  alias Absolventenfeier.{Repo}
+  alias Absolventenfeier.Events.{Event}
+  alias Absolventenfeier.Events.Pretix.{Ticket}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
   schema "tickets" do
     field(:name, :string)
-    field(:price, :float)
-    field(:count, :integer, default: -1)
-    field(:max_per_user, :integer, default: -1)
+    field(:pretix_ticket_id, :integer)
+    field(:max_per_user, :integer, default: 5)
 
     belongs_to(:event, Event)
+
+    has_many(:vouchers, Absolventenfeier.Events.Pretix.Voucher, on_delete: :nothing)
 
     timestamps()
   end
@@ -24,7 +26,7 @@ defmodule Absolventenfeier.Ticketing.Ticket do
   @doc false
   def changeset(ticket, attrs) do
     ticket
-    |> cast(attrs, [:name, :price, :count, :max_per_user])
+    |> cast(attrs, [:name, :pretix_ticket_id, :max_per_user])
     |> put_assoc(:event, attrs["event"] || ticket.event)
   end
 

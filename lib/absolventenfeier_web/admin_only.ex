@@ -1,7 +1,7 @@
 defmodule AbsolventenfeierWeb.AdminOnly do
   @moduledoc "Plug-compliant functions to check if a user is admin"
 
-  alias Absolventenfeier.User
+  alias Absolventenfeier.Users.User
   import Plug.Conn
 
   @doc false

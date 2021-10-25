@@ -1,8 +1,8 @@
 defmodule AbsolventenfeierWeb.TicketController do
   use AbsolventenfeierWeb, :controller
 
-  alias Absolventenfeier.Ticketing.{Ticket}
-  alias Absolventenfeier.User
+  alias Absolventenfeier.Events.Pretix.{Ticket}
+  alias Absolventenfeier.Users.User
 
   def new(conn, %{"event_id" => event_id}) do
     user =
