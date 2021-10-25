@@ -34,9 +34,8 @@ defmodule Absolventenfeier.Events.Pretix.Api do
       pretix_host() <> uri,
       body,
       header,
-      [
-        recv_timeout: 15000 # 15 seconds
-      ]
+      # 15 seconds
+      recv_timeout: 15000
     )
     |> handle_response
   end
