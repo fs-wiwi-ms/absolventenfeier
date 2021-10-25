@@ -778,3 +778,8 @@ msgstr ""
 #: lib/absolventenfeier_web/templates/event/_tickets.html.slime:12
 msgid "Sync voucher codes"
 msgstr ""
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/event/index.html.slime:108
+msgid "If you would like to redeem an MLP gift card, please send an email with your gift card code and your request to admin@fachschaft-wiwi.ms beforehand. We have to match the gift card code and transfer it to the ticket system so that it can be used. We cannot enter gift card codes into our system after you have placed your order!"
+msgstr ""

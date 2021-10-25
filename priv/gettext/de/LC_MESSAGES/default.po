@@ -778,3 +778,8 @@ msgstr "Du kannst maximal %{count} Ticket(s) dieses Typs bestellen"
 #: lib/absolventenfeier_web/templates/event/_tickets.html.slime:12
 msgid "Sync voucher codes"
 msgstr "Gutscheincodes synchronisieren"
+
+#, elixir-format
+#: lib/absolventenfeier_web/templates/event/index.html.slime:108
+msgid "If you would like to redeem an MLP gift card, please send an email with your gift card code and your request to absolventenfeier@fachschaft-wiwi.ms beforehand. We have to match the gift card code and transfer it to the ticket system so that it can be used. We cannot enter gift card codes into our system after you have placed your order!"
+msgstr "Wenn du einen MLP-Geschenkgutschein einlösen möchten, schicke bitte vor deiner Bestellung eine E-Mail mit deinem Geschenkgutscheincode und deiner Anfrage an absolventenfeier@fachschaft-wiwi.ms. Wir müssen den Gutscheincode abgleichen und in das Ticketsystem übertragen, damit er eingelöst werden kann. Nach deiner Bestellung können wir keine Gutscheincodes mehr in unser System eingeben!"
