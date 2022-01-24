@@ -46,7 +46,7 @@ defmodule Absolventenfeier.MixProject do
       {:bamboo, "~> 1.5"},
       {:comeonin, "~> 5.3.0"},
       {:ecto_enum, "~> 1.3"},
-      {:ecto_sql, "~> 3.6.2"},
+      {:ecto_sql, "~> 3.7.2"},
       {:ex_machina, "~> 2.4", only: :test},
       {:gettext, "~> 0.11"},
       {:httpoison, "~> 1.6"},
