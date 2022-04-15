@@ -59,7 +59,7 @@ defmodule Absolventenfeier.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_slime, "~> 0.13.1"},
-      {:phoenix, "~> 1.5.0"},
+      {:phoenix, "~> 1.6.7"},
       {:plug_cowboy, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
       {:sentry, "~> 8.0"},
