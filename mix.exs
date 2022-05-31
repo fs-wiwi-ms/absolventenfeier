@@ -52,7 +52,7 @@ defmodule Absolventenfeier.MixProject do
       {:httpoison, "~> 1.6"},
       {:jason, "~> 1.0"},
       {:mix_test_watch, "~> 1.0", only: :test},
-      {:mox, "~> 0.5", only: :test},
+      {:mox, "~> 1.0", only: :test},
       {:number, "~> 1.0.1"},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.1"},
