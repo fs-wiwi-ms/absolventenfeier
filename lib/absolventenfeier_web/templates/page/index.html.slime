@@ -22,14 +22,14 @@ div.box
   = if !@conn.assigns[:session] do
     div.columns
       div.column.is-narrow
-        a.button.is-info(href="#{public_session_path(@conn, :new)}") = gettext("Login")
+        a.button.is-info(href="#{Routes.public_session_path(@conn, :new)}") = gettext("Login")
       div.column.is-narrow
-        a.button.is-link(href="#{public_user_path(@conn, :new)}") = gettext("Create Account")
+        a.button.is-link(href="#{Routes.public_user_path(@conn, :new)}") = gettext("Create Account")
   - else
     div.columns
       div.column.is-narrow
         div.subtitle.is-6 = gettext("Your are already logged in.")
-        a.button.is-info(href="#{event_path(@conn, :index)}") = gettext("Show upcoming graduation ceremonies")
+        a.button.is-info(href="#{Routes.event_path(@conn, :index)}") = gettext("Show upcoming graduation ceremonies")
 
 - user = get_user(@conn)
 = if user do
@@ -47,7 +47,7 @@ div.box
                 i.fas.fa-file-upload
               span =gettext("Evaluate Registrations")
           div.column.is-narrow
-            a.button.is-danger.is-outlined(href="#{event_path(@conn, :new)}")
+            a.button.is-danger.is-outlined(href="#{Routes.event_path(@conn, :new)}")
               span.icon
                 i.fas.fa-graduation-cap
               span =gettext("Create new graduation ceremony")

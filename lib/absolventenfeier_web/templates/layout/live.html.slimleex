@@ -1,0 +1,29 @@
+section.section.Site-content
+  = if !is_nil live_flash(@flash, :info) do
+    div.snackbar.notification.is-link(style="position: fixed;" phx-click="lv:clear-flash" phx-value-key="info")
+      button.delete
+      div.has-text-weight-bold.is-size5 = gettext("Info")
+      div = live_flash(@flash, :info)
+
+  = if !is_nil live_flash(@flash, :success) do
+    div.snackbar.notification.is-success(style="position: fixed;" phx-click="lv:clear-flash" phx-value-key="success")
+      button.delete
+      div.has-text-weight-bold.is-size5 = gettext("Success")
+      div = live_flash(@flash, :success)
+
+
+  = if !is_nil live_flash(@flash, :warning) do
+    div.snackbar.notification.is-warning(style="position: fixed;" phx-click="lv:clear-flash" phx-value-key="warning")
+      button.delete
+      div.has-text-weight-bold.is-size5 = gettext("Warning")
+      div = live_flash(@flash, :warning)
+
+
+  = if !is_nil live_flash(@flash, :error) do
+    div.snackbar.notification.is-danger(style="position: fixed;" phx-click="lv:clear-flash" phx-value-key="error")
+      button.delete
+      span.has-text-weight-bold.is-size5 = gettext("Error") <> ": "
+      span = live_flash(@flash, :error)
+
+  div.container
+    = @inner_content

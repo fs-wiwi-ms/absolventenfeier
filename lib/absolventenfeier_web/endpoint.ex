@@ -3,9 +3,18 @@ defmodule AbsolventenfeierWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :absolventenfeier
   use Appsignal.Phoenix
 
+  @session_options [
+    store: :cookie,
+    key: "_absolventenfeier_key",
+    signing_salt: "THszJmjd"
+  ]
+
   socket "/socket", AbsolventenfeierWeb.UserSocket,
     websocket: true,
     longpoll: false
+
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -41,10 +50,8 @@ defmodule AbsolventenfeierWeb.Endpoint do
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
-  plug Plug.Session,
-    store: :cookie,
-    key: "_absolventenfeier_key",
-    signing_salt: "THszJmjd"
+  @impl true
+  plug Plug.Session, @session_options
 
   plug AbsolventenfeierWeb.Router
 

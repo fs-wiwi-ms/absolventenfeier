@@ -10,7 +10,8 @@ if config_env() == :prod do
       scheme: "https"
     ],
     http: [:inet6, port: String.to_integer(System.get_env("PORT") || "4000")],
-    secret_key_base: System.get_env("SECRET_KEY_BASE")
+    secret_key_base: System.get_env("SECRET_KEY_BASE"),
+    live_view: [signing_salt: System.get_env("LIVE_VIEW_SIGNING_SALT")]
 
   config :absolventenfeier, Absolventenfeier.Repo,
     ssl: System.get_env("POSTGRES_SSL") != "false",

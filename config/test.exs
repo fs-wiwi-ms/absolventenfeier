@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Configure your database
 config :absolventenfeier, Absolventenfeier.Repo, pool: Ecto.Adapters.SQL.Sandbox

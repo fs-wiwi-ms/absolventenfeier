@@ -17,13 +17,13 @@ defmodule AbsolventenfeierWeb.TicketController do
         render(conn, "new.html",
           event_id: event_id,
           changeset: ticket_changeset,
-          action: ticket_path(conn, :create)
+          action: Routes.ticket_path(conn, :create)
         )
 
       _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
-        |> redirect(to: event_path(conn, :index))
+        |> redirect(to: Routes.event_path(conn, :index))
     end
   end
 
@@ -45,13 +45,13 @@ defmodule AbsolventenfeierWeb.TicketController do
         render(conn, "edit.html",
           event_id: ticket.event_id,
           changeset: ticket_changeset,
-          action: ticket_path(conn, :update, id)
+          action: Routes.ticket_path(conn, :update, id)
         )
 
       _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
-        |> redirect(to: event_path(conn, :index))
+        |> redirect(to: Routes.event_path(conn, :index))
     end
   end
 
@@ -67,7 +67,7 @@ defmodule AbsolventenfeierWeb.TicketController do
           {:ok, ticket} ->
             conn
             |> put_flash(:info, gettext("Creating ticket successful!"))
-            |> redirect(to: event_path(conn, :edit, ticket.event_id))
+            |> redirect(to: Routes.event_path(conn, :edit, ticket.event_id))
 
           {:error, changeset} ->
             conn
@@ -75,14 +75,14 @@ defmodule AbsolventenfeierWeb.TicketController do
             |> render("new.html",
               event_id: ticket["event_id"],
               changeset: changeset,
-              action: ticket_path(conn, :create)
+              action: Routes.ticket_path(conn, :create)
             )
         end
 
       _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
-        |> redirect(to: event_path(conn, :index))
+        |> redirect(to: Routes.event_path(conn, :index))
     end
   end
 
@@ -98,7 +98,7 @@ defmodule AbsolventenfeierWeb.TicketController do
           {:ok, ticket} ->
             conn
             |> put_flash(:info, gettext("Updating ticket successful!"))
-            |> redirect(to: event_path(conn, :edit, ticket.event_id))
+            |> redirect(to: Routes.event_path(conn, :edit, ticket.event_id))
 
           {:error, changeset} ->
             conn
@@ -106,14 +106,14 @@ defmodule AbsolventenfeierWeb.TicketController do
             |> render("edit.html",
               event_id: ticket["event_id"],
               changeset: changeset,
-              action: ticket_path(conn, :update, id)
+              action: Routes.ticket_path(conn, :update, id)
             )
         end
 
       _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
-        |> redirect(to: event_path(conn, :index))
+        |> redirect(to: Routes.event_path(conn, :index))
     end
   end
 
@@ -131,18 +131,18 @@ defmodule AbsolventenfeierWeb.TicketController do
           {:ok, ticket} ->
             conn
             |> put_flash(:info, gettext("Deleting ticket successful!"))
-            |> redirect(to: event_path(conn, :edit, ticket.event_id))
+            |> redirect(to: Routes.event_path(conn, :edit, ticket.event_id))
 
           {:error, _changeset} ->
             conn
             |> put_flash(:error, gettext("Error while deleting ticket!"))
-            |> redirect(to: event_path(conn, :edit, ticket.event_id))
+            |> redirect(to: Routes.event_path(conn, :edit, ticket.event_id))
         end
 
       _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
-        |> redirect(to: event_path(conn, :index))
+        |> redirect(to: Routes.event_path(conn, :index))
     end
   end
 end

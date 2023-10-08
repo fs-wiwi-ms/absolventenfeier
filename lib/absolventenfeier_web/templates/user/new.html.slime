@@ -63,4 +63,4 @@ div.box
         / div.columns
         /   div.column
         /     p.has-text-info.has-text-weight-semibold.label = gettext("Already have an account? Login instead!")
-        /     a.button.is-info.is-outlined(href="#{public_session_path(@conn, :new)}") Login
+        /     a.button.is-info.is-outlined(href="#{Routes.public_session_path(@conn, :new)}") Login

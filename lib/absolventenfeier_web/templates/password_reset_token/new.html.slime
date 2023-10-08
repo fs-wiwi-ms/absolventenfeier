@@ -5,4 +5,4 @@ div.columns
 div.box
   div.columns
     div.column
-      = render "form.html", Map.put(assigns, :action, public_password_reset_token_path(@conn, :create))
+      = render "form.html", Map.put(assigns, :action, Routes.public_password_reset_token_path(@conn, :create))

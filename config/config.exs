@@ -5,10 +5,11 @@
 # is restricted to this project.
 
 # General application configuration
-use Mix.Config
+import Config
 
 config :absolventenfeier,
-  ecto_repos: [Absolventenfeier.Repo]
+  ecto_repos: [Absolventenfeier.Repo],
+  generators: [binary_id: true]
 
 config :absolventenfeier, Absolventenfeier.Repo,
   log: false,
@@ -19,7 +20,8 @@ config :absolventenfeier, AbsolventenfeierWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [view: AbsolventenfeierWeb.ErrorView, accepts: ~w(html json)],
   pubsub_server: Absolventenfeier.PubSub,
-  secret_key_base: "5HjSFjyGix751ubR/igyrzbfby3NsOc2Dn4DxldR4hpoqKIa3YEosx3psppajJRw"
+  secret_key_base: "5HjSFjyGix751ubR/igyrzbfby3NsOc2Dn4DxldR4hpoqKIa3YEosx3psppajJRw",
+  live_view: [signing_salt: "igyrzbfby3NsOc2Dn4DxldR4hpoqKIa3YEosx3psppajJRw"]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -31,7 +33,8 @@ config :phoenix, :json_library, Jason
 
 config :phoenix, :template_engines,
   slim: PhoenixSlime.Engine,
-  slime: PhoenixSlime.Engine
+  slime: PhoenixSlime.Engine,
+  slimleex: PhoenixSlime.LiveViewEngine
 
 config :absolventenfeier, :mollie, api_url: "https://api.mollie.com/v2/"
 

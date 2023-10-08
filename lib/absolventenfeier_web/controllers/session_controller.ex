@@ -5,7 +5,7 @@ defmodule AbsolventenfeierWeb.SessionController do
 
   def new(conn, _params) do
     render(conn, "new.html", %{
-      action: public_session_path(conn, :create)
+      action: Routes.public_session_path(conn, :create)
     })
   end
 
@@ -22,7 +22,7 @@ defmodule AbsolventenfeierWeb.SessionController do
 
     case {format, result} do
       {"html", {:ok, session}} ->
-        path = get_session(conn, :redirect_url) || event_path(conn, :index)
+        path = get_session(conn, :redirect_url) || Routes.event_path(conn, :index)
         conn = delete_session(conn, :redirect_url)
 
         conn
@@ -33,7 +33,7 @@ defmodule AbsolventenfeierWeb.SessionController do
       {"html", {:error, :not_found}} ->
         conn
         |> put_flash(:error, gettext("Email or password incorrect."))
-        |> redirect(to: public_session_path(conn, :new))
+        |> redirect(to: Routes.public_session_path(conn, :new))
     end
   end
 
@@ -44,6 +44,6 @@ defmodule AbsolventenfeierWeb.SessionController do
 
     conn
     |> put_flash(:info, gettext("Logged out!"))
-    |> redirect(to: public_session_path(conn, :new))
+    |> redirect(to: Routes.public_session_path(conn, :new))
   end
 end

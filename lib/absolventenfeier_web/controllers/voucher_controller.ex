@@ -20,18 +20,18 @@ defmodule AbsolventenfeierWeb.VoucherController do
           {:ok, _multi} ->
             conn
             |> put_flash(:info, gettext("Creating voucher codes successful!"))
-            |> redirect(to: event_path(conn, :edit, event.id))
+            |> redirect(to: Routes.event_path(conn, :edit, event.id))
 
           {:error, _multi} ->
             conn
             |> put_flash(:error, gettext("Error while creating voucher codes!"))
-            |> redirect(to: event_path(conn, :edit, event.id))
+            |> redirect(to: Routes.event_path(conn, :edit, event.id))
         end
 
       _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
-        |> redirect(to: event_path(conn, :index))
+        |> redirect(to: Routes.event_path(conn, :index))
     end
   end
 
@@ -51,18 +51,18 @@ defmodule AbsolventenfeierWeb.VoucherController do
                Voucher.batch_update_vouchers_with_pretix_ids(vouchers, pretix_vouchers) do
           conn
           |> put_flash(:info, gettext("Syncing voucher codes successful!"))
-          |> redirect(to: event_path(conn, :edit, event.id))
+          |> redirect(to: Routes.event_path(conn, :edit, event.id))
         else
           {:error, _multi} ->
             conn
             |> put_flash(:error, gettext("Error while creating voucher codes!"))
-            |> redirect(to: event_path(conn, :edit, event.id))
+            |> redirect(to: Routes.event_path(conn, :edit, event.id))
         end
 
       _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
-        |> redirect(to: event_path(conn, :index))
+        |> redirect(to: Routes.event_path(conn, :index))
     end
   end
 end

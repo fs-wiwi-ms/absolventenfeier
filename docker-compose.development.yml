@@ -14,7 +14,8 @@ services:
     environment:
       DATABASE_URL: "psql://absolventenfeier:absolventenfeier@db/absolventenfeier"
       SECRET_KEY_BASE: vmOZLCImcoi+PBCMC/N6BnQ8t6LmSRyONqK3T0iNSV9hx2pt7502lV2mN2alVAFe
-      MOLLIE_API_KEY: test_b6Vkb4GQRhaDafGgJHferuWcGdVRpm
+      PRETIX_HOST: https://tickets.fachschaft-wiwi.ms
+      PRETIX_TOKEN: qmzueoiw9ytn72xnrw79mf6cpg73qmntinzkh1wqd6h18kyghnyr5dhkzb1odu0a
       SMTP_ADDRESS: test@absolventenfeier.de
       HOST: hoge.cloud:3000
       LIVE_VIEW_SIGNING_SALT: wi1jaiJei4aiZuDi5Roab3saengeem7h

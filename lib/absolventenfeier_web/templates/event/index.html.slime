@@ -1,7 +1,7 @@
 = if @user.role == :admin do
   div.columns
     div.column(align="right")
-      a.button.is-primary(href="#{event_path(@conn, :new)}")
+      a.button.is-primary(href="#{Routes.event_path(@conn, :new)}")
         span.icon.has-text-info
           i.fas.fa-plus
         span = gettext("Create event")
@@ -24,24 +24,24 @@
           div.field.is-grouped
             p.control
               button.button.is-primary
-                a.icon.has-text-info(href="#{event_path(@conn, :edit, event.id)}" data-tooltip="#{gettext("Edit event")}")
+                a.icon.has-text-info(href="#{Routes.event_path(@conn, :edit, event.id)}" data-tooltip="#{gettext("Edit event")}")
                   i.fas.fa-pen
             p.control
               button.button.is-primary
                 = if event.published do
-                  a.icon.has-text-info(href="#{event_path(@conn, :make_private, event.id)}" data-tooltip="#{gettext("Make private")}")
+                  a.icon.has-text-info(href="#{Routes.event_path(@conn, :make_private, event.id)}" data-tooltip="#{gettext("Make private")}")
                     i.fas.fa-ban
                 - else
-                  a.icon.has-text-info(href="#{event_path(@conn, :publish, event.id)}" data-tooltip="#{gettext("Publish event")}")
+                  a.icon.has-text-info(href="#{Routes.event_path(@conn, :publish, event.id)}" data-tooltip="#{gettext("Publish event")}")
                     i.fa.fa-globe-europe
             = if !event.published do
               p.control
                 button.button.is-primary
-                  a.icon.has-text-info(href="#{event_path(@conn, :archive, event.id)}" data-tooltip="#{gettext("Archive event")}")
+                  a.icon.has-text-info(href="#{Routes.event_path(@conn, :archive, event.id)}" data-tooltip="#{gettext("Archive event")}")
                     i.fa.fa-archive
             p.control
               button.button.is-primary
-                a.icon.has-text-info(href="#{event_registration_path(@conn, :index, event.id)}" data-tooltip="#{gettext("Show registrations")}")
+                a.icon.has-text-info(href="#{Routes.event_registration_path(@conn, :index, event.id)}" data-tooltip="#{gettext("Show registrations")}")
                   i.fas.fa-table
 
       div.message-body
@@ -69,14 +69,14 @@
               div.column(align="right")
                 = case user_registerd_for_event(event, @user) do
                   - %Registration{} = registration ->
-                    = form_for @conn, registration_path(@conn, :delete, registration.id), [method: :delete], fn _form ->
+                    = form_for @conn, Routes.registration_path(@conn, :delete, registration.id), [method: :delete], fn _form ->
                       button.button.is-danger.is-outlined(type="submit")
                         span.icon
                           i.fas.fa-times
                         span = gettext("Deregister")
 
                   - nil ->
-                    a.button.is-primary.is-outlined(href="#{event_registration_path(@conn, :new, event.id)}")
+                    a.button.is-primary.is-outlined(href="#{Routes.event_registration_path(@conn, :new, event.id)}")
                       span.icon
                         i.fas.fa-file-signature
                       span = gettext("Register now")

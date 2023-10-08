@@ -1,100 +1,29 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="utf-8")
-    meta(http-equiv="X-UA-Compatible" content="IE=edge")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title = gettext("Graduation Ceremony")
-    link(rel="stylesheet" href="#{static_path(@conn, "/css/app.css") }")
-    meta(name="description" content="#{gettext("Graduation Ceremony portal of student's council for economics of university muenster")}")
-    meta(name="author" content="#{gettext("Tobias Hoge")}")
+section.section.Site-content
+  = if !is_nil get_flash(@conn, :info) do
+    div.snackbar.notification.is-link(style="position: fixed;")
+      button.delete
+      div.has-text-weight-bold.is-size5 = gettext("Info")
+      div = get_flash(@conn, :info)
 
-    title
-    link(rel="icon" href="#{static_path(@conn, "/favicon.png")}" type="image/png")
-    link(rel="manifest" href="#{static_path(@conn, "/manifest.json")}")
-    meta(name="apple-mobile-web-app-capable" content="yes")
-    meta(name="apple-mobile-web-app-status-bar-style" content="black")
-    meta(name="apple-mobile-web-app-title" content="#{gettext("Graduation Ceremony")}")
-    link(rel="apple-touch-icon" href="#{static_path(@conn, "/images/icons/192.png") }")
-    meta(name="theme-color" content="#092135")
-
-    link(rel="stylesheet" type="text/css" href="http://tickets.fachschaft-wiwi.ms/absolventenfeier/sose2021/widget/v1.css")
-    script(type="text/javascript" src="http://tickets.fachschaft-wiwi.ms/widget/v1.de.js" async="true")
-
-  body.has-background-light.Site
-    nav.navbar.has-shadow.is-spaced.has-background-primary(role="navigation" aria-label="main navigation")
-
-      div.navbar-brand
-        div.navbar-item
-          a.button.is-primary(href="#{page_path(@conn, :index)}")
-            span.icon.has-text-white
-              i.fas.fa-graduation-cap
-            / span.has-text-weight-bold.has-text-white = gettext("Graducation Ceremony Student's Council for Economics University Münster")
-            span.has-text-weight-bold.has-text-white = gettext("Graducation Ceremony")
-
-        = if @conn.assigns[:session] do
-          div.navbar-burger(role="button" aria-label="menu" aria-expanded="false" data-target="navMenu")
-            span.has-background-white
-            span.has-background-white
-            span.has-background-white
-
-      div.navbar-menu(id="navMenu")
-        div.navbar-end
-          div.navbar-item
-           = if @conn.assigns[:session] do
-                    div.has-text-link = "Logged in as #{@conn.assigns[:session].user.fore_name} #{@conn.assigns[:session].user.last_name}"
-          div.navbar-item
-            = if @conn.assigns[:session] do
-              = form_for @conn, session_path(@conn, :delete, @conn.assigns[:session]), [method: :delete], fn _form ->
-                = submit("Logout", class: "button has-text-weight-bold is-outlined is-link")
-            - else
-              a.button.has-text-weight-bold.is-link.is-outlined(href="#{public_session_path(@conn, :new)}") Login
+  = if !is_nil get_flash(@conn, :success) do
+    div.snackbar.notification.is-success(style="position: fixed;")
+      button.delete
+      div.has-text-weight-bold.is-size5 = gettext("Success")
+      div = get_flash(@conn, :success)
 
 
-    = if !is_nil get_flash(@conn, :info) do
-      section.hero.is-success
-        div.hero-body
-          div.container
-            h1.title.has-text-white = gettext("Success")
-            h2.subtitle.has-text-white = "#{get_flash(@conn, :info) }"
+  = if !is_nil get_flash(@conn, :warning) do
+    div.snackbar.notification.is-warning(style="position: fixed;")
+      button.delete
+      div.has-text-weight-bold.is-size5 = gettext("Warning")
+      div = get_flash(@conn, :warning)
 
-    = if !is_nil get_flash(@conn, :warning) do
-      section.hero.is-warning
-        div.hero-body
-          div.container
-            h1.title.has-text-white = gettext("Warning")
-            h2.subtitle.has-text-white = "#{get_flash(@conn, :warning) }"
 
-    = if !is_nil get_flash(@conn, :error) do
-      section.hero.is-danger
-        div.hero-body
-          div.container
-            h1.title.is-3.has-text-white = gettext("Error")
-            h2.subtitle.has-text-white = "#{get_flash(@conn, :error) }"
+  = if !is_nil get_flash(@conn, :error) do
+    div.snackbar.notification.is-danger(style="position: fixed;")
+      button.delete
+      span.has-text-weight-bold.is-size5 = gettext("Error") <> ": "
+      span = get_flash(@conn, :error)
 
-    div.section.Site-content
-      div.container
-        = @inner_content
-
-    footer.footer
-      div.content
-        div.columns
-          div.column.is-narrow
-            a.button.is-primary(href="https://fachschaft-wiwi.ms/privacy-policy/")
-              / span.icon.has-text-white
-              /   i.fab.fa-github
-              span.has-text-white = gettext("Legal")
-          div.column.is-narrow
-            a.button.is-primary(href="#{page_path(@conn, :privacy)}")
-                / span.icon.has-text-white
-                /   i.fab.fa-github
-                span.has-text-white = gettext("Privacy")
-          div.column.is-narrow
-            a.button.is-primary(href="https://github.com/fs-wiwi-ms/absolventenfeier")
-              span.icon.has-text-white
-                i.fab.fa-github
-              span.has-text-white = gettext("Source Code")
-
-    script(src="#{static_path(@conn, "/js/app.js")}")
-
-    script(async="true" defer="true" data-domain="absolventenfeier.fachschaft-wiwi.ms" src="https://plausible.fachschaft-wiwi.ms/js/plausible.js")
+  div.container
+    = @inner_content

@@ -2,11 +2,11 @@ div.columns
   div.column
     h5.subtitle.is-5 = gettext("Tickets")
   div.column(align="right")
-    a.button.is-small.is-primary(href="#{event_ticket_path(@conn, :new, @event.id)}")
+    a.button.is-small.is-primary(href="#{Routes.event_ticket_path(@conn, :new, @event.id)}")
       span.icon.has-text-info
         i.fas.fa-plus
       span = gettext("Create ticket")
-    a.button.is-small.is-primary(href="#{voucher_path(@conn, :batch_pretix_sync, @event.id)}")
+    a.button.is-small.is-primary(href="#{Routes.voucher_path(@conn, :batch_pretix_sync, @event.id)}")
       span.icon.has-text-info
         i.fas.fa-sync-alt
       span = gettext("Sync voucher codes")
@@ -34,13 +34,13 @@ div.columns
                   div.field.is-grouped
                     p.control
                       button.button.is-small.is-primary
-                        a.icon.has-text-info(href="#{ticket_path(@conn, :edit, ticket.id)}" data-tooltip="#{gettext("Edit ticket")}")
+                        a.icon.has-text-info(href="#{Routes.ticket_path(@conn, :edit, ticket.id)}" data-tooltip="#{gettext("Edit ticket")}")
                           i.fas.fa-pen
                     p.control
                       button.button.is-small.is-primary
-                        a.icon.has-text-info(href="#{voucher_path(@conn, :batch_create, @event.id, ticket.id)}" data-tooltip="#{gettext("Create voucher codes")}")
+                        a.icon.has-text-info(href="#{Routes.voucher_path(@conn, :batch_create, @event.id, ticket.id)}" data-tooltip="#{gettext("Create voucher codes")}")
                           i.fas.fa-ticket-alt
-                    = form_for @conn, ticket_path(@conn, :delete, ticket.id), fn _f ->
+                    = form_for @conn, Routes.ticket_path(@conn, :delete, ticket.id), fn _f ->
                       input type="hidden" name="_method" value="delete"
                       p.control
                         button.button.is-small.is-danger

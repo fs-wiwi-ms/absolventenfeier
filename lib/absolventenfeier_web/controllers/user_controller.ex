@@ -8,7 +8,7 @@ defmodule AbsolventenfeierWeb.UserController do
 
     render(conn, "new.html",
       changeset: user_changeset,
-      action: public_user_path(conn, :create)
+      action: Routes.public_user_path(conn, :create)
     )
   end
 
@@ -17,14 +17,14 @@ defmodule AbsolventenfeierWeb.UserController do
       {:ok, _user} ->
         conn
         |> put_flash(:info, gettext("Registration successful! Please login."))
-        |> redirect(to: public_session_path(conn, :new))
+        |> redirect(to: Routes.public_session_path(conn, :new))
 
       {:error, changeset} ->
         conn
         |> put_flash(:error, gettext("Error while creating user!"))
         |> render("new.html",
           changeset: changeset,
-          action: public_user_path(conn, :create)
+          action: Routes.public_user_path(conn, :create)
         )
     end
   end

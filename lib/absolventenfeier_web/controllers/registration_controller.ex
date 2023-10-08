@@ -19,7 +19,7 @@ defmodule AbsolventenfeierWeb.RegistrationController do
       _ ->
         conn
         |> put_flash(:error, gettext("This action is permitted!"))
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: Routes.page_path(conn, :index))
     end
   end
 
@@ -42,18 +42,18 @@ defmodule AbsolventenfeierWeb.RegistrationController do
           degree_types: get_degree_types(),
           course_types: get_course_types(),
           changeset: registration_changeset,
-          action: registration_path(conn, :create)
+          action: Routes.registration_path(conn, :create)
         )
 
       :private ->
         conn
         |> put_flash(:error, gettext("Event is still private!"))
-        |> redirect(to: event_path(conn, :index))
+        |> redirect(to: Routes.event_path(conn, :index))
 
       _other ->
         conn
         |> put_flash(:error, gettext("Registration closed!"))
-        |> redirect(to: event_path(conn, :index))
+        |> redirect(to: Routes.event_path(conn, :index))
     end
   end
 
@@ -62,12 +62,12 @@ defmodule AbsolventenfeierWeb.RegistrationController do
       {:ok, _registration} ->
         conn
         |> put_flash(:info, gettext("Registration successful!"))
-        |> redirect(to: event_path(conn, :index))
+        |> redirect(to: Routes.event_path(conn, :index))
 
       {:already_registered, _registration} ->
         conn
         |> put_flash(:warning, gettext("Already Registered!"))
-        |> redirect(to: event_path(conn, :index))
+        |> redirect(to: Routes.event_path(conn, :index))
 
       {:error, changeset} ->
         event = Event.get_event(registration["event_id"])
@@ -85,7 +85,7 @@ defmodule AbsolventenfeierWeb.RegistrationController do
           degree_types: get_degree_types(),
           course_types: get_course_types(),
           changeset: changeset,
-          action: registration_path(conn, :create)
+          action: Routes.registration_path(conn, :create)
         )
     end
   end
@@ -99,12 +99,12 @@ defmodule AbsolventenfeierWeb.RegistrationController do
 
         conn
         |> put_flash(:info, gettext("Registration deleted."))
-        |> redirect(to: event_path(conn, :index))
+        |> redirect(to: Routes.event_path(conn, :index))
 
       _other ->
         conn
         |> put_flash(:warning, gettext("Registration already closed."))
-        |> redirect(to: event_path(conn, :index))
+        |> redirect(to: Routes.event_path(conn, :index))
     end
   end
 

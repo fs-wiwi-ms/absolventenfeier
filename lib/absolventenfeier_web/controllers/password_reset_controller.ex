@@ -14,7 +14,7 @@ defmodule AbsolventenfeierWeb.PasswordResetTokenController do
 
     conn
     |> put_flash(:info, gettext("We have sent you a mail"))
-    |> redirect(to: public_session_path(conn, :new))
+    |> redirect(to: Routes.public_session_path(conn, :new))
   end
 
   def show(conn, %{"id" => token}) do
@@ -30,7 +30,7 @@ defmodule AbsolventenfeierWeb.PasswordResetTokenController do
         render(conn, "show.html",
           token: token,
           changeset: changeset,
-          action: public_password_reset_token_path(conn, :update, token)
+          action: Routes.public_password_reset_token_path(conn, :update, token)
         )
     end
   end
@@ -44,7 +44,7 @@ defmodule AbsolventenfeierWeb.PasswordResetTokenController do
          {:ok, _token} <- PasswordResetToken.delete_password_reset_token(token) do
       conn
       |> put_flash(:info, gettext("Password changed succesful"))
-      |> redirect(to: public_session_path(conn, :new))
+      |> redirect(to: Routes.public_session_path(conn, :new))
     else
       nil ->
         conn
@@ -57,7 +57,7 @@ defmodule AbsolventenfeierWeb.PasswordResetTokenController do
         |> render("show.html",
           token: token,
           changeset: changeset,
-          action: public_password_reset_token_path(conn, :update, token)
+          action: Routes.public_password_reset_token_path(conn, :update, token)
         )
     end
   end
