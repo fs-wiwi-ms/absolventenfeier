@@ -29,15 +29,15 @@ jobs:
       # Step 4: Build the Docker image
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/absolventenfeier:${{ github.sha }} .
+          docker build -t ghcr.io/${{ github.repository }}:${{ github.sha }} .
 
       # Step 5: Push the Docker image to GitHub Container Registry
       - name: Push Docker image to GitHub Container Registry
         run: |
-          docker push ghcr.io/${{ github.repository }}/absolventenfeier:${{ github.sha }}
+          docker push ghcr.io/${{ github.repository }}:${{ github.sha }}
 
       # Optional Step 6: Add latest tag and push it as well
       - name: Tag image as latest and push
         run: |
-          docker tag ghcr.io/${{ github.repository }}/absolventenfeier:${{ github.sha }} ghcr.io/${{ github.repository }}/absolventenfeier:latest
-          docker push ghcr.io/${{ github.repository }}/absolventenfeier:latest
+          docker tag ghcr.io/${{ github.repository }}:${{ github.sha }} ghcr.io/${{ github.repository }}:latest
+          docker push ghcr.io/${{ github.repository }}:latest
