@@ -3,6 +3,10 @@
 
 FROM node:14 AS assets
 
+RUN sed -i 's|deb.debian.org/debian|archive.debian.org/debian|g' /etc/apt/sources.list && \
+    sed -i 's|security.debian.org|archive.debian.org|g' /etc/apt/sources.list && \
+    echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99disable-check-valid-until
+
 RUN set -xe; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
@@ -74,7 +78,7 @@ RUN if [ "$ENV" = "prod" ]; then mix do phx.digest, release absolventenfeier; fi
 
 ##
 # Run
-FROM debian:buster-slim
+FROM debian:trixie-slim
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -qq update && \
   apt-get install -y --no-install-recommends \
