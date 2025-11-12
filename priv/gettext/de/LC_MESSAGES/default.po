@@ -42,7 +42,7 @@ msgstr "Vorname (vollständig)"
 #: lib/absolventenfeier_web/templates/layout/app.html.slime:6 lib/absolventenfeier_web/templates/layout/app.html.slime:16
 #: lib/absolventenfeier_web/templates/page/index.html.slime:3
 msgid "Graduation Ceremony"
-msgstr "Absolventenfeier"
+msgstr "Abschlussfeier"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/registration/index.html.slime:9
@@ -117,7 +117,7 @@ msgstr "Email oder Passwort falsch."
 #, elixir-format
 #: lib/absolventenfeier_web/templates/layout/app.html.slime:8
 msgid "Graduation Ceremony portal of student's council for economics of university muenster"
-msgstr "Absolventenfeierportal der Fachschaft WiWi der Universität Münster"
+msgstr "Abschlussfeierportal der Fachschaft WiWi der Universität Münster"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/registration/new.html.slime:11
@@ -197,7 +197,7 @@ msgstr "Admin Ecke"
 #, elixir-format
 #: lib/absolventenfeier_web/templates/page/index.html.slime:52
 msgid "Create new graduation ceremony"
-msgstr "Neue Absolventenfeier erstellen"
+msgstr "Neue Abschlussfeier erstellen"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/page/index.html.slime:47
@@ -217,7 +217,7 @@ msgstr "Bei Anregungen, Fehlern und anderen Problemen bezüglich der Anzeige wen
 #, elixir-format
 #: lib/absolventenfeier_web/templates/page/index.html.slime:9
 msgid "Please create an account to register for the next graduation ceremony. Insert "
-msgstr "Bitte erstelle einen Benutzeraccount um dich für die nächste Absolventenfeier anzumelden. Gebe bitte deinen"
+msgstr "Bitte erstelle einen Benutzeraccount um dich für die nächste Abschlussfeier anzumelden. Gebe bitte deinen"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/index.html.slime:50
@@ -227,7 +227,7 @@ msgstr "Anmeldephase"
 #, elixir-format
 #: lib/absolventenfeier_web/templates/page/index.html.slime:41
 msgid "This area is not important for you! Only important functions for our graduation ceremony team are stored here."
-msgstr "Dieser Bereich ist nicht relevant für dich! Hier liegen nur Funktionen für unser Absolventenfeier Orga-Team."
+msgstr "Dieser Bereich ist nicht relevant für dich! Hier liegen nur Funktionen für unser Abschlussfeier Orga-Team."
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/index.html.slime:83
@@ -258,7 +258,7 @@ msgstr "Du bist bereits eingeloggt."
 #, elixir-format
 #: lib/absolventenfeier_web/templates/registration/new.html.slime:38
 msgid "I hereby agree that the graduation ceremony team of the student council of the Faculty of Economics and Business Administration will receive my certificate from the examination office of the Faculty of Economics and Business Administration in order to present it to me at the graduation ceremony. I also agree that photos of me and my companions may be published. Tickets can only be returned if the graduation ceremony is cancelled."
-msgstr "Hiermit erkläre ich mich einverstanden, dass dem Absolventenfeierteam der Fachschaft Wirtschaftswissenschaften mein Zeugnis vom Prüfungsamt der Wirtschaftswissenschaftlichen Fakultät übermittelt bekommt, um mir dieses bei der Absolventenfeier zu überreichen. Zudem erkläre ich mich einverstanden, dass Fotos von mir und meinen Begleitern möglicherweise veröffentlicht werden. Eine Rückgabe der Karten ist nur bei Ausfall der Feier möglich."
+msgstr "Hiermit erkläre ich mich einverstanden, dass dem Abschlussfeierteam der Fachschaft Wirtschaftswissenschaften mein Zeugnis vom Prüfungsamt der Wirtschaftswissenschaftlichen Fakultät übermittelt bekommt, um mir dieses bei der Abschlussfeier zu überreichen. Zudem erkläre ich mich einverstanden, dass Fotos von mir und meinen Begleitern möglicherweise veröffentlicht werden. Eine Rückgabe der Karten ist nur bei Ausfall der Feier möglich."
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/registration/new.html.slime:37
@@ -342,7 +342,7 @@ msgstr "Allgemeines"
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_form.html.slime:11
 msgid "Graduation ceremony event"
-msgstr "Absolventenfeier"
+msgstr "Abschlussfeier"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/index.html.slime:31
@@ -482,12 +482,12 @@ msgstr ""
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:38 lib/absolventenfeier_web/templates/event/_steps.html.slime:40
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:42
 msgid "Graduation ceremony"
-msgstr "Absolventenfeier"
+msgstr "Abschlussfeier"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/layout/app.html.slime:32
 msgid "Graducation Ceremony"
-msgstr "Absolventenfeier"
+msgstr "Abschlussfeier"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/index.html.slime:12
@@ -507,7 +507,7 @@ msgstr ""
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/index.html.slime:11
 msgid "Keine zukünftigen Absolventenfeiern gefunden. Auf unseren Kanälen ("
-msgstr ""
+msgstr "Keine zukünftigen Abschlussfeiern gefunden. Auf unseren Kanälen ("
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_tickets.html.slime:24
@@ -570,12 +570,12 @@ msgstr "Du hast leider nicht alle Schritte abgeschlossen, deshalb kannst du leid
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:22
 msgid "As you did not register for the event, you cannot participate."
-msgstr "Weil du dich nicht angemeldet hast kannst du leider nicht an der Feier teilnehmen."
+msgstr "Weil du dich nicht angemeldet hast, kannst du leider nicht an der Feier teilnehmen."
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:40
 msgid "Hope you had fun! Good luck in your further life."
-msgstr "Wir hoffen du hattest Spaß, viel Glück in deinem weiteren Leben."
+msgstr "Wir hoffen du hattest Spaß, viel Glück in deinem weiteren Leben🤗."
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/_steps.html.slime:12
@@ -686,7 +686,7 @@ msgstr "Ticket erfolgreich gelöscht"
 #, elixir-format
 #: lib/absolventenfeier_web/templates/registration/new.html.slime:21
 msgid "Due to the current situation, it is still uncertain how the event will take place. In case of a worsening of the situation, we need your address to be on the safe side."
-msgstr "Aufgrund der aktuellen Situation ist es unsicher wie die Feier stattfinden wird. Im Falle einer Verschlechterung der aktuellen benötigen wir deine Adresse um auf der sicheren Seite zu sein."
+msgstr "Aufgrund der aktuellen Situation ist es unsicher wie die Feier stattfinden wird. Im Falle einer Verschlechterung der aktuellen Situation benötigen wir deine Adresse, um auf der sicheren Seite zu sein."
 
 #, elixir-format
 #: lib/absolventenfeier_web/controllers/ticket_controller.ex:74

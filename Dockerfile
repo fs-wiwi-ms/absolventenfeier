@@ -1,10 +1,14 @@
-ARG DEBIAN_VERSION=bullseye-20210902-slim
+ARG DEBIAN_VERSION=trixie-slim
 ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
 
 ##
 # Assets
 
 FROM node:14 AS assets
+
+RUN sed -i 's|deb.debian.org/debian|archive.debian.org/debian|g' /etc/apt/sources.list && \
+    sed -i 's|security.debian.org|archive.debian.org|g' /etc/apt/sources.list && \
+    echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99disable-check-valid-until
 
 RUN set -xe; \
     apt-get update; \
@@ -77,6 +81,12 @@ RUN if [ "$ENV" = "prod" ]; then mix do phx.digest, release absolventenfeier; fi
 
 ##
 # Run
+FROM debian:trixie-slim
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get -qq update && \
+  apt-get install -y --no-install-recommends \
+  locales openssl && \
+  rm -rf /var/lib/apt/lists/*
 
 # start a new build stage so that the final image will only contain
 # the compiled release and other runtime necessities
