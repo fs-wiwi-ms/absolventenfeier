@@ -1,3 +1,6 @@
+ARG DEBIAN_VERSION=trixie-slim
+ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
+
 ##
 # Assets
 
@@ -32,7 +35,7 @@ RUN if [ "$ENV" = "prod" ]; then yarn run deploy; fi
 ##
 # App
 
-FROM elixir:1.13-slim AS app
+FROM elixir:1.13 AS app
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends \
@@ -43,8 +46,8 @@ RUN apt-get update && \
   libssl1.1 \
   ca-certificates \
   build-essential \
-  && \
-  rm -rf /var/lib/apt/lists/*
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 # Set environment variables for building the application
 ARG ENV=prod
@@ -78,25 +81,36 @@ RUN if [ "$ENV" = "prod" ]; then mix do phx.digest, release absolventenfeier; fi
 
 ##
 # Run
-FROM debian:trixie-slim
+# start a new build stage so that the final image will only contain
+# the compiled release and other runtime necessities
+FROM ${RUNNER_IMAGE}
+RUN echo "=== entered final stage (runner) ==="
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get -qq update && \
-  apt-get install -y --no-install-recommends \
-  locales openssl && \
-  rm -rf /var/lib/apt/lists/*
+RUN apt-get update -y && apt-get install -y libstdc++6 openssl libncurses5 locales \
+  && apt-get clean && rm -f /var/lib/apt/lists/*_*
 
-# Set LOCALE to UTF8
-RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
-  locale-gen en_US.UTF-8 && \
-  dpkg-reconfigure locales && \
-  /usr/sbin/update-locale LANG=en_US.UTF-8
+# Set the locale
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 # Copy over the build artifact from the previous step and create a non root user
-WORKDIR /app
-COPY --from=app /app/_build/prod/rel/absolventenfeier ./
+RUN mkdir -p /app
+WORKDIR "/app"
+RUN chown nobody /app
+
+# set runner ENV
+ENV MIX_ENV="prod"
+
+# Only copy the final release from the build stage
+COPY --from=app --chown=nobody:root /app/_build/${MIX_ENV}/rel/absolventenfeier ./
 COPY Procfile ./
+
+USER nobody
+
+EXPOSE 4000
 
 ENTRYPOINT ["./bin/absolventenfeier"]
 CMD ["start"]
