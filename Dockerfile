@@ -81,26 +81,20 @@ RUN if [ "$ENV" = "prod" ]; then mix do phx.digest, release absolventenfeier; fi
 
 ##
 # Run
-FROM debian:trixie-slim
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get -qq update && \
-  apt-get install -y --no-install-recommends \
-  locales openssl && \
-  rm -rf /var/lib/apt/lists/*
-
 # start a new build stage so that the final image will only contain
 # the compiled release and other runtime necessities
-FROM ${RUNNER_IMAGE}
-
-RUN apt-get update -y && apt-get install -y libstdc++6 openssl libncurses5 locales \
+FROM debian:trixie-slim
+RUN echo "=== entered final stage (runner) ==="
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update -y && apt-get install -y libstdc++6 openssl libncurses6 locales \
   && apt-get clean && rm -f /var/lib/apt/lists/*_*
 
 # Set the locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
 
 # Copy over the build artifact from the previous step and create a non root user
 RUN mkdir -p /app
