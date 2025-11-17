@@ -1,3 +1,6 @@
+ARG DEBIAN_VERSION=trixie-slim
+ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
+
 ##
 # Assets
 
