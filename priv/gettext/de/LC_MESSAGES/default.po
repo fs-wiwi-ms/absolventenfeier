@@ -182,7 +182,7 @@ msgstr "Registrierung erfolgreich. Bitte logge dich ein."
 #, elixir-format
 #: lib/absolventenfeier_web/templates/page/index.html.slime:11
 msgid ", otherwise were not able to get your bachelor or master certificate. If you have questions please contact "
-msgstr "an, damit wir dein Zeugnis zuordnen können. Wenn du Fragen hast melde dich einfach bei"
+msgstr " an, damit wir dein Zeugnis zuordnen können. Wenn du Fragen hast melde dich einfach bei"
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/page/index.html.slime:20
@@ -217,7 +217,7 @@ msgstr "Bei Anregungen, Fehlern und anderen Problemen bezüglich der Anzeige wen
 #, elixir-format
 #: lib/absolventenfeier_web/templates/page/index.html.slime:9
 msgid "Please create an account to register for the next graduation ceremony. Insert "
-msgstr "Bitte erstelle einen Benutzeraccount um dich für die nächste Abschlussfeier anzumelden. Gebe bitte deinen"
+msgstr "Bitte erstelle einen Benutzeraccount um dich für die nächste Abschlussfeier anzumelden. Gebe bitte deinen "
 
 #, elixir-format
 #: lib/absolventenfeier_web/templates/event/index.html.slime:50
