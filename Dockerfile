@@ -1,4 +1,4 @@
-ARG DEBIAN_VERSION=trixie-slim
+ARG DEBIAN_VERSION=bullseye-slim
 ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
 
 ##
@@ -83,10 +83,10 @@ RUN if [ "$ENV" = "prod" ]; then mix do phx.digest, release absolventenfeier; fi
 # Run
 # start a new build stage so that the final image will only contain
 # the compiled release and other runtime necessities
-FROM debian:trixie-slim
+FROM debian:bullseye-slim
 RUN echo "=== entered final stage (runner) ==="
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update -y && apt-get install -y libstdc++6 openssl libncurses6 locales \
+RUN apt-get update -y && apt-get install -y libstdc++5 openssl libncurses6 locales \
   && apt-get clean && rm -f /var/lib/apt/lists/*_*
 
 # Set the locale
